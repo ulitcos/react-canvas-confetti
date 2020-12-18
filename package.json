@@ -1,0 +1,19 @@
+{
+  "name": "react-canvas-confetti",
+  "version": "1.0.0",
+  "description": "React component for canvas-confetti library",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ulitcos/react-canvas-confetti.git"
+  },
+  "author": "Ruslan Krokhin <ulitcos@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ulitcos/react-canvas-confetti/issues"
+  },
+  "homepage": "https://github.com/ulitcos/react-canvas-confetti#readme"
+}

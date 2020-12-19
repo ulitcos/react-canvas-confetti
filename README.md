@@ -128,8 +128,6 @@ class Parent extends React.Component {
 
 `disableForReducedMotion: boolean (default: false)` - disables confetti entirely for users that prefer reduced motion. The confetti() promise will resolve immediately in this case.
 
-`resize: boolean (default: false)` - whether to allow setting the canvas image size, as well as keep it correctly sized if the window changes size (e.g. resizing the window, rotating a mobile device, etc.). By default, the canvas size will not be modified.
+`resize: boolean (default: true)` - whether to allow setting the canvas image size, as well as keep it correctly sized if the window changes size (e.g. resizing the window, rotating a mobile device, etc.). By default, the canvas size will not be modified.
 
-`useWorker: boolean (default: false)` - whether to use an asynchronous web worker to render the confetti animation, whenever possible. This is turned off by default, meaning that the animation will always execute on the main thread. If turned on and the browser supports it, the animation will execute off of the main thread so that it is not blocking any other work your page needs to do. Using this option will also modify the canvas, but more on that directly below -- do read it. If it is not supported by the browser, this value will be ignored.
-
-`disableForReducedMotion: boolean (default: false)` - disables confetti entirely for users that prefer reduced motion. When set to true, use of this confetti instance will always respect a user's request for reduced motion and disable confetti for them.
+`useWorker: boolean (default: true)` - whether to use an asynchronous web worker to render the confetti animation, whenever possible. This is turned off by default, meaning that the animation will always execute on the main thread. If turned on and the browser supports it, the animation will execute off of the main thread so that it is not blocking any other work your page needs to do. Using this option will also modify the canvas, but more on that directly below -- do read it. If it is not supported by the browser, this value will be ignored.

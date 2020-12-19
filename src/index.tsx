@@ -9,8 +9,8 @@ import React, {
 } from 'react';
 
 export interface IProps extends Options, GlobalOptions {
-  fire?: boolean | number | string | object | null;
-  reset?: boolean | number | string | object | null;
+  fire?: any;
+  reset?: any;
   width?: string | number;
   height?: string | number;
   className?: string;
@@ -40,11 +40,10 @@ export default class ReactCanvasConfetti extends React.Component<IProps> {
     const { resize, useWorker } = this.props;
     const globalOptions: GlobalOptions = {};
 
-    resize && (globalOptions.resize = resize);
-    useWorker && (globalOptions.useWorker = useWorker);
+    resize && (globalOptions.resize = resize || true);
+    useWorker && (globalOptions.useWorker = useWorker || true);
 
     this.confetti = canvasConfetti.create(this.refCanvas.current, globalOptions);
-    this.fireConfetti();
     this.setRefConfetti();
   }
 

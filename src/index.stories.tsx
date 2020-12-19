@@ -62,7 +62,7 @@ Base.args = {
   zIndex: -1,
   disableForReducedMotion: false,
   resize: true,
-  useWorker: false,
+  useWorker: true,
 };
 
 export default {

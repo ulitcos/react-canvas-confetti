@@ -1,5 +1,5 @@
-# react-canvas-confetti
-React component for [canvas-confetti library](https://github.com/catdad/canvas-confetti).
+# [react-canvas-confetti](https://ulitcos.github.io/react-canvas-confetti/playground)
+React component for [canvas-confetti library](https://github.com/catdad/canvas-confetti). In the [sandbox](https://ulitcos.github.io/react-canvas-confetti/playground) you can play with the settings.
 
 ## Installation
 ```bash

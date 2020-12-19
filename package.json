@@ -51,5 +51,10 @@
   },
   "peerDependencies": {
     "react": "*"
-  }
+  },
+  "keywords": [
+    "react",
+    "canvas",
+    "confetti"
+  ]
 }

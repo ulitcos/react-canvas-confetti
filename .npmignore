@@ -2,6 +2,3 @@
 !dist/*
 !src/*
 *.stories.*
-!LICENSE
-!package.json
-!README.md

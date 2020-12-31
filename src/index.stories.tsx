@@ -20,13 +20,19 @@ const SHAPES: shape[] = ['circle', 'square'];
 
 const styles: Record<string, CSSProperties> = {
   container: {
-    position: 'fixed', width: '100%', height: '100%', top: 0, left: 0, pointerEvents: 'none'
+    position: 'fixed', width: '100%', height: '100%', top: 0, left: 0, pointerEvents: 'none',
   },
   button: {
-    position: 'fixed', width: '100px', height: '40px', left: '50%', bottom: '15%', marginLeft: '-50px', pointerEvents: 'auto'
+    position: 'fixed',
+    width: '100px',
+    height: '40px',
+    left: '50%',
+    bottom: '15%',
+    marginLeft: '-50px',
+    pointerEvents: 'auto',
   },
   canvas: {
-    position: 'fixed', width: '100%', height: '100%', top: 0, left: 0, zIndex: 1
+    position: 'fixed', width: '100%', height: '100%', top: 0, left: 0, zIndex: 1,
   },
 };
 

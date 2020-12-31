@@ -20,17 +20,17 @@ const SHAPES: shape[] = ['circle', 'square'];
 
 const styles: Record<string, CSSProperties> = {
   container: {
-    position: 'fixed', width: '100%', height: '100%', top: 0, left: 0,
+    position: 'fixed', width: '100%', height: '100%', top: 0, left: 0, pointerEvents: 'none'
   },
   button: {
-    position: 'fixed', width: '100px', height: '40px', left: '50%', bottom: '15%', marginLeft: '-50px',
+    position: 'fixed', width: '100px', height: '40px', left: '50%', bottom: '15%', marginLeft: '-50px', pointerEvents: 'auto'
   },
   canvas: {
-    position: 'fixed', width: '100%', height: '100%', top: 0, left: 0, zIndex: -1,
+    position: 'fixed', width: '100%', height: '100%', top: 0, left: 0, zIndex: 1
   },
 };
 
-const Template: Story<IProps> = (args) => {
+const SettingsTemplate: Story<IProps> = (args) => {
   const [fire, setFire] = useState<boolean | number>(false);
   const { ...props } = args;
   const colors: string[] = (args.colors || []).map<string>((color) => COLOR_MAP[color] as string);
@@ -43,8 +43,8 @@ const Template: Story<IProps> = (args) => {
   );
 };
 
-export const Base = Template.bind({});
-Base.args = {
+export const Settings = SettingsTemplate.bind({});
+Settings.args = {
   particleCount: 500,
   angle: 90,
   spread: 360,

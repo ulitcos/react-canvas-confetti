@@ -16,33 +16,47 @@ There are two use cases for react-canvas-confetti:
 import React from 'react';
 import Confetti from 'react-canvas-confetti';
 
-class Parent extends React.Component {
-  componentDidUpdate() {
-    // fire animation
-    this.refConfetti.file();
+class AwesomeComponent extends React.Component {
+  onClickDefault() {
+    this.refConfetti();
+  }
 
-    // fire animation with options
-    const options = {particleCount: 500};
-    this.refConfetti.file(options);
+  onClickCustom() {
+    this.refConfetti({particleCount: 500});
+  }
 
-    // cancel all animations
-    this.refConfetti.reset();
-
-    // call callback after animation
-    this.refConfetti.file().then(() => {
+  onClickCallback() {
+    this.refConfetti().then(() => {
       console.log('do something after animation');
     });
   }
 
+  onClickReset() {
+    this.refConfetti.reset();
+  }
+
   render() {
-    return(
-      <div>
+    const style = {
+      position: 'fixed',
+      width: '100%',
+      height: '100%',
+      zIndex: -1
+    };
+
+    return (
+      <>
         <Confetti
-            className={'yourClassName'} 
-            refConfetti={(ref) => this.refConfetti = ref}
+          style={style}
+          className={'yourClassName'}
+          refConfetti={(ref) => this.refConfetti = ref}
         />
-      </div>
-    )
+        
+        <button onClick={this.onClickDefault.bind(this)}>Fire with default</button>
+        <button onClick={this.onClickCustom.bind(this)}>Fire with custom</button>
+        <button onClick={this.onClickCallback.bind(this)}>Fire with callback</button>
+        <button onClick={this.onClickReset.bind(this)}>Reset</button>
+      </>
+    );
   }
 }
 

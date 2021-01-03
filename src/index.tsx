@@ -102,6 +102,8 @@ export default class ReactCanvasConfetti extends React.Component<IProps> {
       return;
     }
 
+    this.confetti.reset();
+
     const { onReset } = this.props;
 
     onReset && onReset();

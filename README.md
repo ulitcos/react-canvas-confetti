@@ -67,23 +67,57 @@ class AwesomeComponent extends React.Component {
 import React from 'react';
 import Confetti from 'react-canvas-confetti';
 
-class Parent extends React.Component {
+class AwesomeComponent extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      fire: false,
+      reset: false
+    }
+  }
+
+  onClickFire() {
+    // set any value that is cast to the logical true and will differ from the previous one.
+    this.setState({fire: {}});
+  }
+
+  onClickReset() {
+    // set any value that is cast to the logical true and will differ from the previous one.
+    this.setState({reset: {}});
+  }
+
+  onReset() {
+    console.log('do something after reset')
+  }
+
+  onDecay() {
+    console.log('do something after animation')
+  }
+
   render() {
-    return(
-      <div>
+    const style = {
+      position: 'fixed',
+      width: '100%',
+      height: '100%',
+      zIndex: -1
+    };
+
+    return (
+      <>
         <Confetti
-          // fire animation
-          fire={true} 
-          // cancel all animations
-          reset={true} 
+          style={style}
           className={'yourClassName'}
-          // call callback after animation
-          onDecay={() => console.log('do something after animation')}
-          // call callback after resetting 
-          onReset={() => console.log('do something after reset')} 
+          fire={this.state.fire}
+          reset={this.state.reset}
+          onDecay={this.onDecay}
+          onReset={this.onReset}
         />
-      </div>
-    )
+
+        <button onClick={this.onClickFire.bind(this)}>Fire</button>
+        <button onClick={this.onClickReset.bind(this)}>Reset</button>
+      </>
+    );
   }
 }
 

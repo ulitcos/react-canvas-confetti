@@ -57,33 +57,47 @@
       <pre class="highlight"><code>import React from 'react';
 import Confetti from 'react-canvas-confetti';
 
-class Parent extends React.Component {
-  componentDidUpdate() {
-    // fire animation
-    this.refConfetti.file();
+class AwesomeComponent extends React.Component {
+  onClickDefault() {
+    this.refConfetti();
+  }
 
-    // fire animation with options
-    const options = {particleCount: 500};
-    this.refConfetti.file(options);
+  onClickCustom() {
+    this.refConfetti({particleCount: 500});
+  }
 
-    // cancel all animations
-    this.refConfetti.reset();
-
-    // call callback after animation
-    this.refConfetti.file().then(() => {
+  onClickCallback() {
+    this.refConfetti().then(() =&gt; {
       console.log('do something after animation');
     });
   }
 
+  onClickReset() {
+    this.refConfetti.reset();
+  }
+
   render() {
-    return(
-      &lt;div&gt;
+    const style = {
+      position: 'fixed',
+      width: '100%',
+      height: '100%',
+      zIndex: -1
+    };
+
+    return (
+      &lt;&gt;
         &lt;Confetti
+          style={style}
           className={'yourClassName'}
-          refConfetti={(ref) => this.refConfetti = ref}
+          refConfetti={(ref) =&gt; this.refConfetti = ref}
         /&gt;
-      &lt;/div&gt;
-    )
+
+        &lt;button onClick={this.onClickDefault.bind(this)}&gt;Fire with default&lt;/button&gt;
+        &lt;button onClick={this.onClickCustom.bind(this)}&gt;Fire with custom&lt;/button&gt;
+        &lt;button onClick={this.onClickCallback.bind(this)}&gt;Fire with callback&lt;/button&gt;
+        &lt;button onClick={this.onClickReset.bind(this)}&gt;Reset&lt;/button&gt;
+      &lt;/&gt;
+    );
   }
 }</code></pre>
     </li>
@@ -92,23 +106,57 @@ class Parent extends React.Component {
       <pre class="highlight"><code>import React from 'react';
 import Confetti from 'react-canvas-confetti';
 
-class Parent extends React.Component {
+class AwesomeComponent extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      fire: false,
+      reset: false
+    }
+  }
+
+  onClickFire() {
+    // set any value that is cast to the logical true and will differ from the previous one.
+    this.setState({fire: {}});
+  }
+
+  onClickReset() {
+    // set any value that is cast to the logical true and will differ from the previous one.
+    this.setState({reset: {}});
+  }
+
+  onReset() {
+    console.log('do something after reset')
+  }
+
+  onDecay() {
+    console.log('do something after animation')
+  }
+
   render() {
-    return(
-      &lt;div&gt;
+    const style = {
+      position: 'fixed',
+      width: '100%',
+      height: '100%',
+      zIndex: -1
+    };
+
+    return (
+      &lt;&gt;
         &lt;Confetti
-          // fire animation
-          fire={true}
-          // cancel all animations
-          reset={true}
+          style={style}
           className={'yourClassName'}
-          // call callback after animation
-          onDecay={() => console.log('do something after animation')}
-          // call callback after resetting
-          onReset={() => console.log('do something after reset')}
-        />
-      &lt;/div&gt;
-    )
+          fire={this.state.fire}
+          reset={this.state.reset}
+          onDecay={this.onDecay}
+          onReset={this.onReset}
+        /&gt;
+
+        &lt;button onClick={this.onClickFire.bind(this)}&gt;Fire&lt;/button&gt;
+        &lt;button onClick={this.onClickReset.bind(this)}&gt;Reset&lt;/button&gt;
+      &lt;/&gt;
+    );
   }
 }</code></pre>
     </li>

@@ -38,10 +38,10 @@ export default class ReactCanvasConfetti extends React.Component<IProps> {
     }
 
     const { resize, useWorker } = this.props;
-    const globalOptions: GlobalOptions = {};
-
-    resize && (globalOptions.resize = resize || true);
-    useWorker && (globalOptions.useWorker = useWorker || true);
+    const globalOptions: GlobalOptions = {
+      resize: typeof resize === 'undefined' ? true : resize,
+      useWorker: typeof useWorker === 'undefined' ? true : useWorker,
+    };
 
     this.confetti = canvasConfetti.create(this.refCanvas.current, globalOptions);
     this.setRefConfetti();
@@ -85,11 +85,13 @@ export default class ReactCanvasConfetti extends React.Component<IProps> {
       return;
     }
 
-    const { onFire, onDecay } = this.props;
+    const {
+      onFire, onDecay, onReset, ...rest
+    } = this.props;
 
     onFire && onFire();
 
-    const promise = this.confetti(this.props);
+    const promise = this.confetti(rest);
 
     // @ts-ignore
     promise && promise.then(() => {

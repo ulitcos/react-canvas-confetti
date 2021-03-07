@@ -86,12 +86,12 @@ export default class ReactCanvasConfetti extends React.Component<IProps> {
     }
 
     const {
-      onFire, onDecay, onReset, ...rest
+      onFire, onDecay, onReset, className, style, width, height, refConfetti, fire, reset, ...confettiProps
     } = this.props;
 
     onFire && onFire();
 
-    const promise = this.confetti(rest);
+    const promise = this.confetti(confettiProps);
 
     // @ts-ignore
     promise && promise.then(() => {

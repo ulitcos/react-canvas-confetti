@@ -1,5 +1,8 @@
 # [react-canvas-confetti](https://ulitcos.github.io/react-canvas-confetti/)
 React component for [canvas-confetti library](https://github.com/catdad/canvas-confetti). In the [sandbox](https://ulitcos.github.io/react-canvas-confetti/playground) you can play with the settings.
+
+[![Build Status](https://travis-ci.com/ulitcos/react-canvas-confetti.svg?branch=master)](https://travis-ci.com/ulitcos/react-canvas-confetti)
+
 ![GIF-confetti](./pic/confetti-gif-800.gif)
 ## Installation
 ```bash

@@ -4,7 +4,7 @@ import {
   render,
   unmountComponentAtNode,
 } from 'react-dom';
-import ReactCanvasConfetti from '../src';
+import ReactCanvasConfetti from './index';
 
 jest.mock('canvas-confetti', () => ({
   create() {

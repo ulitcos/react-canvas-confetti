@@ -6,15 +6,13 @@ import {
 } from 'react-dom';
 import ReactCanvasConfetti from '../src';
 
-jest.mock('canvas-confetti', () => {
-  return {
-    create: function () {
-      const fire = jest.fn(() => {}) as jest.Mock & { reset: () => void };
-      fire.reset = jest.fn(() => {});
-      return fire;
-    },
-  };
-});
+jest.mock('canvas-confetti', () => ({
+  create() {
+    const fire = jest.fn(() => {}) as jest.Mock & { reset: () => void };
+    fire.reset = jest.fn(() => {});
+    return fire;
+  },
+}));
 
 let container: HTMLDivElement = document.createElement('div');
 let refConfetti: CreateTypes | null = null;
@@ -26,7 +24,7 @@ const props = {
   width: 100,
   height: 200,
   className: 'customClassName',
-  style: {opacity: '0.5'},
+  style: { opacity: '0.5' },
   refConfetti: setRefConfetti,
   onFire: jest.fn(() => {}),
   onReset: jest.fn(() => {}),
@@ -45,7 +43,7 @@ describe('ReactCanvasConfetti', () => {
   });
 
   test('Should create canvas dom node', () => {
-    render(<ReactCanvasConfetti {...props}/>, container);
+    render(<ReactCanvasConfetti {...props} />, container);
 
     const canvas = container.querySelector('canvas');
 
@@ -59,7 +57,7 @@ describe('ReactCanvasConfetti', () => {
   test('Should set up ref to confetti instance', () => {
     expect(createSpy).toHaveBeenCalledTimes(0);
 
-    render(<ReactCanvasConfetti refConfetti={setRefConfetti}/>, container);
+    render(<ReactCanvasConfetti refConfetti={setRefConfetti} />, container);
 
     expect(createSpy).toHaveBeenCalledTimes(1);
     expect(typeof refConfetti === 'function').toBeTruthy();
@@ -69,16 +67,16 @@ describe('ReactCanvasConfetti', () => {
   test('Should be called with correct arguments', () => {
     expect(createSpy).toHaveBeenCalledTimes(0);
 
-    render(<ReactCanvasConfetti refConfetti={setRefConfetti}/>, container);
-    render(<ReactCanvasConfetti {...props} fire={{}} angle={45}/>, container);
-    render(<ReactCanvasConfetti {...props} fire={{}} angle={45} spread={180}/>, container);
-    render(<ReactCanvasConfetti {...props} reset={{}}/>, container);
+    render(<ReactCanvasConfetti refConfetti={setRefConfetti} />, container);
+    render(<ReactCanvasConfetti {...props} fire={{}} angle={45} />, container);
+    render(<ReactCanvasConfetti {...props} fire={{}} angle={45} spread={180} />, container);
+    render(<ReactCanvasConfetti {...props} reset={{}} />, container);
 
     const refConfettiMock = ((refConfetti as unknown) as jest.Mock).mock;
 
     expect(refConfetti).toHaveBeenCalledTimes(2);
-    expect(refConfettiMock.calls[0][0]).toEqual({angle: 45});
-    expect(refConfettiMock.calls[1][0]).toEqual({angle: 45, spread: 180});
+    expect(refConfettiMock.calls[0][0]).toEqual({ angle: 45 });
+    expect(refConfettiMock.calls[1][0]).toEqual({ angle: 45, spread: 180 });
     expect(refConfetti!.reset).toHaveBeenCalledTimes(1);
     expect(props.onFire).toHaveBeenCalledTimes(2);
     expect(props.onReset).toHaveBeenCalledTimes(1);

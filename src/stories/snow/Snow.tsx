@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
-import confetti from 'canvas-confetti';
-import './canvasConfettiModes.css'
+import { CreateTypes, shape } from 'canvas-confetti';
+import ReactCanvasConfetti from '../../index';
+import '../canvasConfettiModes.css';
 
-function randomInRange(min, max) {
+function randomInRange(min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
 
+interface ISnow { };
+
 export default class Snow extends Component {
-  constructor(props) {
+  private isAnimationEnabled: boolean;
+  private animationInstance: CreateTypes | null = null;
+
+  constructor(props: ISnow) {
     super(props);
-    this.canvasRef = React.createRef();
     this.isAnimationEnabled = false;
+
     this.nextTickAnimation = this.nextTickAnimation.bind(this);
   }
 
@@ -25,23 +31,13 @@ export default class Snow extends Component {
         y: (Math.random() * 0.999) - 0.2
       },
       colors: ['#ffffff'],
-      shapes: ['circle'],
+      shapes: ['circle'] as shape[],
       scalar: randomInRange(0.4, 1)
     }
   }
 
-  createAnimationInstance() {
-    this.animationInstance = confetti.create(this.canvasRef.current, {
-      resize: true,
-      useWorker: true
-    })
-  }
-
   nextTickAnimation() {
-    if (!this.animationInstance) {
-      this.createAnimationInstance();
-    }
-    this.animationInstance(this.getAnimationSettings())
+    this.animationInstance && this.animationInstance(this.getAnimationSettings())
     if (this.isAnimationEnabled) requestAnimationFrame(this.nextTickAnimation);
   };
 
@@ -58,7 +54,19 @@ export default class Snow extends Component {
 
   stopAnimation() {
     this.isAnimationEnabled = false;
-    this.animationInstance.reset();
+    this.animationInstance && this.animationInstance.reset();
+  }
+
+  handlerClickStart = () => {
+    this.startAnimation();
+  }
+
+  handlerClickPause = () => {
+    this.pauseAnimation();
+  }
+
+  handlerClickStop = () => {
+    this.stopAnimation();
   }
 
   componentWillUnmount() {
@@ -69,11 +77,13 @@ export default class Snow extends Component {
     return (
       <>
         <div className="canvas-confetti-modes__control">
-          <button role="option" onClick={() => this.startAnimation()}>Start</button>
-          <button role="option" onClick={() => this.pauseAnimation()}>Pause</button>
-          <button role="option" onClick={() => this.stopAnimation()}>Stop</button>
+          <button role="option" onClick={this.handlerClickStart}>Start</button>
+          <button role="option" onClick={this.handlerClickPause}>Pause</button>
+          <button role="option" onClick={this.handlerClickStop}>Stop</button>
         </div>
-        <canvas ref={this.canvasRef} className="canvas-confetti-modes__canvas"></canvas>
+        <ReactCanvasConfetti
+          refConfetti={(instance) => this.animationInstance = instance}
+          className="canvas-confetti-modes__canvas" />
       </>
     )
   }

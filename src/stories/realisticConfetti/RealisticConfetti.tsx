@@ -14,7 +14,8 @@ export default class RealisticConfetti extends Component {
   }
 
   makeShot(particleRatio: number, opts: object) {
-    this.animationInstance && this.animationInstance(Object.assign({}, { origin: { y: 0.7 } }, opts, {
+    this.animationInstance && this.animationInstance(Object.assign({}, opts, {
+      origin: { y: 0.7 },
       particleCount: Math.floor(200 * particleRatio)
     }));
   }
@@ -48,14 +49,22 @@ export default class RealisticConfetti extends Component {
     });
   }
 
+  handlerFire = () => {
+    this.fire()
+  }
+
+  makeInstance() {
+    return (instance: CreateTypes | null) => this.animationInstance = instance
+  }
+
   render() {
     return (
       <>
         <div className="canvas-confetti-modes__control">
-          <button onClick={() => this.fire()}>Fire</button>
+          <button onClick={this.handlerFire}>Fire</button>
         </div>
         <ReactCanvasConfetti
-          refConfetti={(instance) => this.animationInstance = instance}
+          refConfetti={this.makeInstance()}
           className="canvas-confetti-modes__canvas" />
       </>
     )

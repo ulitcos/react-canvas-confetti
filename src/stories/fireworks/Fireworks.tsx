@@ -21,18 +21,17 @@ export default class Fireworks extends Component {
   }
 
   getAnimationSettings(originXA: number, originXB: number) {
-    return Object.assign({},
-      {
-        startVelocity: 30,
-        spread: 360,
-        ticks: 60,
-        zIndex: 0,
-        particleCount: 150,
-        origin: {
-          x: randomInRange(originXA, originXB),
-          y: Math.random() - 0.2
-        }
-      })
+    return {
+      startVelocity: 30,
+      spread: 360,
+      ticks: 60,
+      zIndex: 0,
+      particleCount: 150,
+      origin: {
+        x: randomInRange(originXA, originXB),
+        y: Math.random() - 0.2
+      }
+    }
   }
 
   nextTickAnimation() {
@@ -75,6 +74,10 @@ export default class Fireworks extends Component {
     this.intervalId && clearInterval(this.intervalId);
   }
 
+  makeInstance() {
+    return (instance: CreateTypes | null) => this.animationInstance = instance
+  }
+
   render() {
     return (
       <>
@@ -84,7 +87,7 @@ export default class Fireworks extends Component {
           <button role="option" onClick={this.handlerClickStop}>Stop</button>
         </div>
         <ReactCanvasConfetti
-          refConfetti={(instance) => this.animationInstance = instance}
+          refConfetti={this.makeInstance()}
           className="canvas-confetti-modes__canvas" />
       </>
     )

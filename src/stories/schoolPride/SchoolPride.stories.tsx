@@ -2,9 +2,9 @@ import React from 'react';
 import SchoolPride from './SchoolPride';
 
 export default {
-  title: 'SchoolPride mode',
+  title: 'School Pride',
   component: SchoolPride
 }
 
 export const SchoolPrideMode = () => <SchoolPride />;
-SchoolPrideMode.storyName = 'School Pride';
+SchoolPrideMode.storyName = 'School Pride Primary';

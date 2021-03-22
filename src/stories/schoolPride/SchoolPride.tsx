@@ -31,7 +31,6 @@ export default class SchoolPride extends Component {
     if (this.isAnimationEnabled) requestAnimationFrame(this.nextTickAnimation);
   }
 
-
   startAnimation() {
     if (!this.isAnimationEnabled) {
       this.isAnimationEnabled = true;
@@ -60,6 +59,10 @@ export default class SchoolPride extends Component {
     this.stopAnimation();
   }
 
+  makeInstance() {
+    return (instance: CreateTypes | null) => this.animationInstance = instance
+  }
+
   componentWillUnmount() {
     this.isAnimationEnabled = false;
   }
@@ -73,7 +76,7 @@ export default class SchoolPride extends Component {
           <button role="option" onClick={this.handlerClickStop}>Stop</button>
         </div>
         <ReactCanvasConfetti
-          refConfetti={(instance) => this.animationInstance = instance}
+          refConfetti={this.makeInstance()}
           className="canvas-confetti-modes__canvas" />
       </>
     )

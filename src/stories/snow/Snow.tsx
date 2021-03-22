@@ -69,6 +69,10 @@ export default class Snow extends Component {
     this.stopAnimation();
   }
 
+  makeInstance() {
+    return (instance: CreateTypes | null) => this.animationInstance = instance
+  }
+
   componentWillUnmount() {
     this.isAnimationEnabled = false;
   }
@@ -82,7 +86,7 @@ export default class Snow extends Component {
           <button role="option" onClick={this.handlerClickStop}>Stop</button>
         </div>
         <ReactCanvasConfetti
-          refConfetti={(instance) => this.animationInstance = instance}
+          refConfetti={this.makeInstance()}
           className="canvas-confetti-modes__canvas" />
       </>
     )

@@ -15,6 +15,7 @@ DemoStory.args = {
   startVelocity: 45,
   decay: 0.8,
   gravity: 1,
+  drift: 0,
   ticks: 600,
   origin: {
     x: 0.5,
@@ -79,6 +80,14 @@ export default {
       control: {
         type: 'range',
         min: -3,
+        max: 3,
+        step: 0.1,
+      },
+    },
+    drift: {
+      control: {
+        type: 'range',
+        min: 1,
         max: 3,
         step: 0.1,
       },

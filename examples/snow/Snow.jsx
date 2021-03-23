@@ -1,24 +1,24 @@
-import {
-  CreateTypes,
-  shape,
-} from 'canvas-confetti';
-import React, { Component } from 'react';
+import React from 'react';
 import ReactCanvasConfetti from '../../src';
-import '../css/index.css';
 
-function randomInRange(min: number, max: number) {
+function randomInRange(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-export default class Snow extends Component {
-  private isAnimationEnabled: boolean;
-  private animationInstance: CreateTypes | null = null;
+const canvasStyles = {
+  position: 'fixed',
+  pointerEvents: 'none',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  left: 0
+}
 
-  constructor(props: {}) {
+export default class Snow extends React.Component {
+  constructor(props) {
     super(props);
     this.isAnimationEnabled = false;
-
-    this.nextTickAnimation = this.nextTickAnimation.bind(this);
+    this.animationInstance = null;
   }
 
   getAnimationSettings() {
@@ -32,28 +32,28 @@ export default class Snow extends Component {
         y: (Math.random() * 0.999) - 0.2,
       },
       colors: ['#ffffff'],
-      shapes: ['circle'] as shape[],
+      shapes: ['circle'],
       scalar: randomInRange(0.4, 1),
     };
   }
 
-  nextTickAnimation() {
+  nextTickAnimation = () => {
     this.animationInstance && this.animationInstance(this.getAnimationSettings());
     if (this.isAnimationEnabled) requestAnimationFrame(this.nextTickAnimation);
   }
 
-  startAnimation() {
+  startAnimation = () => {
     if (!this.isAnimationEnabled) {
       this.isAnimationEnabled = true;
       this.nextTickAnimation();
     }
   }
 
-  pauseAnimation() {
+  pauseAnimation = () => {
     this.isAnimationEnabled = false;
   }
 
-  stopAnimation() {
+  stopAnimation = () => {
     this.isAnimationEnabled = false;
     this.animationInstance && this.animationInstance.reset();
   }
@@ -70,7 +70,7 @@ export default class Snow extends Component {
     this.stopAnimation();
   };
 
-  getInstance = (instance: CreateTypes | null) => {
+  getInstance = (instance) => {
     this.animationInstance = instance;
   };
 
@@ -81,15 +81,12 @@ export default class Snow extends Component {
   render() {
     return (
       <>
-        <div className="controls">
+        <div>
           <button onClick={this.handlerClickStart}>Start</button>
           <button onClick={this.handlerClickPause}>Pause</button>
           <button onClick={this.handlerClickStop}>Stop</button>
         </div>
-        <ReactCanvasConfetti
-          refConfetti={this.getInstance}
-          className="canvas"
-        />
+        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
       </>
     );
   }

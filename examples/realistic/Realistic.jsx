@@ -1,17 +1,22 @@
-import { CreateTypes } from 'canvas-confetti';
-import React, { Component } from 'react';
+import React from 'react';
 import ReactCanvasConfetti from '../../src';
-import '../css/index.css';
 
-export default class Realistic extends Component {
-  private animationInstance: CreateTypes | null = null;
+const canvasStyles = {
+  position: 'fixed',
+  pointerEvents: 'none',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  left: 0
+}
 
-  constructor(props: {}) {
+export default class Realistic extends React.Component {
+  constructor(props) {
     super(props);
-    this.fire = this.fire.bind(this);
+    this.animationInstance = null;
   }
 
-  makeShot(particleRatio: number, opts: object) {
+  makeShot = (particleRatio, opts) => {
     this.animationInstance && this.animationInstance({
       ...opts,
       origin: { y: 0.7 },
@@ -19,7 +24,7 @@ export default class Realistic extends Component {
     });
   }
 
-  fire() {
+  fire = () => {
     this.makeShot(0.25, {
       spread: 26,
       startVelocity: 55,
@@ -52,20 +57,15 @@ export default class Realistic extends Component {
     this.fire();
   };
 
-  getInstance = (instance: CreateTypes | null) => {
+  getInstance = (instance) => {
     this.animationInstance = instance;
   };
 
   render() {
     return (
       <>
-        <div className="controls">
-          <button onClick={this.handlerFire}>Fire</button>
-        </div>
-        <ReactCanvasConfetti
-          refConfetti={this.getInstance}
-          className="canvas"
-        />
+        <button onClick={this.handlerFire}>Fire</button>
+        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
       </>
     );
   }

@@ -1,23 +1,28 @@
-import React, { Component } from 'react';
-import { CreateTypes } from 'canvas-confetti';
+import React from 'react';
 import ReactCanvasConfetti from '../../src';
-import '../css/index.css';
 
-function randomInRange(min: number, max: number): number {
+function randomInRange(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-export default class Fireworks extends Component {
-  private isAnimationEnabled: boolean;
-  private animationInstance: CreateTypes | null = null;
-  private intervalId: NodeJS.Timeout | null = null;
+const canvasStyles = {
+  position: 'fixed',
+  pointerEvents: 'none',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  left: 0
+}
 
-  constructor(props: {}) {
+export default class Fireworks extends React.Component {
+  constructor(props) {
     super(props);
     this.isAnimationEnabled = false;
+    this.animationInstance = null;
+    this.intervalId = null;
   }
 
-  getAnimationSettings(originXA: number, originXB: number) {
+  getAnimationSettings(originXA, originXB) {
     return {
       startVelocity: 30,
       spread: 360,
@@ -71,22 +76,19 @@ export default class Fireworks extends Component {
     this.intervalId && clearInterval(this.intervalId);
   }
 
-  getInstance = (instance: CreateTypes | null) => {
+  getInstance = (instance) => {
     this.animationInstance = instance
   }
 
   render() {
     return (
       <>
-        <div className="controls">
+        <div>
           <button onClick={this.handlerClickStart}>Start</button>
           <button onClick={this.handlerClickPause}>Pause</button>
           <button onClick={this.handlerClickStop}>Stop</button>
         </div>
-        <ReactCanvasConfetti
-          refConfetti={this.getInstance}
-          className="canvas"
-        />
+        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
       </>
     );
   }

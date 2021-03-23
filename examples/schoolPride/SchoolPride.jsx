@@ -1,19 +1,23 @@
-import { CreateTypes } from 'canvas-confetti';
-import React, { Component } from 'react';
+import React from 'react';
 import ReactCanvasConfetti from '../../src';
-import '../css/index.css';
 
-export default class SchoolPride extends Component {
-  private isAnimationEnabled: boolean;
-  private animationInstance: CreateTypes | null = null;
+const canvasStyles = {
+  position: 'fixed',
+  pointerEvents: 'none',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  left: 0
+}
 
-  constructor(props: {}) {
+export default class SchoolPride extends React.Component {
+  constructor(props) {
     super(props);
     this.isAnimationEnabled = false;
-    this.nextTickAnimation = this.nextTickAnimation.bind(this);
+    this.animationInstance = null;
   }
 
-  makeShot(angle: number, originX: number) {
+  makeShot = (angle, originX) => {
     this.animationInstance && this.animationInstance({
       particleCount: 3,
       angle,
@@ -23,24 +27,24 @@ export default class SchoolPride extends Component {
     });
   }
 
-  nextTickAnimation() {
+  nextTickAnimation = () => {
     this.makeShot(60, 0);
     this.makeShot(120, 1);
     if (this.isAnimationEnabled) requestAnimationFrame(this.nextTickAnimation);
   }
 
-  startAnimation() {
+  startAnimation = () => {
     if (!this.isAnimationEnabled) {
       this.isAnimationEnabled = true;
       this.nextTickAnimation();
     }
   }
 
-  pauseAnimation() {
+  pauseAnimation = () => {
     this.isAnimationEnabled = false;
   }
 
-  stopAnimation() {
+  stopAnimation = () => {
     this.isAnimationEnabled = false;
     this.animationInstance && this.animationInstance.reset();
   }
@@ -57,7 +61,7 @@ export default class SchoolPride extends Component {
     this.stopAnimation();
   };
 
-  getInstance = (instance: CreateTypes | null) => {
+  getInstance = (instance) => {
     this.animationInstance = instance;
   };
 
@@ -68,15 +72,12 @@ export default class SchoolPride extends Component {
   render() {
     return (
       <>
-        <div className="controls">
+        <div>
           <button onClick={this.handlerClickStart}>Start</button>
           <button onClick={this.handlerClickPause}>Pause</button>
           <button onClick={this.handlerClickStop}>Stop</button>
         </div>
-        <ReactCanvasConfetti
-          refConfetti={this.getInstance}
-          className="canvas"
-        />
+        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
       </>
     );
   }

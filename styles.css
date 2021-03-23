@@ -54,7 +54,7 @@ h1 {
   margin: 0.67em 0
 }
 
-mark {
+summary mark {
   background: transparent;
   color: #159957;
 }

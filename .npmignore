@@ -2,3 +2,5 @@
 !dist/*
 !src/*
 *.stories.*
+*.test.*
+

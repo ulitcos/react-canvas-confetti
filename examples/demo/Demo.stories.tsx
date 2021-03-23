@@ -1,56 +1,21 @@
-import { Story } from '@storybook/react/types-6-0';
 import { shape } from 'canvas-confetti';
-import React, {
-  CSSProperties,
-  useState,
-} from 'react';
-import ReactCanvasConfetti, { IProps } from '.';
-
-const COLOR_MAP: Record<string, string> = {
-  blue: '#26ccff',
-  purple: '#a25afd',
-  red: '#ff5e7e',
-  green: '#88ff5a',
-  yellow: '#fcff42',
-  orange: '#ffa62d',
-  pink: '#ff36ff',
-};
+import {
+  COLOR_MAP,
+  Demo,
+  // @ts-ignore
+} from './Demo';
 
 const SHAPES: shape[] = ['circle', 'square'];
 
-const styles: Record<string, CSSProperties> = {
-  container: {
-    position: 'fixed', width: '100%', height: '100%', top: 0, left: 0, pointerEvents: 'none'
-  },
-  button: {
-    position: 'fixed', width: '100px', height: '40px', left: '50%', bottom: '15%', marginLeft: '-50px', pointerEvents: 'auto'
-  },
-  canvas: {
-    position: 'fixed', width: '100%', height: '100%', top: 0, left: 0, zIndex: 1
-  },
-};
-
-const SettingsTemplate: Story<IProps> = (args) => {
-  const [fire, setFire] = useState<boolean | number>(false);
-  const { ...props } = args;
-  const colors: string[] = (args.colors || []).map<string>((color) => COLOR_MAP[color] as string);
-
-  return (
-    <div style={styles.container}>
-      <button type="button" style={styles.button} onClick={setFire.bind(null, Math.random())}>Fire</button>
-      <ReactCanvasConfetti {...props} fire={fire} colors={colors} style={styles.canvas} />
-    </div>
-  );
-};
-
-export const Settings = SettingsTemplate.bind({});
-Settings.args = {
+export const DemoStory = Demo.bind({});
+DemoStory.args = {
   particleCount: 500,
   angle: 90,
   spread: 360,
   startVelocity: 45,
   decay: 0.8,
   gravity: 1,
+  drift: 0,
   ticks: 600,
   origin: {
     x: 0.5,
@@ -65,9 +30,11 @@ Settings.args = {
   useWorker: true,
 };
 
+DemoStory.storyName = 'Demo';
+
 export default {
-  component: ReactCanvasConfetti,
-  title: 'CanvasConfetti',
+  component: DemoStory,
+  title: 'Demo',
   argTypes: {
     particleCount: {
       control: {
@@ -113,6 +80,14 @@ export default {
       control: {
         type: 'range',
         min: -3,
+        max: 3,
+        step: 0.1,
+      },
+    },
+    drift: {
+      control: {
+        type: 'range',
+        min: 1,
         max: 3,
         step: 0.1,
       },

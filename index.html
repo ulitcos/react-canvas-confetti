@@ -51,29 +51,39 @@
   </p>
 
   <p>There are two use cases for react-canvas-confetti:</p>
-  <ul>
-    <li>
-      <p>Get an instance of canvas-confetti using the <code class="language-plaintext highlighter-rouge">refConfetti</code> prop and work with it directly. With this approach, you will need to use prop <code class="language-plaintext highlighter-rouge">refConfetti</code> to get a canvas-confetti instance for subsequent work with it and refuse to use props <code class="language-plaintext highlighter-rouge">fire</code>, <code class="language-plaintext highlighter-rouge">reset</code>, <code class="language-plaintext highlighter-rouge">onFire</code>, <code class="language-plaintext highlighter-rouge">onDecay</code>, <code class="language-plaintext highlighter-rouge">onReset</code>.</p>
-      <pre class="highlight"><code>import React from 'react';
+  <details>
+    <summary>
+      <b>1. Working with instance of canvas-confetti.</b> Get an instance of canvas-confetti using the <code class="language-plaintext highlighter-rouge">refConfetti</code> prop and work with it directly. With this approach, you will need to use prop <code class="language-plaintext highlighter-rouge">refConfetti</code> to get a canvas-confetti instance for subsequent work with it and <b>refuse to use props</b> <i>fire</i>, <i>reset</i>, <i>onFire</i>, <i>onDecay</i>, <i>onReset</i>. <mark>[example]</mark>
+    </summary>
+    <pre class="highlight"><code><script type="text/plain">import React from 'react';
 import Confetti from 'react-canvas-confetti';
 
-class AwesomeComponent extends React.Component {
-  onClickDefault() {
-    this.refConfetti();
+export default class Confetti extends React.Component {
+  getInstance = (instance) => {
+    // saving the instance to an internal property
+    this.confetti = instance;
   }
 
-  onClickCustom() {
-    this.refConfetti({particleCount: 500});
+  onClickDefault = () => {
+    // starting the animation
+    this.confetti();
   }
 
-  onClickCallback() {
-    this.refConfetti().then(() =&gt; {
+  onClickCustom = () => {
+    // starting the animation with custom settings
+    this.confetti({particleCount: Math.ceil(Math.random() * 1000), spread: 180});
+  }
+
+  onClickCallback = () => {
+    // calling console.log after the animation ends
+    this.confetti().then(() => {
       console.log('do something after animation');
     });
   }
 
-  onClickReset() {
-    this.refConfetti.reset();
+  onClickReset = () => {
+    // cleaning the canvas
+    this.confetti.reset();
   }
 
   render() {
@@ -85,28 +95,34 @@ class AwesomeComponent extends React.Component {
     };
 
     return (
-      &lt;&gt;
-        &lt;Confetti
+      <>
+        <ReactCanvasConfetti
+          // set the styles as for a usual react component
           style={style}
+          // set the class name as for a usual react component
           className={'yourClassName'}
-          refConfetti={(ref) =&gt; this.refConfetti = ref}
-        /&gt;
+          // set the callback for getting instance. The callback will be called after initialization ReactCanvasConfetti component
+          refConfetti={this.getInstance}
+        />
 
-        &lt;button onClick={this.onClickDefault.bind(this)}&gt;Fire with default&lt;/button&gt;
-        &lt;button onClick={this.onClickCustom.bind(this)}&gt;Fire with custom&lt;/button&gt;
-        &lt;button onClick={this.onClickCallback.bind(this)}&gt;Fire with callback&lt;/button&gt;
-        &lt;button onClick={this.onClickReset.bind(this)}&gt;Reset&lt;/button&gt;
-      &lt;/&gt;
+        <button onClick={this.onClickDefault}>Fire with default</button>
+        <button onClick={this.onClickCustom}>Fire with custom</button>
+        <button onClick={this.onClickCallback}>Fire with callback</button>
+        <button onClick={this.onClickReset}>Reset</button>
+      </>
     );
   }
-}</code></pre>
-    </li>
-    <li>
-      <p>Control the component by throwing all the props from above. With this approach, you don't need to work with the canvas-confetti instance directly. You can organize all the logic through a set of props <code class="language-plaintext highlighter-rouge">fire</code>, <code class="language-plaintext highlighter-rouge">reset</code>, <code class="language-plaintext highlighter-rouge">onFire</code>, <code class="language-plaintext highlighter-rouge">onDecay</code>, <code class="language-plaintext highlighter-rouge">onReset</code>.</p>
-      <pre class="highlight"><code>import React from 'react';
-import Confetti from 'react-canvas-confetti';
+}</script></code></pre>
+  </details>
 
-class AwesomeComponent extends React.Component {
+  <details>
+    <summary>
+      <b>2. Working with props of react-canvas-confetti.</b> Control the component by throwing all the props from above. With this approach, you don't need to work with the canvas-confetti instance directly. You can organize all the logic through a <b>set of props</b> <i>fire</i>, <i>reset</i>, <i>onFire</i>, <i>onDecay</i>, <i>onReset</i>. <mark>[example]</mark>
+    </summary>
+    <pre class="highlight"><code><script type="text/plain">import React from 'react';
+import ReactCanvasConfetti from 'react-canvas-confetti';
+
+export default class Confetti extends React.Component {
   constructor() {
     super();
 
@@ -116,21 +132,25 @@ class AwesomeComponent extends React.Component {
     }
   }
 
-  onClickFire() {
+  onClickFire = () => {
     // set any value that is cast to the logical true and will differ from the previous one.
     this.setState({fire: {}});
   }
 
-  onClickReset() {
+  onClickReset = () => {
     // set any value that is cast to the logical true and will differ from the previous one.
     this.setState({reset: {}});
   }
 
-  onReset() {
+  onFire = () => {
+    console.log('do something after fire')
+  }
+
+  onReset = () => {
     console.log('do something after reset')
   }
 
-  onDecay() {
+  onDecay = () => {
     console.log('do something after animation')
   }
 
@@ -143,24 +163,31 @@ class AwesomeComponent extends React.Component {
     };
 
     return (
-      &lt;&gt;
-        &lt;Confetti
+      <>
+        <ReactCanvasConfetti
+          // set the styles as for a usual react component
           style={style}
+          // set the class name as for a usual react component
           className={'yourClassName'}
+          // if value in this.state.fire cast to the logical true and will differ from the previous, then will be called new animation
           fire={this.state.fire}
+          // if value in this.state.reset cast to the logical true and will differ from the previous, then will be cleared canvas
           reset={this.state.reset}
+          // set the callback on new animation
+          onFire={this.onFire}
+          // set the callback on decay animation
           onDecay={this.onDecay}
+          // set the callback on reset canvas
           onReset={this.onReset}
-        /&gt;
+        />
 
-        &lt;button onClick={this.onClickFire.bind(this)}&gt;Fire&lt;/button&gt;
-        &lt;button onClick={this.onClickReset.bind(this)}&gt;Reset&lt;/button&gt;
-      &lt;/&gt;
+        <button onClick={this.onClickFire}>Fire</button>
+        <button onClick={this.onClickReset}>Reset</button>
+      </>
     );
   }
-}</code></pre>
-    </li>
-  </ul>
+}</script></code></pre>
+  </details>
 
   <h3 id="api">API</h3>
   <h4 id="component-props">Component props</h4>
@@ -215,6 +242,10 @@ class AwesomeComponent extends React.Component {
     are pulled down. 1 is full gravity, 0.5 is half gravity, etc., but there are no limits. You can even make particles
     go up if you’d like.</p>
 
+  <p><code class="language-plaintext highlighter-rouge">drift: number (default: 0)</code> - how much to the side the
+    confetti will drift. The default is 0, meaning that they will fall straight down. Use a negative number for left
+    and positive number for right.</p>
+
   <p><code class="language-plaintext highlighter-rouge">ticks: number (default: 200)</code> - how many times the
     confetti will move. This is abstract… but play with it if the confetti disappear too quickly for you.</p>
 
@@ -267,9 +298,11 @@ class AwesomeComponent extends React.Component {
       href="https://pages.github.com">GitHub Pages</a>.</span>
   </footer>
 </section>
+</body>
+</html>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
-        integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous">
+</script>
 <script>anchors.add();</script>
 
 <!-- Yandex.Metrika counter -->
@@ -287,6 +320,3 @@ class AwesomeComponent extends React.Component {
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/70658557" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-
-</body>
-</html>

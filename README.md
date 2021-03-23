@@ -28,7 +28,7 @@ There are two use cases for react-canvas-confetti:
 
 ````javascript
 import React from 'react';
-import Confetti from 'react-canvas-confetti';
+import ReactCanvasConfetti from 'react-canvas-confetti';
 
 export default class Confetti extends React.Component {
   getInstance = (instance) => {
@@ -226,4 +226,378 @@ export default class Confetti extends React.Component {
 `useWorker: boolean (default: true)` - whether to use an asynchronous web worker to render the confetti animation, whenever possible. This is turned off by default, meaning that the animation will always execute on the main thread. If turned on and the browser supports it, the animation will execute off of the main thread so that it is not blocking any other work your page needs to do. Using this option will also modify the canvas, but more on that directly below -- do read it. If it is not supported by the browser, this value will be ignored.
 
 ## Examples
-More examples, such as snow, fireworks, school pride, realistic you can see in [storybook](https://ulitcos.github.io/react-canvas-confetti/)
+You can see live examples in the [storybook](https://ulitcos.github.io/react-canvas-confetti/).
+
+<details>
+  <summary>Fireworks</summary>
+
+````javascript
+import React from 'react';
+import ReactCanvasConfetti from 'react-canvas-confetti';
+
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+const canvasStyles = {
+  position: 'fixed',
+  pointerEvents: 'none',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  left: 0
+}
+
+export default class Fireworks extends React.Component {
+  constructor(props) {
+    super(props);
+    this.isAnimationEnabled = false;
+    this.animationInstance = null;
+    this.intervalId = null;
+  }
+
+  getAnimationSettings(originXA, originXB) {
+    return {
+      startVelocity: 30,
+      spread: 360,
+      ticks: 60,
+      zIndex: 0,
+      particleCount: 150,
+      origin: {
+        x: randomInRange(originXA, originXB),
+        y: Math.random() - 0.2
+      }
+    }
+  }
+
+  nextTickAnimation =()=> {
+    this.animationInstance && this.animationInstance(this.getAnimationSettings(0.1, 0.3));
+    this.animationInstance && this.animationInstance(this.getAnimationSettings(0.7, 0.9));
+  }
+
+  startAnimation() {
+    if (!this.isAnimationEnabled) {
+      this.isAnimationEnabled = true;
+      this.intervalId = setInterval(this.nextTickAnimation, 400);
+    }
+  }
+
+  pauseAnimation() {
+    this.isAnimationEnabled = false;
+    return this.intervalId && clearInterval(this.intervalId);
+  }
+
+  stopAnimation() {
+    this.isAnimationEnabled = false;
+    this.animationInstance && this.animationInstance.reset();
+    return this.intervalId && clearInterval(this.intervalId);
+  }
+
+  handlerClickStart = () => {
+    this.startAnimation();
+  }
+
+  handlerClickPause = () => {
+    this.pauseAnimation();
+  }
+
+  handlerClickStop = () => {
+    this.stopAnimation();
+  }
+
+  componentWillUnmount() {
+    this.isAnimationEnabled = false;
+    this.intervalId && clearInterval(this.intervalId);
+  }
+
+  getInstance = (instance) => {
+    this.animationInstance = instance
+  }
+
+  render() {
+    return (
+      <>
+        <div>
+          <button onClick={this.handlerClickStart}>Start</button>
+          <button onClick={this.handlerClickPause}>Pause</button>
+          <button onClick={this.handlerClickStop}>Stop</button>
+        </div>
+        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
+      </>
+    );
+  }
+}
+
+````
+</details>
+
+<details>
+  <summary>Realistic</summary>
+
+````javascript
+import React from 'react';
+import ReactCanvasConfetti from 'react-canvas-confetti';
+
+const canvasStyles = {
+  position: 'fixed',
+  pointerEvents: 'none',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  left: 0
+}
+
+export default class Realistic extends React.Component {
+  constructor(props) {
+    super(props);
+    this.animationInstance = null;
+  }
+
+  makeShot = (particleRatio, opts) => {
+    this.animationInstance && this.animationInstance({
+      ...opts,
+      origin: { y: 0.7 },
+      particleCount: Math.floor(200 * particleRatio),
+    });
+  }
+
+  fire = () => {
+    this.makeShot(0.25, {
+      spread: 26,
+      startVelocity: 55,
+    });
+
+    this.makeShot(0.2, {
+      spread: 60,
+    });
+
+    this.makeShot(0.35, {
+      spread: 100,
+      decay: 0.91,
+      scalar: 0.8,
+    });
+
+    this.makeShot(0.1, {
+      spread: 120,
+      startVelocity: 25,
+      decay: 0.92,
+      scalar: 1.2,
+    });
+
+    this.makeShot(0.1, {
+      spread: 120,
+      startVelocity: 45,
+    });
+  }
+
+  handlerFire = () => {
+    this.fire();
+  };
+
+  getInstance = (instance) => {
+    this.animationInstance = instance;
+  };
+
+  render() {
+    return (
+      <>
+        <button onClick={this.handlerFire}>Fire</button>
+        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
+      </>
+    );
+  }
+}
+````
+</details>
+
+<details>
+  <summary>School Pride</summary>
+
+````javascript
+import React from 'react';
+import ReactCanvasConfetti from 'react-canvas-confetti';
+
+const canvasStyles = {
+  position: 'fixed',
+  pointerEvents: 'none',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  left: 0
+}
+
+export default class SchoolPride extends React.Component {
+  constructor(props) {
+    super(props);
+    this.isAnimationEnabled = false;
+    this.animationInstance = null;
+    this.nextTickAnimation = this.nextTickAnimation.bind(this);
+  }
+
+  makeShot = (angle, originX) => {
+    this.animationInstance && this.animationInstance({
+      particleCount: 3,
+      angle,
+      spread: 55,
+      origin: { x: originX },
+      colors: ['#bb0000', '#ffffff'],
+    });
+  }
+
+  nextTickAnimation = () => {
+    this.makeShot(60, 0);
+    this.makeShot(120, 1);
+    if (this.isAnimationEnabled) requestAnimationFrame(this.nextTickAnimation);
+  }
+
+  startAnimation = () => {
+    if (!this.isAnimationEnabled) {
+      this.isAnimationEnabled = true;
+      this.nextTickAnimation();
+    }
+  }
+
+  pauseAnimation = () => {
+    this.isAnimationEnabled = false;
+  }
+
+  stopAnimation = () => {
+    this.isAnimationEnabled = false;
+    this.animationInstance && this.animationInstance.reset();
+  }
+
+  handlerClickStart = () => {
+    this.startAnimation();
+  };
+
+  handlerClickPause = () => {
+    this.pauseAnimation();
+  };
+
+  handlerClickStop = () => {
+    this.stopAnimation();
+  };
+
+  getInstance = (instance) => {
+    this.animationInstance = instance;
+  };
+
+  componentWillUnmount() {
+    this.isAnimationEnabled = false;
+  }
+
+  render() {
+    return (
+      <>
+        <div>
+          <button onClick={this.handlerClickStart}>Start</button>
+          <button onClick={this.handlerClickPause}>Pause</button>
+          <button onClick={this.handlerClickStop}>Stop</button>
+        </div>
+        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
+      </>
+    );
+  }
+}
+````
+</details>
+
+<details>
+  <summary>Snow</summary>
+
+````javascript
+import React from 'react';
+import ReactCanvasConfetti from 'react-canvas-confetti';
+
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+const canvasStyles = {
+  position: 'fixed',
+  pointerEvents: 'none',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  left: 0
+}
+
+export default class Snow extends React.Component {
+  constructor(props) {
+    super(props);
+    this.isAnimationEnabled = false;
+    this.animationInstance = null;
+  }
+
+  getAnimationSettings() {
+    return {
+      particleCount: 1,
+      startVelocity: 0,
+      ticks: 200,
+      gravity: 0.3,
+      origin: {
+        x: Math.random(),
+        y: (Math.random() * 0.999) - 0.2,
+      },
+      colors: ['#ffffff'],
+      shapes: ['circle'],
+      scalar: randomInRange(0.4, 1),
+    };
+  }
+
+  nextTickAnimation = () => {
+    this.animationInstance && this.animationInstance(this.getAnimationSettings());
+    if (this.isAnimationEnabled) requestAnimationFrame(this.nextTickAnimation);
+  }
+
+  startAnimation = () => {
+    if (!this.isAnimationEnabled) {
+      this.isAnimationEnabled = true;
+      this.nextTickAnimation();
+    }
+  }
+
+  pauseAnimation = () => {
+    this.isAnimationEnabled = false;
+  }
+
+  stopAnimation = () => {
+    this.isAnimationEnabled = false;
+    this.animationInstance && this.animationInstance.reset();
+  }
+
+  handlerClickStart = () => {
+    this.startAnimation();
+  };
+
+  handlerClickPause = () => {
+    this.pauseAnimation();
+  };
+
+  handlerClickStop = () => {
+    this.stopAnimation();
+  };
+
+  getInstance = (instance) => {
+    this.animationInstance = instance;
+  };
+
+  componentWillUnmount() {
+    this.isAnimationEnabled = false;
+  }
+
+  render() {
+    return (
+      <>
+        <div>
+          <button onClick={this.handlerClickStart}>Start</button>
+          <button onClick={this.handlerClickPause}>Pause</button>
+          <button onClick={this.handlerClickStop}>Stop</button>
+        </div>
+        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
+      </>
+    );
+  }
+}
+````
+</details>

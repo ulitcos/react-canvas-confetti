@@ -1,19 +1,20 @@
+import {
+  CreateTypes,
+  shape,
+} from 'canvas-confetti';
 import React, { Component } from 'react';
-import { CreateTypes, shape } from 'canvas-confetti';
-import ReactCanvasConfetti from '../../index';
-import '../canvasConfettiModes.css';
+import ReactCanvasConfetti from '../../src';
+import '../css/index.css';
 
 function randomInRange(min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
 
-interface ISnow { };
-
 export default class Snow extends Component {
   private isAnimationEnabled: boolean;
   private animationInstance: CreateTypes | null = null;
 
-  constructor(props: ISnow) {
+  constructor(props: {}) {
     super(props);
     this.isAnimationEnabled = false;
 
@@ -28,18 +29,18 @@ export default class Snow extends Component {
       gravity: 0.3,
       origin: {
         x: Math.random(),
-        y: (Math.random() * 0.999) - 0.2
+        y: (Math.random() * 0.999) - 0.2,
       },
       colors: ['#ffffff'],
       shapes: ['circle'] as shape[],
-      scalar: randomInRange(0.4, 1)
-    }
+      scalar: randomInRange(0.4, 1),
+    };
   }
 
   nextTickAnimation() {
-    this.animationInstance && this.animationInstance(this.getAnimationSettings())
+    this.animationInstance && this.animationInstance(this.getAnimationSettings());
     if (this.isAnimationEnabled) requestAnimationFrame(this.nextTickAnimation);
-  };
+  }
 
   startAnimation() {
     if (!this.isAnimationEnabled) {
@@ -59,19 +60,19 @@ export default class Snow extends Component {
 
   handlerClickStart = () => {
     this.startAnimation();
-  }
+  };
 
   handlerClickPause = () => {
     this.pauseAnimation();
-  }
+  };
 
   handlerClickStop = () => {
     this.stopAnimation();
-  }
+  };
 
   getInstance = (instance: CreateTypes | null) => {
-    this.animationInstance = instance
-  }
+    this.animationInstance = instance;
+  };
 
   componentWillUnmount() {
     this.isAnimationEnabled = false;
@@ -80,15 +81,16 @@ export default class Snow extends Component {
   render() {
     return (
       <>
-        <div className="canvas-confetti-modes__control">
-          <button role="option" onClick={this.handlerClickStart}>Start</button>
-          <button role="option" onClick={this.handlerClickPause}>Pause</button>
-          <button role="option" onClick={this.handlerClickStop}>Stop</button>
+        <div className="controls">
+          <button onClick={this.handlerClickStart}>Start</button>
+          <button onClick={this.handlerClickPause}>Pause</button>
+          <button onClick={this.handlerClickStop}>Stop</button>
         </div>
         <ReactCanvasConfetti
           refConfetti={this.getInstance}
-          className="canvas-confetti-modes__canvas" />
+          className="canvas"
+        />
       </>
-    )
+    );
   }
 }

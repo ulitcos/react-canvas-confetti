@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import { CreateTypes } from 'canvas-confetti';
-import ReactCanvasConfetti from '../../index';
-import '../canvasConfettiModes.css';
+import ReactCanvasConfetti from '../../src';
+import '../css/index.css';
 
 function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;
 }
-
-interface IFireworks { };
 
 export default class Fireworks extends Component {
   private isAnimationEnabled: boolean;
   private animationInstance: CreateTypes | null = null;
   private intervalId: NodeJS.Timeout | null = null;
 
-  constructor(props: IFireworks) {
+  constructor(props: {}) {
     super(props);
     this.isAnimationEnabled = false;
   }
@@ -78,20 +76,18 @@ export default class Fireworks extends Component {
   }
 
   render() {
-
     return (
       <>
-        <div className="canvas-confetti-modes__control">
-          <button role="option" onClick={this.handlerClickStart}>Start</button>
-          <button role="option" onClick={this.handlerClickPause}>Pause</button>
-          <button role="option" onClick={this.handlerClickStop}>Stop</button>
+        <div className="controls">
+          <button onClick={this.handlerClickStart}>Start</button>
+          <button onClick={this.handlerClickPause}>Pause</button>
+          <button onClick={this.handlerClickStop}>Stop</button>
         </div>
         <ReactCanvasConfetti
           refConfetti={this.getInstance}
-          className="canvas-confetti-modes__canvas" />
+          className="canvas"
+        />
       </>
-    )
+    );
   }
 }
-
-

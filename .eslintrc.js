@@ -26,5 +26,5 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'react/jsx-props-no-spreading': 'off'
   },
-  "ignorePatterns": ["examples"],
+  "ignorePatterns": ["examples", "*.test.tsx"],
 };

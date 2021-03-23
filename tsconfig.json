@@ -80,6 +80,7 @@
     /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": [
-    "examples"
+    "examples",
+    "src/*.test.tsx"
   ]
 }

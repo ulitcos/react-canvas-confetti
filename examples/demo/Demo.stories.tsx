@@ -2,6 +2,7 @@ import { shape } from 'canvas-confetti';
 import {
   COLOR_MAP,
   Demo,
+  // @ts-ignore
 } from './Demo';
 
 const SHAPES: shape[] = ['circle', 'square'];

@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-ignore
 import SchoolPride from './SchoolPride';
 
 export const SchoolPrideMode = () => <SchoolPride />;

@@ -59,8 +59,8 @@ export default class SchoolPride extends Component {
     this.stopAnimation();
   }
 
-  makeInstance() {
-    return (instance: CreateTypes | null) => this.animationInstance = instance
+  getInstance = (instance: CreateTypes | null) => {
+    this.animationInstance = instance
   }
 
   componentWillUnmount() {
@@ -76,7 +76,7 @@ export default class SchoolPride extends Component {
           <button role="option" onClick={this.handlerClickStop}>Stop</button>
         </div>
         <ReactCanvasConfetti
-          refConfetti={this.makeInstance()}
+          refConfetti={this.getInstance}
           className="canvas-confetti-modes__canvas" />
       </>
     )

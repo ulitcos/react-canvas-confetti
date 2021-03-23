@@ -53,8 +53,8 @@ export default class RealisticConfetti extends Component {
     this.fire()
   }
 
-  makeInstance() {
-    return (instance: CreateTypes | null) => this.animationInstance = instance
+  getInstance = (instance: CreateTypes | null) => {
+    this.animationInstance = instance
   }
 
   render() {
@@ -64,7 +64,7 @@ export default class RealisticConfetti extends Component {
           <button onClick={this.handlerFire}>Fire</button>
         </div>
         <ReactCanvasConfetti
-          refConfetti={this.makeInstance()}
+          refConfetti={this.getInstance}
           className="canvas-confetti-modes__canvas" />
       </>
     )

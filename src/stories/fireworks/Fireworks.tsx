@@ -17,7 +17,6 @@ export default class Fireworks extends Component {
   constructor(props: IFireworks) {
     super(props);
     this.isAnimationEnabled = false;
-    this.nextTickAnimation = this.nextTickAnimation.bind(this);
   }
 
   getAnimationSettings(originXA: number, originXB: number) {
@@ -34,7 +33,7 @@ export default class Fireworks extends Component {
     }
   }
 
-  nextTickAnimation() {
+  nextTickAnimation =()=> {
     this.animationInstance && this.animationInstance(this.getAnimationSettings(0.1, 0.3));
     this.animationInstance && this.animationInstance(this.getAnimationSettings(0.7, 0.9));
   }
@@ -74,11 +73,12 @@ export default class Fireworks extends Component {
     this.intervalId && clearInterval(this.intervalId);
   }
 
-  makeInstance() {
-    return (instance: CreateTypes | null) => this.animationInstance = instance
+  getInstance = (instance: CreateTypes | null) => {
+    this.animationInstance = instance
   }
 
   render() {
+
     return (
       <>
         <div className="canvas-confetti-modes__control">
@@ -87,7 +87,7 @@ export default class Fireworks extends Component {
           <button role="option" onClick={this.handlerClickStop}>Stop</button>
         </div>
         <ReactCanvasConfetti
-          refConfetti={this.makeInstance()}
+          refConfetti={this.getInstance}
           className="canvas-confetti-modes__canvas" />
       </>
     )

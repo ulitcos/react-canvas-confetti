@@ -2,6 +2,8 @@
 React component for [canvas-confetti library](https://github.com/catdad/canvas-confetti). In the [demo example](https://ulitcos.github.io/react-canvas-confetti) you can play with the settings.
 
 [![Build Status](https://travis-ci.com/ulitcos/react-canvas-confetti.svg?branch=master)](https://travis-ci.com/ulitcos/react-canvas-confetti)
+![npm](https://img.shields.io/npm/dm/react-canvas-confetti)
+![NPM](https://img.shields.io/npm/l/react-canvas-confetti)
 
 ![GIF-confetti](./pic/confetti-gif-800.gif)
 

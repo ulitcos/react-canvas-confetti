@@ -294,367 +294,103 @@ export default class Confetti extends React.Component {
   <h3 id="examples">Examples</h3>
   <details>
     <summary><mark>[Fireworks]</mark></summary>
-    <pre class="highlight"><code><script type="text/plain">import React from 'react';
-import ReactCanvasConfetti from 'react-canvas-confetti';
 
-function randomInRange(min, max) {
-  return Math.random() * (max - min) + min;
-}
+    <details>
+      <summary><mark>↳ Functional component example</mark></summary>
 
-const canvasStyles = {
-  position: 'fixed',
-  pointerEvents: 'none',
-  width: '100%',
-  height: '100%',
-  top: 0,
-  left: 0
-}
+      <iframe src="https://codesandbox.io/embed/fireworks-fn-react-canvas-confetti-w594u?fontsize=14&hidenavigation=1&theme=dark"
+              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+              title="Fireworks (fn) react canvas confetti"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      ></iframe>
+    </details>
 
-export default class Fireworks extends React.Component {
-  constructor(props) {
-    super(props);
-    this.isAnimationEnabled = false;
-    this.animationInstance = null;
-    this.intervalId = null;
-  }
+    <details>
+      <summary><mark>↳ Class component example</mark></summary>
 
-  getAnimationSettings(originXA, originXB) {
-    return {
-      startVelocity: 30,
-      spread: 360,
-      ticks: 60,
-      zIndex: 0,
-      particleCount: 150,
-      origin: {
-        x: randomInRange(originXA, originXB),
-        y: Math.random() - 0.2
-      }
-    }
-  }
-
-  nextTickAnimation =()=> {
-    this.animationInstance && this.animationInstance(this.getAnimationSettings(0.1, 0.3));
-    this.animationInstance && this.animationInstance(this.getAnimationSettings(0.7, 0.9));
-  }
-
-  startAnimation() {
-    if (!this.isAnimationEnabled) {
-      this.isAnimationEnabled = true;
-      this.intervalId = setInterval(this.nextTickAnimation, 400);
-    }
-  }
-
-  pauseAnimation() {
-    this.isAnimationEnabled = false;
-    return this.intervalId && clearInterval(this.intervalId);
-  }
-
-  stopAnimation() {
-    this.isAnimationEnabled = false;
-    this.animationInstance && this.animationInstance.reset();
-    return this.intervalId && clearInterval(this.intervalId);
-  }
-
-  handlerClickStart = () => {
-    this.startAnimation();
-  }
-
-  handlerClickPause = () => {
-    this.pauseAnimation();
-  }
-
-  handlerClickStop = () => {
-    this.stopAnimation();
-  }
-
-  componentWillUnmount() {
-    this.isAnimationEnabled = false;
-    this.intervalId && clearInterval(this.intervalId);
-  }
-
-  getInstance = (instance) => {
-    this.animationInstance = instance
-  }
-
-  render() {
-    return (
-      <>
-        <div>
-          <button onClick={this.handlerClickStart}>Start</button>
-          <button onClick={this.handlerClickPause}>Pause</button>
-          <button onClick={this.handlerClickStop}>Stop</button>
-        </div>
-        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
-      </>
-    );
-  }
-}
-</script></code></pre>
+      <iframe src="https://codesandbox.io/embed/fireworks-cl-react-canvas-confetti-7sgr9?fontsize=14&hidenavigation=1&theme=dark"
+              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+              title="Fireworks (cl) react canvas confetti"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      ></iframe>
+    </details>
   </details>
 
   <details>
     <summary><mark>[Realistic]</mark></summary>
-    <pre class="highlight"><code><script type="text/plain">import React from 'react';
-import ReactCanvasConfetti from 'react-canvas-confetti';
+    <details>
+      <summary><mark>↳ Functional component example</mark></summary>
 
-const canvasStyles = {
-  position: 'fixed',
-  pointerEvents: 'none',
-  width: '100%',
-  height: '100%',
-  top: 0,
-  left: 0
-}
+      <iframe src="https://codesandbox.io/embed/realistic-fn-react-canvas-confetti-2o3pe?fontsize=14&hidenavigation=1&theme=dark"
+              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+              title="Realistic (fn) react canvas confetti"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      ></iframe>
+    </details>
 
-export default class Realistic extends React.Component {
-  constructor(props) {
-    super(props);
-    this.animationInstance = null;
-  }
+    <details>
+      <summary><mark>↳ Class component example</mark></summary>
 
-  makeShot = (particleRatio, opts) => {
-    this.animationInstance && this.animationInstance({
-      ...opts,
-      origin: { y: 0.7 },
-      particleCount: Math.floor(200 * particleRatio),
-    });
-  }
-
-  fire = () => {
-    this.makeShot(0.25, {
-      spread: 26,
-      startVelocity: 55,
-    });
-
-    this.makeShot(0.2, {
-      spread: 60,
-    });
-
-    this.makeShot(0.35, {
-      spread: 100,
-      decay: 0.91,
-      scalar: 0.8,
-    });
-
-    this.makeShot(0.1, {
-      spread: 120,
-      startVelocity: 25,
-      decay: 0.92,
-      scalar: 1.2,
-    });
-
-    this.makeShot(0.1, {
-      spread: 120,
-      startVelocity: 45,
-    });
-  }
-
-  handlerFire = () => {
-    this.fire();
-  };
-
-  getInstance = (instance) => {
-    this.animationInstance = instance;
-  };
-
-  render() {
-    return (
-      <>
-        <button onClick={this.handlerFire}>Fire</button>
-        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
-      </>
-    );
-  }
-}
-</script></code></pre>
+      <iframe src="https://codesandbox.io/embed/realistic-cl-react-canvas-confetti-kle35?fontsize=14&hidenavigation=1&theme=dark"
+              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+              title="Realistic (cl) react canvas confetti"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      ></iframe>
+    </details>
   </details>
 
   <details>
     <summary><mark>[School Pride]</mark></summary>
-    <pre class="highlight"><code><script type="text/plain">import React from 'react';
-import ReactCanvasConfetti from 'react-canvas-confetti';
+    <details>
+      <summary><mark>↳ Functional component example</mark></summary>
 
-const canvasStyles = {
-  position: 'fixed',
-  pointerEvents: 'none',
-  width: '100%',
-  height: '100%',
-  top: 0,
-  left: 0
-}
+      <iframe src="https://codesandbox.io/embed/school-pride-fn-react-canvas-confetti-10l9n?fontsize=14&hidenavigation=1&theme=dark"
+              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+              title="School Pride (fn) react canvas confetti"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      ></iframe>
+    </details>
 
-export default class SchoolPride extends React.Component {
-  constructor(props) {
-    super(props);
-    this.isAnimationEnabled = false;
-    this.animationInstance = null;
-    this.nextTickAnimation = this.nextTickAnimation.bind(this);
-  }
-
-  makeShot = (angle, originX) => {
-    this.animationInstance && this.animationInstance({
-      particleCount: 3,
-      angle,
-      spread: 55,
-      origin: { x: originX },
-      colors: ['#bb0000', '#ffffff'],
-    });
-  }
-
-  nextTickAnimation = () => {
-    this.makeShot(60, 0);
-    this.makeShot(120, 1);
-    if (this.isAnimationEnabled) requestAnimationFrame(this.nextTickAnimation);
-  }
-
-  startAnimation = () => {
-    if (!this.isAnimationEnabled) {
-      this.isAnimationEnabled = true;
-      this.nextTickAnimation();
-    }
-  }
-
-  pauseAnimation = () => {
-    this.isAnimationEnabled = false;
-  }
-
-  stopAnimation = () => {
-    this.isAnimationEnabled = false;
-    this.animationInstance && this.animationInstance.reset();
-  }
-
-  handlerClickStart = () => {
-    this.startAnimation();
-  };
-
-  handlerClickPause = () => {
-    this.pauseAnimation();
-  };
-
-  handlerClickStop = () => {
-    this.stopAnimation();
-  };
-
-  getInstance = (instance) => {
-    this.animationInstance = instance;
-  };
-
-  componentWillUnmount() {
-    this.isAnimationEnabled = false;
-  }
-
-  render() {
-    return (
-      <>
-        <div>
-          <button onClick={this.handlerClickStart}>Start</button>
-          <button onClick={this.handlerClickPause}>Pause</button>
-          <button onClick={this.handlerClickStop}>Stop</button>
-        </div>
-        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
-      </>
-    );
-  }
-}
-</script></code></pre>
+    <details>
+      <summary><mark>↳ Class component example</mark></summary>
+      <iframe src="https://codesandbox.io/embed/school-pride-cl-react-canvas-confetti-93g4v?fontsize=14&hidenavigation=1&theme=dark"
+              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+              title="School Pride (cl) react canvas confetti"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      ></iframe>
+    </details>
   </details>
 
   <details>
     <summary><mark>[Snow]</mark></summary>
-    <pre class="highlight"><code><script type="text/plain">import React from 'react';
-import ReactCanvasConfetti from 'react-canvas-confetti';
+    <details>
+      <summary><mark>↳ Functional component example</mark></summary>
 
-function randomInRange(min, max) {
-  return Math.random() * (max - min) + min;
-}
+      <iframe src="https://codesandbox.io/embed/snow-fn-react-canvas-confetti-i3y7w?fontsize=14&hidenavigation=1&theme=dark"
+              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+              title="Snow (fn) react canvas confetti"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      ></iframe>
 
-const canvasStyles = {
-  position: 'fixed',
-  pointerEvents: 'none',
-  width: '100%',
-  height: '100%',
-  top: 0,
-  left: 0
-}
+    </details>
 
-export default class Snow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.isAnimationEnabled = false;
-    this.animationInstance = null;
-  }
+    <details>
+      <summary><mark>↳ Class component example</mark></summary>
 
-  getAnimationSettings() {
-    return {
-      particleCount: 1,
-      startVelocity: 0,
-      ticks: 200,
-      gravity: 0.3,
-      origin: {
-        x: Math.random(),
-        y: (Math.random() * 0.999) - 0.2,
-      },
-      colors: ['#ffffff'],
-      shapes: ['circle'],
-      scalar: randomInRange(0.4, 1),
-    };
-  }
-
-  nextTickAnimation = () => {
-    this.animationInstance && this.animationInstance(this.getAnimationSettings());
-    if (this.isAnimationEnabled) requestAnimationFrame(this.nextTickAnimation);
-  }
-
-  startAnimation = () => {
-    if (!this.isAnimationEnabled) {
-      this.isAnimationEnabled = true;
-      this.nextTickAnimation();
-    }
-  }
-
-  pauseAnimation = () => {
-    this.isAnimationEnabled = false;
-  }
-
-  stopAnimation = () => {
-    this.isAnimationEnabled = false;
-    this.animationInstance && this.animationInstance.reset();
-  }
-
-  handlerClickStart = () => {
-    this.startAnimation();
-  };
-
-  handlerClickPause = () => {
-    this.pauseAnimation();
-  };
-
-  handlerClickStop = () => {
-    this.stopAnimation();
-  };
-
-  getInstance = (instance) => {
-    this.animationInstance = instance;
-  };
-
-  componentWillUnmount() {
-    this.isAnimationEnabled = false;
-  }
-
-  render() {
-    return (
-      <>
-        <div>
-          <button onClick={this.handlerClickStart}>Start</button>
-          <button onClick={this.handlerClickPause}>Pause</button>
-          <button onClick={this.handlerClickStop}>Stop</button>
-        </div>
-        <ReactCanvasConfetti refConfetti={this.getInstance} style={canvasStyles}/>
-      </>
-    );
-  }
-}
-</script></code></pre>
+      <iframe src="https://codesandbox.io/embed/snow-cl-react-canvas-confetti-0eoqb?fontsize=14&hidenavigation=1&theme=dark"
+              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+              title="Snow (cl) react canvas confetti"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      ></iframe>
+    </details>
   </details>
 
   <footer class="site-footer">

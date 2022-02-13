@@ -11,7 +11,8 @@
     "build-storybook": "build-storybook",
     "publish-patch": "npm run build && npm version patch && npm publish",
     "publish-minor": "npm run build && npm version minor && npm publish",
-    "publish-major": "npm run build && npm version major && npm publish"
+    "publish-major": "npm run build && npm version major && npm publish",
+    "update": "npx npm-check-updates -u && npm install"
   },
   "repository": {
     "type": "git",

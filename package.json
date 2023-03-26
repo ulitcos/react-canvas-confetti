@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@types/canvas-confetti": "1.4.2",
-    "canvas-confetti": "1.5.1"
+    "canvas-confetti": "1.6.0"
   },
   "peerDependencies": {
     "react": "*"

@@ -209,27 +209,21 @@ are className and style props.
 
 ### Canvas-confetti props ([more details](https://github.com/catdad/canvas-confetti#options))
 
-`particleCount: number (default: 50)` - the number of confetti to launch. More is always fun... but be cool, there's a
-lot of math involved.
+`particleCount: number (default: 50)` - the number of confetti to launch. More is always fun... but be cool, there's a lot of math involved.
 
 `angle: number (default: 90)` - the angle in which to launch the confetti, in degrees. 90 is straight up.
 
-`spread: number (default: 45)` - how far off center the confetti can go, in degrees. 45 means the confetti will launch
-at the defined angle plus or minus 22.5 degrees.
+`spread: number (default: 45)` - how far off center the confetti can go, in degrees. 45 means the confetti will launch at the defined angle plus or minus 22.5 degrees.
 
 `startVelocity: number (default: 45)` - how fast the confetti will start going, in pixels.
 
-`decay: number (default: 0.9)` - how quickly the confetti will lose speed. Keep this number between 0 and 1, otherwise
-the confetti will gain speed. Better yet, just never change it.
+`decay: number (default: 0.9)` - how quickly the confetti will lose speed. Keep this number between 0 and 1, otherwise the confetti will gain speed. Better yet, just never change it.
 
-`gravity: number (default: 1)` - how quickly the particles are pulled down. 1 is full gravity, 0.5 is half gravity,
-etc., but there are no limits. You can even make particles go up if you'd like.
+`gravity: number (default: 1)` - how quickly the particles are pulled down. 1 is full gravity, 0.5 is half gravity, etc., but there are no limits. You can even make particles go up if you'd like.
 
-`drift: number (default: 0)` - how much to the side the confetti will drift. The default is 0, meaning that they will
-fall straight down. Use a negative number for left and positive number for right.
+`drift: number (default: 0)` - how much to the side the confetti will drift. The default is 0, meaning that they will fall straight down. Use a negative number for left and positive number for right.
 
-`ticks: number (default: 200)` - how many times the confetti will move. This is abstract... but play with it if the
-confetti disappear too quickly for you.
+`ticks: number (default: 200)` - how many times the confetti will move. This is abstract... but play with it if the confetti disappear too quickly for you.
 
 `origin: { x: number, y: number }` - where to start firing confetti from. Feel free to launch off-screen if you'd like.
 
@@ -239,9 +233,7 @@ confetti disappear too quickly for you.
 
 `colors: Array<String>` - an array of color strings, in the HEX format... you know, like #bada55.
 
-`shapes: Array<String>` - an array of shapes for the confetti. The possible values are square and circle. The default is
-to use both shapes in an even mix. You can even change the mix by providing a value such
-as ['circle', 'circle', 'square'] to use two third circles and one third squares.
+`shapes: Array<String>` - an array of shapes for the confetti. The possible values are square, circle, and star. The default is to use both squares and circles in an even mix. To use a single shape, you can provide just one shape in the array, such as ['star']. You can also change the mix by providing a value such as ['circle', 'circle', 'square'] to use two third circles and one third squares.
 
 `scalar: number (default: 1)` - scale factor for each confetti particle. Use decimals to make the confetti smaller. Go
 on, try teeny tiny confetti, they are adorable!

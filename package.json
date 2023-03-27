@@ -50,7 +50,7 @@
     "typescript": "4.5.5"
   },
   "dependencies": {
-    "@types/canvas-confetti": "1.4.2",
+    "@types/canvas-confetti": "1.6.0",
     "canvas-confetti": "1.6.0"
   },
   "peerDependencies": {

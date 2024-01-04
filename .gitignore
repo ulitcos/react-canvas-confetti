@@ -1,11 +1,6 @@
-.DS_Store
-**/.DS_Store
-
 .idea
-
-node_modules
 dist
-
-tsconfig.tsbuildinfo
-./temp
+node_modules
+.DS_Store
+.vscode
 storybook-static

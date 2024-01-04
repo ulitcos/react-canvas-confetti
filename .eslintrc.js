@@ -1,31 +1,29 @@
 module.exports = {
-  'env': {
-    'browser': true,
-    'es2021': true
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
   },
-  'extends': 'airbnb-typescript',
-  'parser': '@typescript-eslint/parser',
-  'parserOptions': {
-    'ecmaFeatures': {
-      'jsx': true
+  extends: ["airbnb", "airbnb-typescript", "plugin:prettier/recommended"],
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: "./tsconfig.json",
+  },
+  overrides: [
+    {
+      env: {
+        node: true,
+      },
+      files: [".eslintrc.{js,cjs}"],
+      parserOptions: {
+        sourceType: "script",
+      },
     },
-    'ecmaVersion': 12,
-    'sourceType': 'module',
-    'project': './tsconfig.json',
-  },
-  'plugins': [
-    'import',
-    'react',
-    '@typescript-eslint'
   ],
-  'rules': {
-    'no-unused-expressions': 'off',
-    '@typescript-eslint/no-unused-expressions': ['off'],
-    'max-len': ['error', {
-      'code': 120
-    }],
-    'import/no-extraneous-dependencies': 'off',
-    'react/jsx-props-no-spreading': 'off'
+  plugins: ["@typescript-eslint", "react", "prettier"],
+  rules: {
+    "consistent-return": "off",
+    "react/jsx-props-no-spreading": "off",
   },
-  "ignorePatterns": ["examples", "*.test.tsx"],
 };

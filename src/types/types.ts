@@ -54,5 +54,11 @@ export type TConductorInstance = {
   stop: () => void;
 };
 
-// @ts-ignore
-export { TCanvasConfettiInstance } from "./normalization";
+export {
+  // @ts-ignore
+  TCanvasConfettiInstance,
+  // @ts-ignore
+  TCanvasConfettiGlobalOptions,
+  // @ts-ignore
+  TCanvasConfettiAnimationOptions,
+} from "./normalization";

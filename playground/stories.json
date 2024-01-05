@@ -1,0 +1,103 @@
+{
+  "v": 3,
+  "stories": {
+    "component-react-canvas-confetti--main": {
+      "id": "component-react-canvas-confetti--main",
+      "name": "Main",
+      "title": "Component/React Canvas Confetti",
+      "importPath": "./storybook/component.stories.tsx",
+      "tags": ["story"],
+      "kind": "Component/React Canvas Confetti",
+      "story": "Main",
+      "parameters": {
+        "__id": "component-react-canvas-confetti--main",
+        "docsOnly": false,
+        "fileName": "./storybook/component.stories.tsx"
+      }
+    },
+    "presets--main": {
+      "id": "presets--main",
+      "name": "Main",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"],
+      "kind": "Presets",
+      "story": "Main",
+      "parameters": {
+        "__id": "presets--main",
+        "docsOnly": false,
+        "fileName": "./storybook/presets.stories.tsx"
+      }
+    },
+    "presets--fireworks": {
+      "id": "presets--fireworks",
+      "name": "Fireworks",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"],
+      "kind": "Presets",
+      "story": "Fireworks",
+      "parameters": {
+        "__id": "presets--fireworks",
+        "docsOnly": false,
+        "fileName": "./storybook/presets.stories.tsx"
+      }
+    },
+    "presets--realistic": {
+      "id": "presets--realistic",
+      "name": "Realistic",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"],
+      "kind": "Presets",
+      "story": "Realistic",
+      "parameters": {
+        "__id": "presets--realistic",
+        "docsOnly": false,
+        "fileName": "./storybook/presets.stories.tsx"
+      }
+    },
+    "presets--pride": {
+      "id": "presets--pride",
+      "name": "Pride",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"],
+      "kind": "Presets",
+      "story": "Pride",
+      "parameters": {
+        "__id": "presets--pride",
+        "docsOnly": false,
+        "fileName": "./storybook/presets.stories.tsx"
+      }
+    },
+    "presets--snow": {
+      "id": "presets--snow",
+      "name": "Snow",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"],
+      "kind": "Presets",
+      "story": "Snow",
+      "parameters": {
+        "__id": "presets--snow",
+        "docsOnly": false,
+        "fileName": "./storybook/presets.stories.tsx"
+      }
+    },
+    "presets--explosion": {
+      "id": "presets--explosion",
+      "name": "Explosion",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"],
+      "kind": "Presets",
+      "story": "Explosion",
+      "parameters": {
+        "__id": "presets--explosion",
+        "docsOnly": false,
+        "fileName": "./storybook/presets.stories.tsx"
+      }
+    }
+  }
+}

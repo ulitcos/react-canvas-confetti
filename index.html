@@ -1,422 +1,380 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
-<head>
-  <title>React canvas confetti | React component for canvas-confetti library</title>
-  <link rel="canonical" href="https://ulitcos.github.io/react-canvas-confetti/"/>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="react-canvas-confetti"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta name="description" content="React component for canvas-confetti library"/>
-  <meta property="og:description" content="React component for canvas-confetti library"/>
-  <meta property="og:url" content="https://ulitcos.github.io/react-canvas-confetti/"/>
-  <meta property="og:site_name" content="react-canvas-confetti"/>
-  <meta name="yandex-verification" content="0a499029bc746884" />
-  <script type="application/ld+json">
-    {
-      "headline": "react-canvas-confetti",
-      "@type": "WebSite",
-      "url": "https://ulitcos.github.io/react-canvas-confetti/",
-      "description": "React component for canvas-confetti library",
-      "name": "react-canvas-confetti",
-      "@context": "https://schema.org"
-    }</script>
-
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<section class="page-header">
-  <h1 class="project-name">React canvas confetti</h1>
-  <h2 class="project-tagline">React component for <a href="https://github.com/catdad/canvas-confetti">canvas-confetti
-    library</a>.</h2>
-  <a href="https://github.com/ulitcos/react-canvas-confetti" class="btn">View on GitHub</a>
-</section>
-<section class="sandbox">
-  <iframe src="playground/index.html"></iframe>
-</section>
-<section class="main-content">
-  <h3 id="install">Installation</h3>
-  <pre class="highlight"><code>npm i react-canvas-confetti</code></pre>
-  <p>❗It is expected that the <a href="https://github.com/facebook/react">react</a> is already installed as
-    peer dependency.</p>
-
-  <h3 id="usage">Usage</h3>
-  <p>I highly recommend that you first familiarize yourself with the <a
-    href="https://github.com/catdad/canvas-confetti">canvas-confetti library</a> before using this module, as most of
-    the parameters are the <a href="https://github.com/catdad/canvas-confetti#options">canvas-confetti interface</a>.
-  </p>
-
-  <p>There are two use cases for react-canvas-confetti:</p>
-  <details>
-    <summary>
-      <b>1. Working with instance of canvas-confetti.</b> Get an instance of canvas-confetti using the <code class="language-plaintext highlighter-rouge">refConfetti</code> prop and work with it directly. With this approach, you will need to use prop <code class="language-plaintext highlighter-rouge">refConfetti</code> to get a canvas-confetti instance for subsequent work with it and <b>refuse to use props</b> <i>fire</i>, <i>reset</i>, <i>onFire</i>, <i>onDecay</i>, <i>onReset</i>. <mark>[example]</mark>
-    </summary>
-    <pre class="highlight"><code><script type="text/plain">import React from 'react';
-import Confetti from 'react-canvas-confetti';
-
-export default class Confetti extends React.Component {
-  getInstance = (instance) => {
-    // saving the instance to an internal property
-    this.confetti = instance;
-  }
-
-  onClickDefault = () => {
-    // starting the animation
-    this.confetti();
-  }
-
-  onClickCustom = () => {
-    // starting the animation with custom settings
-    this.confetti({particleCount: Math.ceil(Math.random() * 1000), spread: 180});
-  }
-
-  onClickCallback = () => {
-    // calling console.log after the animation ends
-    this.confetti().then(() => {
-      console.log('do something after animation');
-    });
-  }
-
-  onClickReset = () => {
-    // cleaning the canvas
-    this.confetti.reset();
-  }
-
-  render() {
-    const style = {
-      position: 'fixed',
-      width: '100%',
-      height: '100%',
-      zIndex: -1
-    };
-
-    return (
-      <>
-        <ReactCanvasConfetti
-          // set the styles as for a usual react component
-          style={style}
-          // set the class name as for a usual react component
-          className={'yourClassName'}
-          // set the callback for getting instance. The callback will be called after initialization ReactCanvasConfetti component
-          refConfetti={this.getInstance}
-        />
-
-        <button onClick={this.onClickDefault}>Fire with default</button>
-        <button onClick={this.onClickCustom}>Fire with custom</button>
-        <button onClick={this.onClickCallback}>Fire with callback</button>
-        <button onClick={this.onClickReset}>Reset</button>
-      </>
-    );
-  }
-}</script></code></pre>
-  </details>
-
-  <details>
-    <summary>
-      <b>2. Working with props of react-canvas-confetti.</b> Control the component by throwing all the props from above. With this approach, you don't need to work with the canvas-confetti instance directly. You can organize all the logic through a <b>set of props</b> <i>fire</i>, <i>reset</i>, <i>onFire</i>, <i>onDecay</i>, <i>onReset</i>. <mark>[example]</mark>
-    </summary>
-    <pre class="highlight"><code><script type="text/plain">import React from 'react';
-import ReactCanvasConfetti from 'react-canvas-confetti';
-
-export default class Confetti extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      fire: false,
-      reset: false
-    }
-  }
-
-  onClickFire = () => {
-    // set any value that is cast to the logical true and will differ from the previous one.
-    this.setState({fire: {}});
-  }
-
-  onClickReset = () => {
-    // set any value that is cast to the logical true and will differ from the previous one.
-    this.setState({reset: {}});
-  }
-
-  onFire = () => {
-    console.log('do something after fire')
-  }
-
-  onReset = () => {
-    console.log('do something after reset')
-  }
-
-  onDecay = () => {
-    console.log('do something after animation')
-  }
-
-  render() {
-    const style = {
-      position: 'fixed',
-      width: '100%',
-      height: '100%',
-      zIndex: -1
-    };
-
-    return (
-      <>
-        <ReactCanvasConfetti
-          // set the styles as for a usual react component
-          style={style}
-          // set the class name as for a usual react component
-          className={'yourClassName'}
-          // if value in this.state.fire cast to the logical true and will differ from the previous, then will be called new animation
-          fire={this.state.fire}
-          // if value in this.state.reset cast to the logical true and will differ from the previous, then will be cleared canvas
-          reset={this.state.reset}
-          // set the callback on new animation
-          onFire={this.onFire}
-          // set the callback on decay animation
-          onDecay={this.onDecay}
-          // set the callback on reset canvas
-          onReset={this.onReset}
-        />
-
-        <button onClick={this.onClickFire}>Fire</button>
-        <button onClick={this.onClickReset}>Reset</button>
-      </>
-    );
-  }
-}</script></code></pre>
-  </details>
-
-  <h3 id="api">API</h3>
-  <h4 id="component-props">Component props</h4>
-  <p><code class="language-plaintext highlighter-rouge">refConfetti: (confetti: CreateTypes | null) =&gt; void</code> -
-    callback for getting the canvas-confetti instance into the parent component (see the first use case).</p>
-
-  <p><code class="language-plaintext highlighter-rouge">fire: any</code> - prop for firing the animation, can be any
-    data type set to Boolean true and different from the previous value. Starting a new animation does not cancel the
-    old one!</p>
-
-  <p><code class="language-plaintext highlighter-rouge">reset: any</code> - prop for resetting all animations at once,
-    can be any kind of data that casts to boolean true and differs from the previous value.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">width: string | number</code> - prop is responsible for the
-    width of the canvas. Alternative ways to control canvas sizes are className and style props.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">height: string | number</code> - prop is responsible for the
-    height of the canvas. Alternative ways to control canvas sizes are className and style props.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">className: string</code> - prop to set className to canvas
-    element</p>
-
-  <p><code class="language-plaintext highlighter-rouge">style: CSSProperties</code> - prop to set style to canvas
-    element</p>
-
-  <p><code class="language-plaintext highlighter-rouge">onFire: () =&gt; void</code> - callback on start animation</p>
-
-  <p><code class="language-plaintext highlighter-rouge">onDecay: () =&gt; void</code> - callback on finish animation</p>
-
-  <p><code class="language-plaintext highlighter-rouge">onReset: () =&gt; void</code> - callback on resetting all
-    animations</p>
-
-  <h4 id="canvas-confetti-props-more-details">Canvas-confetti props (<a
-    href="https://github.com/catdad/canvas-confetti#options">more details</a>)</h4>
-  <p><code class="language-plaintext highlighter-rouge">particleCount: number (default: 50)</code> - the number of
-    confetti to launch. More is always fun… but be cool, there’s a lot of math involved.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">angle: number (default: 90)</code> - the angle in which to
-    launch the confetti, in degrees. 90 is straight up.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">spread: number (default: 45)</code> - how far off center the
-    confetti can go, in degrees. 45 means the confetti will launch at the defined angle plus or minus 22.5 degrees.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">startVelocity: number (default: 45)</code> - how fast the
-    confetti will start going, in pixels.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">decay: number (default: 0.9)</code> - how quickly the confetti
-    will lose speed. Keep this number between 0 and 1, otherwise the confetti will gain speed. Better yet, just never
-    change it.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">gravity: number (default: 1)</code> - how quickly the particles
-    are pulled down. 1 is full gravity, 0.5 is half gravity, etc., but there are no limits. You can even make particles
-    go up if you’d like.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">drift: number (default: 0)</code> - how much to the side the
-    confetti will drift. The default is 0, meaning that they will fall straight down. Use a negative number for left
-    and positive number for right.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">ticks: number (default: 200)</code> - how many times the
-    confetti will move. This is abstract… but play with it if the confetti disappear too quickly for you.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">origin: { x: number, y: number }</code> - where to start firing
-    confetti from. Feel free to launch off-screen if you’d like.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">origin.x: number (default: 0.5)</code> - the x position on the
-    page, with 0 being the left edge and 1 being the right edge.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">origin.y: number (default: 0.5)</code> - the y position on the
-    page, with 0 being the top edge and 1 being the bottom edge.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">colors: Array&lt;String&gt;</code> - an array of color strings,
-    in the HEX format… you know, like #bada55.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">shapes: Array&lt;String&gt;</code> - an array of shapes for the
-    confetti. The possible values are square and circle. The default is to use both shapes in an even mix. You can even
-    change the mix by providing a value such as [‘circle’, ‘circle’, ‘square’] to use two third circles and one third
-    squares.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">scalar: number (default: 1)</code> - scale factor for each
-    confetti particle. Use decimals to make the confetti smaller. Go on, try teeny tiny confetti, they are adorable!</p>
-
-  <p><code class="language-plaintext highlighter-rouge">zIndex: number (default: 100)</code> - the confetti should be on
-    top, after all. But if you have a crazy high page, you can set it even higher.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">disableForReducedMotion: boolean (default: false)</code> -
-    disables confetti entirely for users that prefer reduced motion. The confetti() promise will resolve immediately in
-    this case.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">resize: boolean (default: false)</code> - whether to allow
-    setting the canvas image size, as well as keep it correctly sized if the window changes size (e.g. resizing the
-    window, rotating a mobile device, etc.). By default, the canvas size will not be modified.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">useWorker: boolean (default: false)</code> - whether to use an
-    asynchronous web worker to render the confetti animation, whenever possible. This is turned off by default, meaning
-    that the animation will always execute on the main thread. If turned on and the browser supports it, the animation
-    will execute off of the main thread so that it is not blocking any other work your page needs to do. Using this
-    option will also modify the canvas, but more on that directly below – do read it. If it is not supported by the
-    browser, this value will be ignored.</p>
-
-  <p><code class="language-plaintext highlighter-rouge">disableForReducedMotion: boolean (default: false)</code> -
-    disables confetti entirely for users that prefer reduced motion. When set to true, use of this confetti instance
-    will always respect a user’s request for reduced motion and disable confetti for them.</p>
-
-  <h3 id="examples">Examples</h3>
-  <details>
-    <summary><mark>[Fireworks]</mark></summary>
-
-    <details>
-      <summary><mark>↳ Functional component example</mark></summary>
-
-      <iframe src="https://codesandbox.io/embed/fireworks-fn-react-canvas-confetti-w594u?fontsize=14&hidenavigation=1&theme=dark"
-              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-              title="Fireworks (fn) react canvas confetti"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      ></iframe>
-    </details>
-
-    <details>
-      <summary><mark>↳ Class component example</mark></summary>
-
-      <iframe src="https://codesandbox.io/embed/fireworks-cl-react-canvas-confetti-7sgr9?fontsize=14&hidenavigation=1&theme=dark"
-              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-              title="Fireworks (cl) react canvas confetti"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      ></iframe>
-    </details>
-  </details>
-
-  <details>
-    <summary><mark>[Realistic]</mark></summary>
-    <details>
-      <summary><mark>↳ Functional component example</mark></summary>
-
-      <iframe src="https://codesandbox.io/embed/realistic-fn-react-canvas-confetti-2o3pe?fontsize=14&hidenavigation=1&theme=dark"
-              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-              title="Realistic (fn) react canvas confetti"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      ></iframe>
-    </details>
-
-    <details>
-      <summary><mark>↳ Class component example</mark></summary>
-
-      <iframe src="https://codesandbox.io/embed/realistic-cl-react-canvas-confetti-kle35?fontsize=14&hidenavigation=1&theme=dark"
-              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-              title="Realistic (cl) react canvas confetti"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      ></iframe>
-    </details>
-  </details>
-
-  <details>
-    <summary><mark>[School Pride]</mark></summary>
-    <details>
-      <summary><mark>↳ Functional component example</mark></summary>
-
-      <iframe src="https://codesandbox.io/embed/school-pride-fn-react-canvas-confetti-10l9n?fontsize=14&hidenavigation=1&theme=dark"
-              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-              title="School Pride (fn) react canvas confetti"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      ></iframe>
-    </details>
-
-    <details>
-      <summary><mark>↳ Class component example</mark></summary>
-      <iframe src="https://codesandbox.io/embed/school-pride-cl-react-canvas-confetti-93g4v?fontsize=14&hidenavigation=1&theme=dark"
-              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-              title="School Pride (cl) react canvas confetti"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      ></iframe>
-    </details>
-  </details>
-
-  <details>
-    <summary><mark>[Snow]</mark></summary>
-    <details>
-      <summary><mark>↳ Functional component example</mark></summary>
-
-      <iframe src="https://codesandbox.io/embed/snow-fn-react-canvas-confetti-i3y7w?fontsize=14&hidenavigation=1&theme=dark"
-              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-              title="Snow (fn) react canvas confetti"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      ></iframe>
-
-    </details>
-
-    <details>
-      <summary><mark>↳ Class component example</mark></summary>
-
-      <iframe src="https://codesandbox.io/embed/snow-cl-react-canvas-confetti-0eoqb?fontsize=14&hidenavigation=1&theme=dark"
-              style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-              title="Snow (cl) react canvas confetti"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      ></iframe>
-    </details>
-  </details>
-
-  <footer class="site-footer">
-    <span class="site-footer-owner"><a href="https://github.com/ulitcos/react-canvas-confetti">react-canvas-confetti</a> is maintained by <a
-      href="https://github.com/ulitcos">ulitcos</a>.</span>
-    <span class="site-footer-credits">This page was generated by <a
-      href="https://pages.github.com">GitHub Pages</a>.</span>
-  </footer>
-</section>
-</body>
+  <head>
+    <title>
+      React canvas confetti | React component for canvas-confetti library
+    </title>
+    <link
+      rel="canonical"
+      href="https://ulitcos.github.io/react-canvas-confetti/"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="react-canvas-confetti" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      name="description"
+      content="React component for canvas-confetti library"
+    />
+    <meta
+      property="og:description"
+      content="React component for canvas-confetti library"
+    />
+    <meta
+      property="og:url"
+      content="https://ulitcos.github.io/react-canvas-confetti/"
+    />
+    <meta property="og:site_name" content="react-canvas-confetti" />
+    <meta name="yandex-verification" content="0a499029bc746884" />
+    <script type="application/ld+json">
+      {
+        "headline": "react-canvas-confetti",
+        "@type": "WebSite",
+        "url": "https://ulitcos.github.io/react-canvas-confetti/",
+        "description": "React component for canvas-confetti library",
+        "name": "react-canvas-confetti",
+        "@context": "https://schema.org"
+      }
+    </script>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">React canvas confetti</h1>
+      <h2 class="project-tagline">
+        React component for
+        <a href="https://github.com/catdad/canvas-confetti"
+          >canvas-confetti library</a
+        >.
+      </h2>
+      <a href="https://github.com/ulitcos/react-canvas-confetti" class="btn"
+        >View on GitHub</a
+      >
+    </section>
+    <section class="sandbox">
+      <iframe src="playground/index.html"></iframe>
+    </section>
+    <section class="main-content">
+      <h2>Installation</h2>
+      <pre><code class="language-bash">npm i react-canvas-confetti
+</code></pre>
+      <p>
+        ❗ It is expected that the
+        <a href="https://github.com/facebook/react">react</a> is already
+        installed as peer dependency.
+      </p>
+      <h2>Usage</h2>
+      <p>
+        I recommend that you first familiarize yourself with the
+        <a href="https://github.com/catdad/canvas-confetti"
+          >canvas-confetti library</a
+        >
+        to better understand exactly how this module works.
+      </p>
+      <p>There are two ways to use this module:</p>
+      <ul>
+        <li>Working with Presets (recommended)</li>
+        <li>
+          Working with the
+          <a href="https://github.com/catdad/canvas-confetti"
+            >canvas-confetti library</a
+          >
+          instance directly
+        </li>
+      </ul>
+      <h3>Working with Presets</h3>
+      <p>
+        A preset is an animation template that is already ready to use. Presets
+        allow you to customize animation settings, but do not allow you to
+        change the animation algorithm. Using presets is an easier way to work
+        with the module.
+      </p>
+      <details>
+        <summary>An example of the minimum required code:</summary>
+
+        <pre><code class="language-typescript">import Fireworks from &quot;react-canvas-confetti/dist/presets/fireworks&quot;;
+
+const canvasStyles = {
+  position: &quot;fixed&quot;,
+  width: &quot;100%&quot;,
+  height: &quot;100%&quot;,
+};
+
+function Example() {
+  return &lt;Fireworks autorun={{ speed: 3 }} style={canvasStyles} /&gt;;
+}
+
+export default Example;
+</code></pre>
+        <p>
+          <a
+            href="https://codesandbox.io/p/devbox/minimal-example-react-canvas-confetti-v2-3j3n7q"
+            >Live example</a
+          >
+        </p>
+      </details>
+
+      <h4 id="conductor-instance">Conductor Instance</h4>
+      <p>
+        The preset working can be controlled manually using the
+        <code>Conductor instance</code>. This object allows you to start and
+        stop animations on demand. Conductor can be accessed in the
+        <code>onInit</code> callback. The interface of the object is shown
+        below:
+      </p>
+      <pre><code class="language-typescript">type TRunAnimationParams = {
+  speed: number;
+  duration?: number;
+  delay?: number;
+};
+
+type TConductorInstance = {
+  run: (params: TRunAnimationParams) =&gt; void;
+  shoot: () =&gt; void;
+  pause: () =&gt; void;
+  stop: () =&gt; void;
+};
+</code></pre>
+      <h3>Working with the canvas-confetti instance</h3>
+      <p>
+        Working with an instance is working with the module at a lower level.
+        This is a more powerful approach that allows you to create your own
+        animation algorithms, but requires more effort.
+      </p>
+      <h4 id="canvas-confetti-instance">Canvas-confetti instance</h4>
+      <p>
+        <a
+          href="https://github.com/catdad/canvas-confetti?tab=readme-ov-file#confettioptions-object--promisenull"
+          >Confetti object</a
+        >, which will be received as a result of calling the
+        <a
+          href="https://github.com/catdad/canvas-confetti?tab=readme-ov-file#confetticreatecanvas-globaloptions--function"
+          >function create</a
+        >. Gives you full control to create your own animations. Confetti can be
+        accessed in the <code>onInit</code> callback. The interface can be
+        viewed
+        <a
+          href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/canvas-confetti/index.d.ts#L173"
+          >here</a
+        >
+      </p>
+      <h2>API</h2>
+      <h3>Base API</h3>
+      <p>The common settings are relevant for all use cases</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>width</td>
+            <td>string | number</td>
+            <td>
+              value is responsible for the width of the canvas. Alternative ways
+              to control canvas sizes are className and style props.
+            </td>
+          </tr>
+          <tr>
+            <td>height</td>
+            <td>string | number</td>
+            <td>
+              value is responsible for the height of the canvas. Alternative
+              ways to control canvas sizes are className and style props.
+            </td>
+          </tr>
+          <tr>
+            <td>className</td>
+            <td>string</td>
+            <td>value to set className to canvas element</td>
+          </tr>
+          <tr>
+            <td>style</td>
+            <td>CSSProperties</td>
+            <td>value to set style to canvas element</td>
+          </tr>
+          <tr>
+            <td>globalOptions</td>
+            <td>
+              <a
+                href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/canvas-confetti/index.d.ts#L126"
+                >TGlobalOptions</a
+              >
+            </td>
+            <td>
+              global animation settings that cannot be changed after
+              initialization (<a
+                href="https://github.com/catdad/canvas-confetti?tab=readme-ov-file#confetticreatecanvas-globaloptions--function"
+                >details</a
+              >)
+            </td>
+          </tr>
+          <tr>
+            <td>onInit</td>
+            <td>
+              (params: {confetti:
+              <a href="#canvas-confetti-instance">TCanvasConfettiInstance</a>})
+              =&gt; void
+            </td>
+            <td>
+              the callback is called when the component is mounted on the page
+              and allows you to access confetti instance (<a
+                href="https://github.com/catdad/canvas-confetti?tab=readme-ov-file#confettioptions-object--promisenull"
+                >details</a
+              >) for manual animation creation
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Advanced API</h3>
+      <p>Advanced settings only work for presets!</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>autorun</td>
+            <td>{ speed: number; duration?: number; delay?: number; }</td>
+            <td>
+              if it is passed, it automatically starts the animation when
+              mounting the component on the page
+            </td>
+          </tr>
+          <tr>
+            <td>decorateOptions</td>
+            <td>
+              (options:
+              <a
+                href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/canvas-confetti/index.d.ts#L39"
+                >TOptions</a
+              >) =&gt;
+              <a
+                href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/canvas-confetti/index.d.ts#L39"
+                >TOptions</a
+              >
+            </td>
+            <td>
+              the callback allows you to customize the animation settings and is
+              called for each step of the animation
+            </td>
+          </tr>
+          <tr>
+            <td>onInit</td>
+            <td>
+              (params: { confetti:
+              <a href="#canvas-confetti-instance">TCanvasConfettiInstance</a>;
+              conductor: <a href="#conductor-instance">TConductorInstance</a> })
+              =&gt; void
+            </td>
+            <td>
+              the callback is called when the component is mounted on the page
+              and allows you to access objects for manual creation and animation
+              control
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>Examples</h2>
+      <p>
+        <a
+          href="https://codesandbox.io/p/devbox/fireworks-preset-react-canvas-confetti-v2-hpjx8y"
+          >Fireworks Preset</a
+        >
+      </p>
+      <p>
+        <a
+          href="https://codesandbox.io/p/devbox/pride-preset-react-canvas-confetti-v2-f7fnqy"
+          >Pride Preset</a
+        >
+      </p>
+      <p>
+        <a
+          href="https://codesandbox.io/p/devbox/snow-preset-react-canvas-confetti-v2-7dn2pj"
+          >Snow Preset</a
+        >
+      </p>
+      <p>
+        <a
+          href="https://codesandbox.io/p/devbox/explosion-preset-react-canvas-confetti-v2-p9q4kh"
+          >Explosion Preset</a
+        >
+      </p>
+      <p>
+        <a
+          href="https://codesandbox.io/p/devbox/realistic-preset-react-canvas-confetti-v2-5z3rsz"
+          >Realistic Preset</a
+        >
+      </p>
+      <p>
+        <a
+          href="https://codesandbox.io/p/devbox/autorun-preset-react-canvas-confetti-v2-sxd3rh"
+          >Autorun Preset</a
+        >
+      </p>
+      <p>
+        <a
+          href="https://codesandbox.io/p/devbox/decorated-preset-react-canvas-confetti-v2-wl77ff"
+          >Decorated Preset</a
+        >
+      </p>
+      <p>
+        <a
+          href="https://codesandbox.io/p/devbox/custom-animation-react-canvas-confetti-v2-2v8wkx"
+          >Custom Animation</a
+        >
+      </p>
+    </section>
+  </body>
 </html>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous">
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+  integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg="
+  crossorigin="anonymous"
+></script>
+<script>
+  anchors.add();
 </script>
-<script>anchors.add();</script>
 
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-  (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+<script type="text/javascript">
+  (function (m, e, t, r, i, k, a) {
+    m[i] =
+      m[i] ||
+      function () {
+        (m[i].a = m[i].a || []).push(arguments);
+      };
+    m[i].l = 1 * new Date();
+    (k = e.createElement(t)),
+      (a = e.getElementsByTagName(t)[0]),
+      (k.async = 1),
+      (k.src = r),
+      a.parentNode.insertBefore(k, a);
+  })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
   ym(70658557, "init", {
-    clickmap:true,
-    trackLinks:true,
-    accurateTrackBounce:true,
-    webvisor:true
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: true,
   });
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/70658557" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript
+  ><div>
+    <img
+      src="https://mc.yandex.ru/watch/70658557"
+      style="position: absolute; left: -9999px"
+      alt=""
+    /></div
+></noscript>
 <!-- /Yandex.Metrika counter -->

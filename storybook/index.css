@@ -1,0 +1,72 @@
+.canvas {
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.controls {
+  bottom: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  left: 50%;
+  margin-left: -50px;
+  position: fixed;
+}
+
+.controls button {
+  height: 40px;
+  width: 100px;
+  pointer-events: auto;
+}
+
+.list {
+  display: flex;
+
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: auto;
+}
+
+.item {
+  outline: 2px solid #fbebd1;
+  width: 45%;
+  margin: 2.5%;
+  position: relative;
+  aspect-ratio: 3 / 2;
+  border-radius: 3px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.item:hover {
+  outline-color: #ee7b49;
+}
+
+.preset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  font-size: min(5vw, 50px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Tahoma, sans-serif;
+  z-index: 1;
+  transition: opacity 0.25s;
+}
+
+.item:hover .label {
+  opacity: 0.05;
+}

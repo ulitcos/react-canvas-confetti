@@ -1,6 +1,4 @@
-*
-!dist/*
-!src/*
-*.stories.*
-*.test.*
-
+dist
+node_modules
+.eslintrc.js
+src/*.spec.*

@@ -32,6 +32,29 @@ There are two ways to use this module:
 
 A preset is an animation template that is already ready to use. Presets allow you to customize animation settings, but do not allow you to change the animation algorithm. Using presets is an easier way to work with the module.
 
+<details>
+<summary>An example of the minimum required code:</summary>
+
+```typescript
+import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
+
+const canvasStyles = {
+  position: "fixed",
+  width: "100%",
+  height: "100%",
+};
+
+function Example() {
+  return <Fireworks autorun={{ speed: 3 }} style={canvasStyles} />;
+}
+
+export default Example;
+```
+
+[Live example](https://codesandbox.io/p/devbox/minimal-example-react-canvas-confetti-v2-3j3n7q)
+
+</details>
+
 #### Conductor Instance
 
 The preset working can be controlled manually using the `Conductor instance`. This object allows you to start and stop animations on demand. Conductor can be accessed in the `onInit` callback. The interface of the object is shown below:
@@ -83,3 +106,21 @@ Advanced settings only work for presets!
 | autorun         | { speed: number; duration?: number; delay?: number; }                                                                                                                                                                                         | if it is passed, it automatically starts the animation when mounting the component on the page                                              |
 | decorateOptions | (options: [TOptions](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/canvas-confetti/index.d.ts#L39)) => [TOptions](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/canvas-confetti/index.d.ts#L39) | the callback allows you to customize the animation settings and is called for each step of the animation                                    |
 | onInit          | (params: { confetti: [TCanvasConfettiInstance](#canvas-confetti-instance); conductor: [TConductorInstance](#conductor-instance) }) => void                                                                                                    | the callback is called when the component is mounted on the page and allows you to access objects for manual creation and animation control |
+
+## Examples
+
+[Fireworks Preset](https://codesandbox.io/p/devbox/fireworks-preset-react-canvas-confetti-v2-hpjx8y)
+
+[Pride Preset](https://codesandbox.io/p/devbox/pride-preset-react-canvas-confetti-v2-f7fnqy)
+
+[Snow Preset](https://codesandbox.io/p/devbox/snow-preset-react-canvas-confetti-v2-7dn2pj)
+
+[Explosion Preset](https://codesandbox.io/p/devbox/explosion-preset-react-canvas-confetti-v2-p9q4kh)
+
+[Realistic Preset](https://codesandbox.io/p/devbox/realistic-preset-react-canvas-confetti-v2-5z3rsz)
+
+[Autorun Preset](https://codesandbox.io/p/devbox/autorun-preset-react-canvas-confetti-v2-sxd3rh)
+
+[Decorated Preset](https://codesandbox.io/p/devbox/decorated-preset-react-canvas-confetti-v2-wl77ff)
+
+[Custom Animation](https://codesandbox.io/p/devbox/custom-animation-react-canvas-confetti-v2-2v8wkx)

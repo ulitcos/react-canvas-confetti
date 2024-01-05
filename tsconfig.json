@@ -26,5 +26,5 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["examples", "src/*.spec.*", "storybook"]
+  "exclude": ["examples", "tests", "storybook"]
 }

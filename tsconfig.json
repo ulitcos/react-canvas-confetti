@@ -13,7 +13,6 @@
     "noEmit": false,
     "importHelpers": false,
     "downlevelIteration": true,
-    "isolatedModules": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

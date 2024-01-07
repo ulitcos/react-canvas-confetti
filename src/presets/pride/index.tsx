@@ -1,5 +1,5 @@
 import React from "react";
-import { TGetTickAnimationFn, TPresetInstanceProps } from "../../types/types";
+import { TGetTickAnimationFn, TPresetInstanceProps } from "../../types";
 import Preset from "../index";
 
 const getTickAnimation: TGetTickAnimationFn = (

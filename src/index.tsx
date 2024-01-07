@@ -4,7 +4,7 @@ import {
   TCanvasConfettiInstance,
   TCanvasConfettiGlobalOptions,
 } from "./types/normalization";
-import { TReactCanvasConfettiProps } from "./types/types";
+import { TReactCanvasConfettiProps } from "./types";
 
 const DEFAULT_GLOBAL_OPTIONS: TCanvasConfettiGlobalOptions = {
   resize: true,

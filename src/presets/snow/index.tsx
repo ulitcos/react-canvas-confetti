@@ -1,10 +1,7 @@
 import React from "react";
-import { TGetTickAnimationFn, TPresetInstanceProps } from "../../types/types";
+import { TGetTickAnimationFn, TPresetInstanceProps } from "../../types";
 import Preset from "../index";
-
-function randomInRange(min: number, max: number): number {
-  return Math.random() * (max - min) + min;
-}
+import randomInRange from "../../helpers/randomInRange";
 
 const getTickAnimation: TGetTickAnimationFn = (
   confetti,

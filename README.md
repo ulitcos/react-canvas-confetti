@@ -55,7 +55,7 @@ export default Example;
 
 </details>
 
-#### Conductor Instance
+#### Conductor Instance [TConductorInstance]
 
 The preset working can be controlled manually using the `Conductor instance`. This object allows you to start and stop animations on demand. Conductor can be accessed in the `onInit` callback. The interface of the object is shown below:
 
@@ -78,7 +78,7 @@ type TConductorInstance = {
 
 Working with an instance is working with the module at a lower level. This is a more powerful approach that allows you to create your own animation algorithms, but requires more effort.
 
-#### Canvas-confetti instance
+#### Canvas-confetti instance: [TCanvasConfettiInstance]
 
 [Confetti object](https://github.com/catdad/canvas-confetti?tab=readme-ov-file#confettioptions-object--promisenull), which will be received as a result of calling the [function create](https://github.com/catdad/canvas-confetti?tab=readme-ov-file#confetticreatecanvas-globaloptions--function). Gives you full control to create your own animations. Confetti can be accessed in the `onInit` callback. The interface can be viewed [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/canvas-confetti/index.d.ts#L173)
 
@@ -111,13 +111,15 @@ Advanced settings only work for presets!
 
 [Fireworks Preset](https://codesandbox.io/p/devbox/fireworks-preset-react-canvas-confetti-v2-hpjx8y)
 
-[Pride Preset](https://codesandbox.io/p/devbox/pride-preset-react-canvas-confetti-v2-f7fnqy)
+[Crossfire Preset](https://codesandbox.io/p/devbox/crossfire-preset-react-canvas-confetti-v2-3frmhw)
 
 [Snow Preset](https://codesandbox.io/p/devbox/snow-preset-react-canvas-confetti-v2-7dn2pj)
 
+[Realistic Preset](https://codesandbox.io/p/devbox/realistic-preset-react-canvas-confetti-v2-5z3rsz)
+
 [Explosion Preset](https://codesandbox.io/p/devbox/explosion-preset-react-canvas-confetti-v2-p9q4kh)
 
-[Realistic Preset](https://codesandbox.io/p/devbox/realistic-preset-react-canvas-confetti-v2-5z3rsz)
+[Pride Preset](https://codesandbox.io/p/devbox/pride-preset-react-canvas-confetti-v2-f7fnqy)
 
 [Autorun Preset](https://codesandbox.io/p/devbox/autorun-preset-react-canvas-confetti-v2-sxd3rh)
 

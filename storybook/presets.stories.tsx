@@ -8,7 +8,7 @@ import RealisticPreset from "../src/presets/realistic";
 import PridePreset from "../src/presets/pride";
 import SnowPreset from "../src/presets/snow";
 import ExplosionPreset from "../src/presets/explosion";
-import CrossfirePreset from "../src/presets/сrossfire";
+import CrossfirePreset from "../src/presets/crossfire";
 
 import {
   TConductorInstance,

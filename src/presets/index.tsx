@@ -3,7 +3,7 @@ import {
   TCanvasConfettiInstance,
   TDecorateOptionsFn,
   TPresetProps,
-} from "../types/types";
+} from "../types";
 import Conductor from "../helpers/Conductor";
 import ReactCanvasConfetti from "../index";
 

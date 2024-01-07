@@ -1,5 +1,5 @@
 import React from "react";
-import { TGetTickAnimationFn, TPresetInstanceProps } from "../../types/types";
+import { TGetTickAnimationFn, TPresetInstanceProps } from "../../types";
 import Preset from "../index";
 import randomInRange from "../../helpers/randomInRange";
 

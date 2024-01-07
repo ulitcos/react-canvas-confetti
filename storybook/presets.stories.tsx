@@ -15,7 +15,7 @@ import {
   TDecorateOptionsFn,
   TPresetInstanceProps,
   TRunAnimationParams,
-} from "../src/types/types";
+} from "../src/types";
 import { useRef } from "react";
 
 const meta = {

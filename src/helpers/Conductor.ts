@@ -4,7 +4,7 @@ import {
   TDecorateOptionsFn,
   TGetTickAnimationFn,
   TRunAnimationParams,
-} from "../types/types";
+} from "../types";
 
 type TConductorOptions = {
   confetti: TCanvasConfettiInstance;

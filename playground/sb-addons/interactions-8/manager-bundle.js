@@ -4854,14 +4854,16 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             { style: { color: n.base } },
             "[\u2026]",
           );
-        let a = e.slice(0, 3).map((o) =>
-            i.createElement(qe, {
-              key: JSON.stringify(o),
-              value: o,
-              nested: !0,
-              callsById: r,
-            }),
-          ),
+        let a = e
+            .slice(0, 3)
+            .map((o) =>
+              i.createElement(qe, {
+                key: JSON.stringify(o),
+                value: o,
+                nested: !0,
+                callsById: r,
+              }),
+            ),
           u = Zr(a, i.createElement("span", null, ", "));
         return e.length <= 3
           ? i.createElement("span", { style: { color: n.base } }, "[", u, "]")

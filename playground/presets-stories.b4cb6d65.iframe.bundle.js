@@ -10,6 +10,7 @@
     ) => {
       __webpack_require__.r(__webpack_exports__),
         __webpack_require__.d(__webpack_exports__, {
+          Crossfire: () => presets_stories_Crossfire,
           Explosion: () => presets_stories_Explosion,
           Fireworks: () => presets_stories_Fireworks,
           Main: () => Main,
@@ -398,6 +399,9 @@
               path: "src/presets/index.tsx#Preset",
             });
       } catch (__react_docgen_typescript_loader_error) {}
+      let helpers_randomInRange = function (min, max) {
+        return Math.random() * (max - min) + min;
+      };
       function fireworks_define_property(obj, key, value) {
         return (
           key in obj
@@ -427,10 +431,20 @@
         }
         return target;
       }
-      var randomInRange = function (min, max) {
-          return Math.random() * (max - min) + min;
-        },
-        getTickAnimation = function (confetti, decorateOptions) {
+      var getTickAnimation = function (confetti, decorateOptions) {
+        confetti(
+          decorateOptions({
+            startVelocity: 30,
+            spread: 360,
+            ticks: 60,
+            zIndex: 0,
+            particleCount: 150,
+            origin: {
+              x: helpers_randomInRange(0.1, 0.3),
+              y: Math.random() - 0.2,
+            },
+          }),
+        ),
           confetti(
             decorateOptions({
               startVelocity: 30,
@@ -438,20 +452,13 @@
               ticks: 60,
               zIndex: 0,
               particleCount: 150,
-              origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+              origin: {
+                x: helpers_randomInRange(0.7, 0.9),
+                y: Math.random() - 0.2,
+              },
             }),
-          ),
-            confetti(
-              decorateOptions({
-                startVelocity: 30,
-                spread: 360,
-                ticks: 60,
-                zIndex: 0,
-                particleCount: 150,
-                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-              }),
-            );
-        };
+          );
+      };
       function Fireworks(props) {
         return react.createElement(
           presets,
@@ -850,9 +857,6 @@
         }
         return target;
       }
-      function snow_randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-      }
       var snow_getTickAnimation = function (confetti, decorateOptions) {
         confetti(
           decorateOptions({
@@ -863,7 +867,7 @@
             origin: { x: Math.random(), y: 0.999 * Math.random() - 0.2 },
             colors: ["#ffffff"],
             shapes: ["circle"],
-            scalar: snow_randomInRange(0.4, 1),
+            scalar: helpers_randomInRange(0.4, 1),
           }),
         );
       };
@@ -1088,6 +1092,178 @@
               path: "src/presets/explosion/index.tsx#Explosion",
             });
       } catch (__react_docgen_typescript_loader_error) {}
+      function crossfire_define_property(obj, key, value) {
+        return (
+          key in obj
+            ? Object.defineProperty(obj, key, {
+                value: value,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0,
+              })
+            : (obj[key] = value),
+          obj
+        );
+      }
+      function crossfire_object_spread(target) {
+        for (var i = 1; i < arguments.length; i++) {
+          var source = null != arguments[i] ? arguments[i] : {},
+            ownKeys = Object.keys(source);
+          "function" == typeof Object.getOwnPropertySymbols &&
+            (ownKeys = ownKeys.concat(
+              Object.getOwnPropertySymbols(source).filter(function (sym) {
+                return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+              }),
+            )),
+            ownKeys.forEach(function (key) {
+              crossfire_define_property(target, key, source[key]);
+            });
+        }
+        return target;
+      }
+      var crossfire_getTickAnimation = function (confetti, decorateOptions) {
+        var colors = ["#E8B837"],
+          particleCount = helpers_randomInRange(13, 17),
+          spread = helpers_randomInRange(75, 85),
+          decay = helpers_randomInRange(0.97, 0.99),
+          startVelocity = helpers_randomInRange(9, 11),
+          ticks = helpers_randomInRange(40, 60);
+        confetti(
+          decorateOptions({
+            particleCount: particleCount,
+            spread: spread,
+            colors: colors,
+            decay: decay,
+            startVelocity: startVelocity,
+            ticks: ticks,
+            gravity: 0,
+            angle: 45,
+            origin: { x: 0, y: 1 },
+          }),
+        ),
+          confetti(
+            decorateOptions({
+              particleCount: particleCount,
+              spread: spread,
+              colors: colors,
+              decay: decay,
+              startVelocity: startVelocity,
+              ticks: ticks,
+              gravity: 0,
+              angle: -45,
+              origin: { x: 0, y: 0 },
+            }),
+          ),
+          confetti(
+            decorateOptions({
+              particleCount: particleCount,
+              spread: spread,
+              colors: colors,
+              decay: decay,
+              startVelocity: startVelocity,
+              ticks: ticks,
+              gravity: 0,
+              angle: -135,
+              origin: { x: 1, y: 0 },
+            }),
+          ),
+          confetti(
+            decorateOptions({
+              particleCount: particleCount,
+              spread: spread,
+              colors: colors,
+              decay: decay,
+              startVelocity: startVelocity,
+              ticks: ticks,
+              gravity: 0,
+              angle: 135,
+              origin: { x: 1, y: 1 },
+            }),
+          );
+      };
+      function Crossfire(props) {
+        return react.createElement(
+          presets,
+          crossfire_object_spread(
+            { getTickAnimation: crossfire_getTickAnimation },
+            props,
+          ),
+        );
+      }
+      let crossfire = Crossfire;
+      try {
+        (Crossfire.displayName = "Crossfire"),
+          (Crossfire.__docgenInfo = {
+            description: "",
+            displayName: "Crossfire",
+            props: {
+              className: {
+                defaultValue: null,
+                description: "",
+                name: "className",
+                required: !1,
+                type: { name: "string" },
+              },
+              style: {
+                defaultValue: null,
+                description: "",
+                name: "style",
+                required: !1,
+                type: { name: "CSSProperties" },
+              },
+              width: {
+                defaultValue: null,
+                description: "",
+                name: "width",
+                required: !1,
+                type: { name: "string | number" },
+              },
+              height: {
+                defaultValue: null,
+                description: "",
+                name: "height",
+                required: !1,
+                type: { name: "string | number" },
+              },
+              globalOptions: {
+                defaultValue: null,
+                description: "",
+                name: "globalOptions",
+                required: !1,
+                type: { name: "GlobalOptions" },
+              },
+              autorun: {
+                defaultValue: null,
+                description: "",
+                name: "autorun",
+                required: !1,
+                type: { name: "TRunAnimationParams" },
+              },
+              decorateOptions: {
+                defaultValue: null,
+                description: "",
+                name: "decorateOptions",
+                required: !1,
+                type: { name: "TDecorateOptionsFn" },
+              },
+              onInit: {
+                defaultValue: null,
+                description: "",
+                name: "onInit",
+                required: !1,
+                type: { name: "TOnInitPresetFn" },
+              },
+            },
+          }),
+          "undefined" != typeof STORYBOOK_REACT_CLASSES &&
+            (STORYBOOK_REACT_CLASSES[
+              "src/presets/crossfire/index.tsx#Crossfire"
+            ] = {
+              docgenInfo: Crossfire.__docgenInfo,
+              name: "Crossfire",
+              path: "src/presets/crossfire/index.tsx#Crossfire",
+            });
+      } catch (__react_docgen_typescript_loader_error) {}
       function presets_stories_array_like_to_array(arr, len) {
         (null == len || len > arr.length) && (len = arr.length);
         for (var i = 0, arr2 = Array(len); i < len; i++) arr2[i] = arr[i];
@@ -1227,17 +1403,11 @@
                 decorateOptions: {},
                 component: fireworks,
               },
-              Pride: {
-                run: { speed: 30 },
-                link: linkTo("Presets", "Pride"),
-                decorateOptions: { colors: ["#bb0000", "#00ff00"] },
-                component: pride,
-              },
-              Realistic: {
-                run: { speed: 1 },
-                link: linkTo("Presets", "Realistic"),
-                decorateOptions: {},
-                component: realistic,
+              Crossfire: {
+                run: { speed: 15 },
+                link: linkTo("Presets", "Crossfire"),
+                decorateOptions: { decay: 0.93, particleCount: 5 },
+                component: crossfire,
               },
               Snow: {
                 run: { speed: 30 },
@@ -1245,11 +1415,23 @@
                 decorateOptions: { colors: ["#C9DDF1"] },
                 component: snow,
               },
+              Realistic: {
+                run: { speed: 1 },
+                link: linkTo("Presets", "Realistic"),
+                decorateOptions: {},
+                component: realistic,
+              },
               Explosion: {
                 run: { speed: 10 },
                 link: linkTo("Presets", "Explosion"),
                 decorateOptions: {},
                 component: explosion,
+              },
+              Pride: {
+                run: { speed: 30 },
+                link: linkTo("Presets", "Pride"),
+                decorateOptions: { colors: ["#bb0000", "#00ff00"] },
+                component: pride,
               },
             },
             conductors = (0, react.useRef)({});
@@ -1291,10 +1473,13 @@
                     },
                     className: "preset",
                     decorateOptions: function (base) {
-                      return presets_stories_object_spread(
-                        {},
-                        base,
-                        config[item].decorateOptions,
+                      return _object_spread_props(
+                        presets_stories_object_spread(
+                          {},
+                          base,
+                          config[item].decorateOptions,
+                        ),
+                        { scalar: 0.6 },
                       );
                     },
                   }),
@@ -1330,33 +1515,8 @@
             );
           },
         },
-        presets_stories_Realistic = {
-          args: { speed: 1, duration: 5e3, delay: 0 },
-          argTypes: {
-            speed: { control: "number" },
-            duration: { control: "number" },
-            delay: { control: "number" },
-          },
-          render: function (props) {
-            return react.createElement(
-              Wrapper,
-              presets_stories_object_spread(
-                {
-                  preset: function (param) {
-                    var onInit = param.onInit;
-                    return react.createElement(realistic, {
-                      onInit: onInit,
-                      className: "canvas",
-                    });
-                  },
-                },
-                props,
-              ),
-            );
-          },
-        },
-        presets_stories_Pride = {
-          args: { speed: 60, duration: 5e3, delay: 0 },
+        presets_stories_Crossfire = {
+          args: { speed: 15, duration: 5e3, delay: 0 },
           argTypes: {
             speed: { control: "number" },
             duration: { control: "number" },
@@ -1370,17 +1530,11 @@
                   preset: function (param) {
                     var onInit = param.onInit,
                       decorateOptions = param.decorateOptions;
-                    return react.createElement(pride, {
+                    return react.createElement(crossfire, {
                       onInit: onInit,
                       decorateOptions: decorateOptions,
                       className: "canvas",
                     });
-                  },
-                  decorateOptions: function (options) {
-                    return _object_spread_props(
-                      presets_stories_object_spread({}, options),
-                      { colors: ["#bb0000", "#00ff00"] },
-                    );
                   },
                 },
                 props,
@@ -1421,6 +1575,31 @@
             );
           },
         },
+        presets_stories_Realistic = {
+          args: { speed: 1, duration: 5e3, delay: 0 },
+          argTypes: {
+            speed: { control: "number" },
+            duration: { control: "number" },
+            delay: { control: "number" },
+          },
+          render: function (props) {
+            return react.createElement(
+              Wrapper,
+              presets_stories_object_spread(
+                {
+                  preset: function (param) {
+                    var onInit = param.onInit;
+                    return react.createElement(realistic, {
+                      onInit: onInit,
+                      className: "canvas",
+                    });
+                  },
+                },
+                props,
+              ),
+            );
+          },
+        },
         presets_stories_Explosion = {
           args: { speed: 10, duration: 5e3, delay: 0 },
           argTypes: {
@@ -1441,6 +1620,37 @@
                       decorateOptions: decorateOptions,
                       className: "canvas",
                     });
+                  },
+                },
+                props,
+              ),
+            );
+          },
+        },
+        presets_stories_Pride = {
+          args: { speed: 60, duration: 5e3, delay: 0 },
+          argTypes: {
+            speed: { control: "number" },
+            duration: { control: "number" },
+            delay: { control: "number" },
+          },
+          render: function (props) {
+            return react.createElement(
+              Wrapper,
+              presets_stories_object_spread(
+                {
+                  preset: function (param) {
+                    var onInit = param.onInit,
+                      decorateOptions = param.decorateOptions;
+                    return react.createElement(pride, {
+                      autorun: { speed: 20 },
+                      onInit: onInit,
+                      decorateOptions: decorateOptions,
+                      className: "canvas",
+                    });
+                  },
+                  decorateOptions: function (options) {
+                    return presets_stories_object_spread({}, options);
                   },
                 },
                 props,
@@ -1534,25 +1744,14 @@
             },
           },
         }),
-        (presets_stories_Realistic.parameters = {
-          ...presets_stories_Realistic.parameters,
+        (presets_stories_Crossfire.parameters = {
+          ...presets_stories_Crossfire.parameters,
           docs: {
-            ...presets_stories_Realistic.parameters?.docs,
+            ...presets_stories_Crossfire.parameters?.docs,
             source: {
               originalSource:
-                '{\n  args: {\n    speed: 1,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit\n    }) => <RealisticPreset onInit={onInit} className={"canvas"} />} {...props} />;\n  }\n}',
-              ...presets_stories_Realistic.parameters?.docs?.source,
-            },
-          },
-        }),
-        (presets_stories_Pride.parameters = {
-          ...presets_stories_Pride.parameters,
-          docs: {
-            ...presets_stories_Pride.parameters?.docs,
-            source: {
-              originalSource:
-                '{\n  args: {\n    speed: 60,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <PridePreset onInit={onInit} decorateOptions={decorateOptions} className={"canvas"} />} decorateOptions={options => ({\n      ...options,\n      colors: ["#bb0000", "#00ff00"]\n    })} {...props} />;\n  }\n}',
-              ...presets_stories_Pride.parameters?.docs?.source,
+                '{\n  args: {\n    speed: 15,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <CrossfirePreset onInit={onInit} decorateOptions={decorateOptions} className={"canvas"} />} {...props} />;\n  }\n}',
+              ...presets_stories_Crossfire.parameters?.docs?.source,
             },
           },
         }),
@@ -1567,6 +1766,17 @@
             },
           },
         }),
+        (presets_stories_Realistic.parameters = {
+          ...presets_stories_Realistic.parameters,
+          docs: {
+            ...presets_stories_Realistic.parameters?.docs,
+            source: {
+              originalSource:
+                '{\n  args: {\n    speed: 1,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit\n    }) => <RealisticPreset onInit={onInit} className={"canvas"} />} {...props} />;\n  }\n}',
+              ...presets_stories_Realistic.parameters?.docs?.source,
+            },
+          },
+        }),
         (presets_stories_Explosion.parameters = {
           ...presets_stories_Explosion.parameters,
           docs: {
@@ -1577,14 +1787,26 @@
               ...presets_stories_Explosion.parameters?.docs?.source,
             },
           },
+        }),
+        (presets_stories_Pride.parameters = {
+          ...presets_stories_Pride.parameters,
+          docs: {
+            ...presets_stories_Pride.parameters?.docs,
+            source: {
+              originalSource:
+                '{\n  args: {\n    speed: 60,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <PridePreset autorun={{\n      speed: 20\n    }} onInit={onInit} decorateOptions={decorateOptions} className={"canvas"} />} decorateOptions={options => ({\n      ...options\n      // colors: ["#bb0000", "#00ff00"],\n    })} {...props} />;\n  }\n}',
+              ...presets_stories_Pride.parameters?.docs?.source,
+            },
+          },
         });
       let __namedExportsOrder = [
         "Main",
         "Fireworks",
-        "Realistic",
-        "Pride",
+        "Crossfire",
         "Snow",
+        "Realistic",
         "Explosion",
+        "Pride",
       ];
     },
     "./src/index.tsx": (

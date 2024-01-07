@@ -25,18 +25,10 @@
       "importPath": "./storybook/presets.stories.tsx",
       "tags": ["story"]
     },
-    "presets--realistic": {
+    "presets--crossfire": {
       "type": "story",
-      "id": "presets--realistic",
-      "name": "Realistic",
-      "title": "Presets",
-      "importPath": "./storybook/presets.stories.tsx",
-      "tags": ["story"]
-    },
-    "presets--pride": {
-      "type": "story",
-      "id": "presets--pride",
-      "name": "Pride",
+      "id": "presets--crossfire",
+      "name": "Crossfire",
       "title": "Presets",
       "importPath": "./storybook/presets.stories.tsx",
       "tags": ["story"]
@@ -49,10 +41,26 @@
       "importPath": "./storybook/presets.stories.tsx",
       "tags": ["story"]
     },
+    "presets--realistic": {
+      "type": "story",
+      "id": "presets--realistic",
+      "name": "Realistic",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"]
+    },
     "presets--explosion": {
       "type": "story",
       "id": "presets--explosion",
       "name": "Explosion",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"]
+    },
+    "presets--pride": {
+      "type": "story",
+      "id": "presets--pride",
+      "name": "Pride",
       "title": "Presets",
       "importPath": "./storybook/presets.stories.tsx",
       "tags": ["story"]

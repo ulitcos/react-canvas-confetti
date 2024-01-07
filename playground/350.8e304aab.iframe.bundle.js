@@ -14852,12 +14852,14 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                   };
                 if (0 === i) {
                   var _line = createLine(
-                    tree.slice(lastLineBreakIndex + 1, index).concat(
-                      createLineElement({
-                        children: [newChild],
-                        className: node.properties.className,
-                      }),
-                    ),
+                    tree
+                      .slice(lastLineBreakIndex + 1, index)
+                      .concat(
+                        createLineElement({
+                          children: [newChild],
+                          className: node.properties.className,
+                        }),
+                      ),
                     lineNumber2,
                   );
                   newTree.push(_line);

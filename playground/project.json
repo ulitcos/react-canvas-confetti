@@ -1,11 +1,11 @@
 {
-  "generatedAt": 1704497734448,
+  "generatedAt": 1704645078903,
   "hasCustomBabel": false,
   "hasCustomWebpack": false,
   "hasStaticDirs": false,
   "hasStorybookEslint": false,
   "refCount": 0,
-  "packageManager": { "type": "npm", "version": "8.19.4" },
+  "packageManager": { "type": "npm", "version": "9.5.0" },
   "preview": { "usesGlobals": false },
   "framework": {
     "name": "@storybook/react-webpack5",

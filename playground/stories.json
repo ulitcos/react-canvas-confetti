@@ -43,30 +43,16 @@
         "fileName": "./storybook/presets.stories.tsx"
       }
     },
-    "presets--realistic": {
-      "id": "presets--realistic",
-      "name": "Realistic",
+    "presets--crossfire": {
+      "id": "presets--crossfire",
+      "name": "Crossfire",
       "title": "Presets",
       "importPath": "./storybook/presets.stories.tsx",
       "tags": ["story"],
       "kind": "Presets",
-      "story": "Realistic",
+      "story": "Crossfire",
       "parameters": {
-        "__id": "presets--realistic",
-        "docsOnly": false,
-        "fileName": "./storybook/presets.stories.tsx"
-      }
-    },
-    "presets--pride": {
-      "id": "presets--pride",
-      "name": "Pride",
-      "title": "Presets",
-      "importPath": "./storybook/presets.stories.tsx",
-      "tags": ["story"],
-      "kind": "Presets",
-      "story": "Pride",
-      "parameters": {
-        "__id": "presets--pride",
+        "__id": "presets--crossfire",
         "docsOnly": false,
         "fileName": "./storybook/presets.stories.tsx"
       }
@@ -85,6 +71,20 @@
         "fileName": "./storybook/presets.stories.tsx"
       }
     },
+    "presets--realistic": {
+      "id": "presets--realistic",
+      "name": "Realistic",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"],
+      "kind": "Presets",
+      "story": "Realistic",
+      "parameters": {
+        "__id": "presets--realistic",
+        "docsOnly": false,
+        "fileName": "./storybook/presets.stories.tsx"
+      }
+    },
     "presets--explosion": {
       "id": "presets--explosion",
       "name": "Explosion",
@@ -95,6 +95,20 @@
       "story": "Explosion",
       "parameters": {
         "__id": "presets--explosion",
+        "docsOnly": false,
+        "fileName": "./storybook/presets.stories.tsx"
+      }
+    },
+    "presets--pride": {
+      "id": "presets--pride",
+      "name": "Pride",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"],
+      "kind": "Presets",
+      "story": "Pride",
+      "parameters": {
+        "__id": "presets--pride",
         "docsOnly": false,
         "fileName": "./storybook/presets.stories.tsx"
       }

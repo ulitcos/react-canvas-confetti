@@ -104,6 +104,7 @@ const meta = {
                   decorateOptions={(base: object) => ({
                     ...base,
                     ...config[item].decorateOptions,
+                    scalar: 0.6,
                   })}
                 />
               </div>

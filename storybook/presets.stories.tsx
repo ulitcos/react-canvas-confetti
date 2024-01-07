@@ -8,6 +8,7 @@ import RealisticPreset from "../src/presets/realistic";
 import PridePreset from "../src/presets/pride";
 import SnowPreset from "../src/presets/snow";
 import ExplosionPreset from "../src/presets/explosion";
+import CrossfirePreset from "../src/presets/сrossfire";
 
 import {
   TConductorInstance,
@@ -21,7 +22,13 @@ const meta = {
   title: "Presets",
   component: ReactCanvasConfetti,
   render: () => {
-    type TPresets = "Fireworks" | "Pride" | "Realistic" | "Snow" | "Explosion";
+    type TPresets =
+      | "Fireworks"
+      | "Pride"
+      | "Realistic"
+      | "Snow"
+      | "Explosion"
+      | "Crossfire";
 
     const config: Record<TPresets, any> = {
       Fireworks: {
@@ -30,17 +37,11 @@ const meta = {
         decorateOptions: {},
         component: FireworksPreset,
       },
-      Pride: {
-        run: { speed: 30 },
-        link: linkTo("Presets", "Pride"),
-        decorateOptions: { colors: ["#bb0000", "#00ff00"] },
-        component: PridePreset,
-      },
-      Realistic: {
-        run: { speed: 1 },
-        link: linkTo("Presets", "Realistic"),
-        decorateOptions: {},
-        component: RealisticPreset,
+      Crossfire: {
+        run: { speed: 15 },
+        link: linkTo("Presets", "Crossfire"),
+        decorateOptions: { decay: 0.93, particleCount: 5 },
+        component: CrossfirePreset,
       },
       Snow: {
         run: { speed: 30 },
@@ -48,11 +49,23 @@ const meta = {
         decorateOptions: { colors: ["#C9DDF1"] },
         component: SnowPreset,
       },
+      Realistic: {
+        run: { speed: 1 },
+        link: linkTo("Presets", "Realistic"),
+        decorateOptions: {},
+        component: RealisticPreset,
+      },
       Explosion: {
         run: { speed: 10 },
         link: linkTo("Presets", "Explosion"),
         decorateOptions: {},
         component: ExplosionPreset,
+      },
+      Pride: {
+        run: { speed: 30 },
+        link: linkTo("Presets", "Pride"),
+        decorateOptions: { colors: ["#bb0000", "#00ff00"] },
+        component: PridePreset,
       },
     };
     const conductors = useRef<Record<string, TConductorInstance>>({});
@@ -136,38 +149,9 @@ export const Fireworks: StoryObj<TPresetInstanceProps["autorun"]> = {
   },
 };
 
-export const Realistic: StoryObj<TPresetInstanceProps["autorun"]> = {
+export const Crossfire: StoryObj<TPresetInstanceProps["autorun"]> = {
   args: {
-    speed: 1,
-    duration: 5000,
-    delay: 0,
-  },
-  argTypes: {
-    speed: {
-      control: "number",
-    },
-    duration: {
-      control: "number",
-    },
-    delay: {
-      control: "number",
-    },
-  },
-  render: (props: TRunAnimationParams) => {
-    return (
-      <Wrapper
-        preset={({ onInit }) => (
-          <RealisticPreset onInit={onInit} className={"canvas"} />
-        )}
-        {...props}
-      />
-    );
-  },
-};
-
-export const Pride: StoryObj<TPresetInstanceProps["autorun"]> = {
-  args: {
-    speed: 60,
+    speed: 15,
     duration: 5000,
     delay: 0,
   },
@@ -186,16 +170,12 @@ export const Pride: StoryObj<TPresetInstanceProps["autorun"]> = {
     return (
       <Wrapper
         preset={({ onInit, decorateOptions }) => (
-          <PridePreset
+          <CrossfirePreset
             onInit={onInit}
             decorateOptions={decorateOptions}
             className={"canvas"}
           />
         )}
-        decorateOptions={(options) => ({
-          ...options,
-          colors: ["#bb0000", "#00ff00"],
-        })}
         {...props}
       />
     );
@@ -239,6 +219,35 @@ export const Snow: StoryObj<TPresetInstanceProps["autorun"]> = {
   },
 };
 
+export const Realistic: StoryObj<TPresetInstanceProps["autorun"]> = {
+  args: {
+    speed: 1,
+    duration: 5000,
+    delay: 0,
+  },
+  argTypes: {
+    speed: {
+      control: "number",
+    },
+    duration: {
+      control: "number",
+    },
+    delay: {
+      control: "number",
+    },
+  },
+  render: (props: TRunAnimationParams) => {
+    return (
+      <Wrapper
+        preset={({ onInit }) => (
+          <RealisticPreset onInit={onInit} className={"canvas"} />
+        )}
+        {...props}
+      />
+    );
+  },
+};
+
 export const Explosion: StoryObj<TPresetInstanceProps["autorun"]> = {
   args: {
     speed: 10,
@@ -266,6 +275,44 @@ export const Explosion: StoryObj<TPresetInstanceProps["autorun"]> = {
             className={"canvas"}
           />
         )}
+        {...props}
+      />
+    );
+  },
+};
+
+export const Pride: StoryObj<TPresetInstanceProps["autorun"]> = {
+  args: {
+    speed: 60,
+    duration: 5000,
+    delay: 0,
+  },
+  argTypes: {
+    speed: {
+      control: "number",
+    },
+    duration: {
+      control: "number",
+    },
+    delay: {
+      control: "number",
+    },
+  },
+  render: (props: TRunAnimationParams) => {
+    return (
+      <Wrapper
+        preset={({ onInit, decorateOptions }) => (
+          <PridePreset
+            autorun={{ speed: 20 }}
+            onInit={onInit}
+            decorateOptions={decorateOptions}
+            className={"canvas"}
+          />
+        )}
+        decorateOptions={(options) => ({
+          ...options,
+          // colors: ["#bb0000", "#00ff00"],
+        })}
         {...props}
       />
     );

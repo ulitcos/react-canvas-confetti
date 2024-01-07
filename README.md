@@ -111,13 +111,15 @@ Advanced settings only work for presets!
 
 [Fireworks Preset](https://codesandbox.io/p/devbox/fireworks-preset-react-canvas-confetti-v2-hpjx8y)
 
-[Pride Preset](https://codesandbox.io/p/devbox/pride-preset-react-canvas-confetti-v2-f7fnqy)
+[Crossfire Preset](https://codesandbox.io/p/devbox/crossfire-preset-react-canvas-confetti-v2-3frmhw)
 
 [Snow Preset](https://codesandbox.io/p/devbox/snow-preset-react-canvas-confetti-v2-7dn2pj)
 
+[Realistic Preset](https://codesandbox.io/p/devbox/realistic-preset-react-canvas-confetti-v2-5z3rsz)
+
 [Explosion Preset](https://codesandbox.io/p/devbox/explosion-preset-react-canvas-confetti-v2-p9q4kh)
 
-[Realistic Preset](https://codesandbox.io/p/devbox/realistic-preset-react-canvas-confetti-v2-5z3rsz)
+[Pride Preset](https://codesandbox.io/p/devbox/pride-preset-react-canvas-confetti-v2-f7fnqy)
 
 [Autorun Preset](https://codesandbox.io/p/devbox/autorun-preset-react-canvas-confetti-v2-sxd3rh)
 

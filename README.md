@@ -119,4 +119,6 @@ Advanced settings only work for presets!
 
 [Decorated Preset](https://codesandbox.io/p/devbox/decorated-preset-react-canvas-confetti-v2-wl77ff)
 
-[Custom Animation](https://codesandbox.io/p/devbox/custom-animation-react-canvas-confetti-v2-2v8wkx)
+[Custom Animation](https://codesandbox.io/p/devbox/custom-animation-react-canvas-confetti-v2-ff42f6)
+
+[Custom Stylization](https://codesandbox.io/p/devbox/custom-stylization-react-canvas-confetti-v2-nmjfc8)

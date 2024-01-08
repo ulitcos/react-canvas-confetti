@@ -38,14 +38,8 @@ A preset is an animation template that is already ready to use. Presets allow yo
 ```typescript
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 
-const canvasStyles = {
-  position: "fixed",
-  width: "100%",
-  height: "100%",
-};
-
 function Example() {
-  return <Fireworks autorun={{ speed: 3 }} style={canvasStyles} />;
+  return <Fireworks autorun={{ speed: 3 }} />;
 }
 
 export default Example;

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { CSSProperties, useEffect, useRef } from "react";
 import canvasConfetti from "canvas-confetti";
 import {
   TCanvasConfettiInstance,
@@ -10,6 +10,24 @@ const DEFAULT_GLOBAL_OPTIONS: TCanvasConfettiGlobalOptions = {
   resize: true,
   useWorker: false,
 };
+
+const DEFAULT_STYLE: CSSProperties = {
+  position: "fixed",
+  pointerEvents: "none",
+  width: "100%",
+  height: "100%",
+  zIndex: -1,
+  top: 0,
+  left: 0,
+};
+
+function getFinalStyle(style?: CSSProperties, className?: string) {
+  if (!style && !className) {
+    return DEFAULT_STYLE;
+  }
+
+  return style;
+}
 
 function ReactCanvasConfetti({
   style,
@@ -42,7 +60,7 @@ function ReactCanvasConfetti({
   return (
     <canvas
       ref={canvasRef}
-      style={style}
+      style={getFinalStyle(style, className)}
       className={className}
       width={width}
       height={height}

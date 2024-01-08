@@ -49,14 +49,8 @@ A preset is an animation template that is already ready to use. Presets allow yo
 \`\`\`typescript
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 
-const canvasStyles = {
-  position: "fixed",
-  width: "100%",
-  height: "100%",
-};
-
 function Example() {
-  return <Fireworks autorun={{ speed: 3 }} style={canvasStyles} />;
+  return <Fireworks autorun={{ speed: 3 }} />;
 }
 
 export default Example;
@@ -104,7 +98,7 @@ The common settings are relevant for all use cases
 | width         | string \\| number                                                                                                       | value is responsible for the width of the canvas. Alternative ways to control canvas sizes are className and style props.                                                                                                                               |
 | height        | string \\| number                                                                                                       | value is responsible for the height of the canvas. Alternative ways to control canvas sizes are className and style props.                                                                                                                              |
 | className     | string                                                                                                                 | value to set className to canvas element                                                                                                                                                                                                                |
-| style         | CSSProperties                                                                                                          | value to set style to canvas element                                                                                                                                                                                                                    |
+| style         | CSSProperties                                                                                                          | value to set style to canvas element. If \`style\` and \`className\` are not passed, the default styles will be set                                                                                                                                         |
 | globalOptions | [TGlobalOptions](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/canvas-confetti/index.d.ts#L126) | global animation settings that cannot be changed after initialization ([details](https://github.com/catdad/canvas-confetti?tab=readme-ov-file#confetticreatecanvas-globaloptions--function))                                                            |
 | onInit        | (params: {confetti: [TCanvasConfettiInstance](#canvas-confetti-instance)}) => void                                     | the callback is called when the component is mounted on the page and allows you to access confetti instance ([details](https://github.com/catdad/canvas-confetti?tab=readme-ov-file#confettioptions-object--promisenull)) for manual animation creation |
 
@@ -136,7 +130,9 @@ Advanced settings only work for presets!
 
 [Decorated Preset](https://codesandbox.io/p/devbox/decorated-preset-react-canvas-confetti-v2-wl77ff)
 
-[Custom Animation](https://codesandbox.io/p/devbox/custom-animation-react-canvas-confetti-v2-2v8wkx)
+[Custom Animation](https://codesandbox.io/p/devbox/custom-animation-react-canvas-confetti-v2-ff42f6)
+
+[Custom Stylization](https://codesandbox.io/p/devbox/custom-stylization-react-canvas-confetti-v2-nmjfc8)
 
 `;
 

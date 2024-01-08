@@ -379,7 +379,18 @@
         }
         return target;
       }
-      var DEFAULT_GLOBAL_OPTIONS = { resize: !0, useWorker: !1 };
+      var DEFAULT_GLOBAL_OPTIONS = { resize: !0, useWorker: !1 },
+        DEFAULT_STYLE = {
+          position: "fixed",
+          pointerEvents: "none",
+          width: "100%",
+          height: "100%",
+          top: 0,
+          left: 0,
+        };
+      function getFinalStyle(style, className) {
+        return style || className ? style : DEFAULT_STYLE;
+      }
       function ReactCanvasConfetti(param) {
         var style = param.style,
           className = param.className,
@@ -409,7 +420,7 @@
           }, []),
           react__WEBPACK_IMPORTED_MODULE_0__.createElement("canvas", {
             ref: canvasRef,
-            style: style,
+            style: getFinalStyle(style, className),
             className: className,
             width: width,
             height: height,

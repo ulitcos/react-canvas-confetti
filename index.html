@@ -96,14 +96,8 @@
 
         <pre><code class="language-typescript">import Fireworks from &quot;react-canvas-confetti/dist/presets/fireworks&quot;;
 
-const canvasStyles = {
-  position: &quot;fixed&quot;,
-  width: &quot;100%&quot;,
-  height: &quot;100%&quot;,
-};
-
 function Example() {
-  return &lt;Fireworks autorun={{ speed: 3 }} style={canvasStyles} /&gt;;
+  return &lt;Fireworks autorun={{ speed: 3 }} /&gt;;
 }
 
 export default Example;
@@ -196,7 +190,11 @@ type TConductorInstance = {
           <tr>
             <td>style</td>
             <td>CSSProperties</td>
-            <td>value to set style to canvas element</td>
+            <td>
+              value to set style to canvas element. If <code>style</code> and
+              <code>className</code> are not passed, the default styles will be
+              set
+            </td>
           </tr>
           <tr>
             <td>globalOptions</td>
@@ -335,8 +333,14 @@ type TConductorInstance = {
       </p>
       <p>
         <a
-          href="https://codesandbox.io/p/devbox/custom-animation-react-canvas-confetti-v2-2v8wkx"
+          href="https://codesandbox.io/p/devbox/custom-animation-react-canvas-confetti-v2-ff42f6"
           >Custom Animation</a
+        >
+      </p>
+      <p>
+        <a
+          href="https://codesandbox.io/p/devbox/custom-stylization-react-canvas-confetti-v2-nmjfc8"
+          >Custom Stylization</a
         >
       </p>
     </section>

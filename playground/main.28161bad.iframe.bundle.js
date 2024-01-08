@@ -129,17 +129,7 @@
           );
         ___CSS_LOADER_EXPORT___.push([
           module.id,
-          `.canvas {
-  height: 100%;
-  left: 0;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: -1;
-}
-
-.controls {
+          `.controls {
   bottom: 15%;
   display: flex;
   flex-direction: column;
@@ -208,9 +198,9 @@
             sources: ["webpack://./storybook/index.css"],
             names: [],
             mappings:
-              "AAAA;EACE,YAAY;EACZ,OAAO;EACP,oBAAoB;EACpB,eAAe;EACf,MAAM;EACN,WAAW;EACX,WAAW;AACb;;AAEA;EACE,WAAW;EACX,aAAa;EACb,sBAAsB;EACtB,QAAQ;EACR,SAAS;EACT,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,oBAAoB;AACtB;;AAEA;EACE,aAAa;;EAEb,eAAe;EACf,8BAA8B;EAC9B,iBAAiB;EACjB,YAAY;AACd;;AAEA;EACE,0BAA0B;EAC1B,UAAU;EACV,YAAY;EACZ,kBAAkB;EAClB,mBAAmB;EACnB,kBAAkB;EAClB,0BAA0B;EAC1B,eAAe;AACjB;;AAEA;EACE,sBAAsB;AACxB;;AAEA;EACE,kBAAkB;EAClB,MAAM;EACN,OAAO;EACP,WAAW;EACX,YAAY;AACd;;AAEA;EACE,yBAAyB;EACzB,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,gCAAgC;EAChC,+BAA+B;EAC/B,UAAU;EACV,yBAAyB;AAC3B;;AAEA;EACE,aAAa;AACf",
+              "AAAA;EACE,WAAW;EACX,aAAa;EACb,sBAAsB;EACtB,QAAQ;EACR,SAAS;EACT,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,oBAAoB;AACtB;;AAEA;EACE,aAAa;;EAEb,eAAe;EACf,8BAA8B;EAC9B,iBAAiB;EACjB,YAAY;AACd;;AAEA;EACE,0BAA0B;EAC1B,UAAU;EACV,YAAY;EACZ,kBAAkB;EAClB,mBAAmB;EACnB,kBAAkB;EAClB,0BAA0B;EAC1B,eAAe;AACjB;;AAEA;EACE,sBAAsB;AACxB;;AAEA;EACE,kBAAkB;EAClB,MAAM;EACN,OAAO;EACP,WAAW;EACX,YAAY;AACd;;AAEA;EACE,yBAAyB;EACzB,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,gCAAgC;EAChC,+BAA+B;EAC/B,UAAU;EACV,yBAAyB;AAC3B;;AAEA;EACE,aAAa;AACf",
             sourcesContent: [
-              ".canvas {\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: fixed;\n  top: 0;\n  width: 100%;\n  z-index: -1;\n}\n\n.controls {\n  bottom: 15%;\n  display: flex;\n  flex-direction: column;\n  gap: 5px;\n  left: 50%;\n  margin-left: -50px;\n  position: fixed;\n}\n\n.controls button {\n  height: 40px;\n  width: 100px;\n  pointer-events: auto;\n}\n\n.list {\n  display: flex;\n\n  flex-wrap: wrap;\n  justify-content: space-between;\n  max-width: 1400px;\n  margin: auto;\n}\n\n.item {\n  outline: 2px solid #fbebd1;\n  width: 45%;\n  margin: 2.5%;\n  position: relative;\n  aspect-ratio: 3 / 2;\n  border-radius: 3px;\n  text-transform: capitalize;\n  cursor: pointer;\n}\n\n.item:hover {\n  outline-color: #ee7b49;\n}\n\n.preset {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n\n.label {\n  font-size: min(5vw, 50px);\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  font-family: Tahoma, sans-serif;\n  z-index: 1;\n  transition: opacity 0.25s;\n}\n\n.item:hover .label {\n  opacity: 0.05;\n}\n",
+              ".controls {\n  bottom: 15%;\n  display: flex;\n  flex-direction: column;\n  gap: 5px;\n  left: 50%;\n  margin-left: -50px;\n  position: fixed;\n}\n\n.controls button {\n  height: 40px;\n  width: 100px;\n  pointer-events: auto;\n}\n\n.list {\n  display: flex;\n\n  flex-wrap: wrap;\n  justify-content: space-between;\n  max-width: 1400px;\n  margin: auto;\n}\n\n.item {\n  outline: 2px solid #fbebd1;\n  width: 45%;\n  margin: 2.5%;\n  position: relative;\n  aspect-ratio: 3 / 2;\n  border-radius: 3px;\n  text-transform: capitalize;\n  cursor: pointer;\n}\n\n.item:hover {\n  outline-color: #ee7b49;\n}\n\n.preset {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n\n.label {\n  font-size: min(5vw, 50px);\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  font-family: Tahoma, sans-serif;\n  z-index: 1;\n  transition: opacity 0.25s;\n}\n\n.item:hover .label {\n  opacity: 0.05;\n}\n",
             ],
             sourceRoot: "",
           },
@@ -347,4 +337,4 @@
       __webpack_require__.O();
   },
 ]);
-//# sourceMappingURL=main.8fd41400.iframe.bundle.js.map
+//# sourceMappingURL=main.28161bad.iframe.bundle.js.map

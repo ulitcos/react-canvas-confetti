@@ -1504,10 +1504,7 @@
                 {
                   preset: function (param) {
                     var onInit = param.onInit;
-                    return react.createElement(fireworks, {
-                      onInit: onInit,
-                      className: "canvas",
-                    });
+                    return react.createElement(fireworks, { onInit: onInit });
                   },
                 },
                 props,
@@ -1533,7 +1530,6 @@
                     return react.createElement(crossfire, {
                       onInit: onInit,
                       decorateOptions: decorateOptions,
-                      className: "canvas",
                     });
                   },
                 },
@@ -1560,7 +1556,6 @@
                     return react.createElement(snow, {
                       onInit: onInit,
                       decorateOptions: decorateOptions,
-                      className: "canvas",
                     });
                   },
                   decorateOptions: function (options) {
@@ -1589,10 +1584,7 @@
                 {
                   preset: function (param) {
                     var onInit = param.onInit;
-                    return react.createElement(realistic, {
-                      onInit: onInit,
-                      className: "canvas",
-                    });
+                    return react.createElement(realistic, { onInit: onInit });
                   },
                 },
                 props,
@@ -1618,7 +1610,6 @@
                     return react.createElement(explosion, {
                       onInit: onInit,
                       decorateOptions: decorateOptions,
-                      className: "canvas",
                     });
                   },
                 },
@@ -1646,7 +1637,6 @@
                       autorun: { speed: 20 },
                       onInit: onInit,
                       decorateOptions: decorateOptions,
-                      className: "canvas",
                     });
                   },
                   decorateOptions: function (options) {
@@ -1739,7 +1729,7 @@
             ...presets_stories_Fireworks.parameters?.docs,
             source: {
               originalSource:
-                '{\n  args: {\n    speed: 3,\n    duration: 3000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit\n    }) => <FireworksPreset onInit={onInit} className={"canvas"} />} {...props} />;\n  }\n}',
+                '{\n  args: {\n    speed: 3,\n    duration: 3000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit\n    }) => <FireworksPreset onInit={onInit} />} {...props} />;\n  }\n}',
               ...presets_stories_Fireworks.parameters?.docs?.source,
             },
           },
@@ -1750,7 +1740,7 @@
             ...presets_stories_Crossfire.parameters?.docs,
             source: {
               originalSource:
-                '{\n  args: {\n    speed: 15,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <CrossfirePreset onInit={onInit} decorateOptions={decorateOptions} className={"canvas"} />} {...props} />;\n  }\n}',
+                '{\n  args: {\n    speed: 15,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <CrossfirePreset onInit={onInit} decorateOptions={decorateOptions} />} {...props} />;\n  }\n}',
               ...presets_stories_Crossfire.parameters?.docs?.source,
             },
           },
@@ -1761,7 +1751,7 @@
             ...presets_stories_Snow.parameters?.docs,
             source: {
               originalSource:
-                '{\n  args: {\n    speed: 60,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <SnowPreset onInit={onInit} decorateOptions={decorateOptions} className={"canvas"} />} decorateOptions={options => ({\n      ...options,\n      colors: ["#C9DDF1"]\n    })} {...props} />;\n  }\n}',
+                '{\n  args: {\n    speed: 60,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <SnowPreset onInit={onInit} decorateOptions={decorateOptions} />} decorateOptions={options => ({\n      ...options,\n      colors: ["#C9DDF1"]\n    })} {...props} />;\n  }\n}',
               ...presets_stories_Snow.parameters?.docs?.source,
             },
           },
@@ -1772,7 +1762,7 @@
             ...presets_stories_Realistic.parameters?.docs,
             source: {
               originalSource:
-                '{\n  args: {\n    speed: 1,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit\n    }) => <RealisticPreset onInit={onInit} className={"canvas"} />} {...props} />;\n  }\n}',
+                '{\n  args: {\n    speed: 1,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit\n    }) => <RealisticPreset onInit={onInit} />} {...props} />;\n  }\n}',
               ...presets_stories_Realistic.parameters?.docs?.source,
             },
           },
@@ -1783,7 +1773,7 @@
             ...presets_stories_Explosion.parameters?.docs,
             source: {
               originalSource:
-                '{\n  args: {\n    speed: 10,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <ExplosionPreset onInit={onInit} decorateOptions={decorateOptions} className={"canvas"} />} {...props} />;\n  }\n}',
+                '{\n  args: {\n    speed: 10,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <ExplosionPreset onInit={onInit} decorateOptions={decorateOptions} />} {...props} />;\n  }\n}',
               ...presets_stories_Explosion.parameters?.docs?.source,
             },
           },
@@ -1794,7 +1784,7 @@
             ...presets_stories_Pride.parameters?.docs,
             source: {
               originalSource:
-                '{\n  args: {\n    speed: 60,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <PridePreset autorun={{\n      speed: 20\n    }} onInit={onInit} decorateOptions={decorateOptions} className={"canvas"} />} decorateOptions={options => ({\n      ...options\n      // colors: ["#bb0000", "#00ff00"],\n    })} {...props} />;\n  }\n}',
+                '{\n  args: {\n    speed: 60,\n    duration: 5000,\n    delay: 0\n  },\n  argTypes: {\n    speed: {\n      control: "number"\n    },\n    duration: {\n      control: "number"\n    },\n    delay: {\n      control: "number"\n    }\n  },\n  render: (props: TRunAnimationParams) => {\n    return <Wrapper preset={({\n      onInit,\n      decorateOptions\n    }) => <PridePreset autorun={{\n      speed: 20\n    }} onInit={onInit} decorateOptions={decorateOptions} />} decorateOptions={options => ({\n      ...options\n      // colors: ["#bb0000", "#00ff00"],\n    })} {...props} />;\n  }\n}',
               ...presets_stories_Pride.parameters?.docs?.source,
             },
           },
@@ -1852,7 +1842,18 @@
         }
         return target;
       }
-      var DEFAULT_GLOBAL_OPTIONS = { resize: !0, useWorker: !1 };
+      var DEFAULT_GLOBAL_OPTIONS = { resize: !0, useWorker: !1 },
+        DEFAULT_STYLE = {
+          position: "fixed",
+          pointerEvents: "none",
+          width: "100%",
+          height: "100%",
+          top: 0,
+          left: 0,
+        };
+      function getFinalStyle(style, className) {
+        return style || className ? style : DEFAULT_STYLE;
+      }
       function ReactCanvasConfetti(param) {
         var style = param.style,
           className = param.className,
@@ -1882,7 +1883,7 @@
           }, []),
           react__WEBPACK_IMPORTED_MODULE_0__.createElement("canvas", {
             ref: canvasRef,
-            style: style,
+            style: getFinalStyle(style, className),
             className: className,
             width: width,
             height: height,

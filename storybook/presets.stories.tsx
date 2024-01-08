@@ -141,9 +141,7 @@ export const Fireworks: StoryObj<TPresetInstanceProps["autorun"]> = {
   render: (props: TRunAnimationParams) => {
     return (
       <Wrapper
-        preset={({ onInit }) => (
-          <FireworksPreset onInit={onInit} className={"canvas"} />
-        )}
+        preset={({ onInit }) => <FireworksPreset onInit={onInit} />}
         {...props}
       />
     );
@@ -171,11 +169,7 @@ export const Crossfire: StoryObj<TPresetInstanceProps["autorun"]> = {
     return (
       <Wrapper
         preset={({ onInit, decorateOptions }) => (
-          <CrossfirePreset
-            onInit={onInit}
-            decorateOptions={decorateOptions}
-            className={"canvas"}
-          />
+          <CrossfirePreset onInit={onInit} decorateOptions={decorateOptions} />
         )}
         {...props}
       />
@@ -204,11 +198,7 @@ export const Snow: StoryObj<TPresetInstanceProps["autorun"]> = {
     return (
       <Wrapper
         preset={({ onInit, decorateOptions }) => (
-          <SnowPreset
-            onInit={onInit}
-            decorateOptions={decorateOptions}
-            className={"canvas"}
-          />
+          <SnowPreset onInit={onInit} decorateOptions={decorateOptions} />
         )}
         decorateOptions={(options) => ({
           ...options,
@@ -240,9 +230,7 @@ export const Realistic: StoryObj<TPresetInstanceProps["autorun"]> = {
   render: (props: TRunAnimationParams) => {
     return (
       <Wrapper
-        preset={({ onInit }) => (
-          <RealisticPreset onInit={onInit} className={"canvas"} />
-        )}
+        preset={({ onInit }) => <RealisticPreset onInit={onInit} />}
         {...props}
       />
     );
@@ -270,11 +258,7 @@ export const Explosion: StoryObj<TPresetInstanceProps["autorun"]> = {
     return (
       <Wrapper
         preset={({ onInit, decorateOptions }) => (
-          <ExplosionPreset
-            onInit={onInit}
-            decorateOptions={decorateOptions}
-            className={"canvas"}
-          />
+          <ExplosionPreset onInit={onInit} decorateOptions={decorateOptions} />
         )}
         {...props}
       />
@@ -307,7 +291,6 @@ export const Pride: StoryObj<TPresetInstanceProps["autorun"]> = {
             autorun={{ speed: 20 }}
             onInit={onInit}
             decorateOptions={decorateOptions}
-            className={"canvas"}
           />
         )}
         decorateOptions={(options) => ({

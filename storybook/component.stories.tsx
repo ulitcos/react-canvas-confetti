@@ -66,7 +66,6 @@ const Component = (props: TStoryProps) => {
       </div>
       {needRemount ? null : (
         <ReactCanvasConfetti
-          className={"canvas"}
           globalOptions={globalOptions}
           onInit={onInitHandler}
         />

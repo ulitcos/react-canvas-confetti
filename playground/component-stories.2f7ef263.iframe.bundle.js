@@ -248,7 +248,6 @@
               : react__WEBPACK_IMPORTED_MODULE_0__.createElement(
                   _src__WEBPACK_IMPORTED_MODULE_1__.Z,
                   {
-                    className: "canvas",
                     globalOptions: globalOptions,
                     onInit: function (param) {
                       var confetti = param.confetti;

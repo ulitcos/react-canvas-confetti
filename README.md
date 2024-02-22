@@ -103,22 +103,22 @@ Advanced settings only work for presets!
 
 ## Examples
 
-[Fireworks Preset](https://codesandbox.io/p/devbox/fireworks-preset-react-canvas-confetti-v2-hpjx8y)
+[Fireworks Preset](https://codepen.io/ulitcos/pen/gOEEXKe)
 
-[Crossfire Preset](https://codesandbox.io/p/devbox/crossfire-preset-react-canvas-confetti-v2-3frmhw)
+[Crossfire Preset](https://codepen.io/ulitcos/pen/MWxxOLW)
 
-[Snow Preset](https://codesandbox.io/p/devbox/snow-preset-react-canvas-confetti-v2-7dn2pj)
+[Snow Preset](https://codepen.io/ulitcos/pen/rNRRYRO)
 
-[Realistic Preset](https://codesandbox.io/p/devbox/realistic-preset-react-canvas-confetti-v2-5z3rsz)
+[Realistic Preset](https://codepen.io/ulitcos/pen/zYbbPXB)
 
-[Explosion Preset](https://codesandbox.io/p/devbox/explosion-preset-react-canvas-confetti-v2-p9q4kh)
+[Explosion Preset](https://codepen.io/ulitcos/pen/rNRRYgx)
 
-[Pride Preset](https://codesandbox.io/p/devbox/pride-preset-react-canvas-confetti-v2-f7fnqy)
+[Pride Preset](https://codepen.io/ulitcos/pen/qBvvVGm)
 
-[Autorun Preset](https://codesandbox.io/p/devbox/autorun-preset-react-canvas-confetti-v2-sxd3rh)
+[Manual Control](https://codepen.io/ulitcos/pen/eYXXewp)
 
-[Decorated Preset](https://codesandbox.io/p/devbox/decorated-preset-react-canvas-confetti-v2-wl77ff)
+[Decorating Options](https://codepen.io/ulitcos/pen/gOEEoYd)
 
-[Custom Animation](https://codesandbox.io/p/devbox/custom-animation-react-canvas-confetti-v2-ff42f6)
+[Custom Stylization](https://codepen.io/ulitcos/pen/rNRRpVL)
 
-[Custom Stylization](https://codesandbox.io/p/devbox/custom-stylization-react-canvas-confetti-v2-nmjfc8)
+[Custom Animation](https://codepen.io/ulitcos/pen/eYXabaz)

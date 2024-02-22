@@ -45,7 +45,7 @@ function Example() {
 export default Example;
 ```
 
-[Live example](https://codesandbox.io/p/devbox/minimal-example-react-canvas-confetti-v2-3j3n7q)
+[Live example](https://codepen.io/ulitcos/pen/gOEEXKe)
 
 </details>
 

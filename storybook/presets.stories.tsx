@@ -303,11 +303,7 @@ export const Pride: StoryObj<TPresetInstanceProps["autorun"]> = {
     return (
       <Wrapper
         preset={({ onInit, decorateOptions }) => (
-          <PridePreset
-            autorun={{ speed: 20 }}
-            onInit={onInit}
-            decorateOptions={decorateOptions}
-          />
+          <PridePreset onInit={onInit} decorateOptions={decorateOptions} />
         )}
         decorateOptions={(options) => ({
           ...options,
@@ -340,11 +336,7 @@ export const Vortex: StoryObj<TPresetInstanceProps["autorun"]> = {
     return (
       <Wrapper
         preset={({ onInit, decorateOptions }) => (
-          <VortexPreset
-            autorun={{ speed: 15 }}
-            onInit={onInit}
-            decorateOptions={decorateOptions}
-          />
+          <VortexPreset onInit={onInit} decorateOptions={decorateOptions} />
         )}
         decorateOptions={(options) => ({
           ...options,

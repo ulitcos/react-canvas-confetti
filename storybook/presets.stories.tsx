@@ -10,6 +10,7 @@ import SnowPreset from "../src/presets/snow";
 import ExplosionPreset from "../src/presets/explosion";
 import CrossfirePreset from "../src/presets/crossfire";
 import VortexPreset from "../src/presets/vortex";
+import PhotonsPreset from "../src/presets/photons";
 
 import {
   TConductorInstance,
@@ -30,7 +31,8 @@ const meta = {
       | "Snow"
       | "Explosion"
       | "Crossfire"
-      | "Vortex";
+      | "Vortex"
+      | "Photons";
 
     const config: Record<TPresets, any> = {
       Fireworks: {
@@ -74,6 +76,12 @@ const meta = {
         link: linkTo("Presets", "Vortex"),
         decorateOptions: {},
         component: VortexPreset,
+      },
+      Photons: {
+        run: { speed: 50 },
+        link: linkTo("Presets", "Photons"),
+        decorateOptions: {},
+        component: PhotonsPreset,
       },
     };
     const conductors = useRef<Record<string, TConductorInstance>>({});
@@ -313,7 +321,7 @@ export const Pride: StoryObj<TPresetInstanceProps["autorun"]> = {
 
 export const Vortex: StoryObj<TPresetInstanceProps["autorun"]> = {
   args: {
-    speed: 20,
+    speed: 15,
     duration: 5000,
     delay: 0,
   },
@@ -342,6 +350,35 @@ export const Vortex: StoryObj<TPresetInstanceProps["autorun"]> = {
           ...options,
           // colors: ["#bb0000", "#00ff00"],
         })}
+        {...props}
+      />
+    );
+  },
+};
+
+export const Photons: StoryObj<TPresetInstanceProps["autorun"]> = {
+  args: {
+    speed: 8,
+    duration: 5000,
+    delay: 0,
+  },
+  argTypes: {
+    speed: {
+      control: "number",
+    },
+    duration: {
+      control: "number",
+    },
+    delay: {
+      control: "number",
+    },
+  },
+  render: (props: TRunAnimationParams) => {
+    return (
+      <Wrapper
+        preset={({ onInit, decorateOptions }) => (
+          <PhotonsPreset onInit={onInit} decorateOptions={decorateOptions} />
+        )}
         {...props}
       />
     );

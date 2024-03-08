@@ -14,7 +14,7 @@ class VortexConductor extends Conductor {
     this.confetti(
       this.decorateOptions({
         spread: 120,
-        ticks: 30,
+        ticks: 60,
         gravity: 0,
         decay: 0.94,
         startVelocity: 20,

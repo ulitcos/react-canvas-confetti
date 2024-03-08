@@ -1,7 +1,7 @@
 "use strict";
 (self.webpackChunkreact_canvas_confetti =
   self.webpackChunkreact_canvas_confetti || []).push([
-  [152],
+  [216],
   {
     "./storybook/component.stories.tsx": (
       __unused_webpack_module,
@@ -246,7 +246,7 @@
             needRemount
               ? null
               : react__WEBPACK_IMPORTED_MODULE_0__.createElement(
-                  _src__WEBPACK_IMPORTED_MODULE_1__.Z,
+                  _src__WEBPACK_IMPORTED_MODULE_1__.A,
                   {
                     globalOptions: globalOptions,
                     onInit: function (param) {
@@ -274,7 +274,7 @@
           angle: 90,
           spread: 360,
           startVelocity: 45,
-          decay: 0.8,
+          decay: 0.9,
           gravity: 1,
           drift: 0,
           ticks: 600,
@@ -341,7 +341,7 @@
       __webpack_require__,
     ) => {
       __webpack_require__.d(__webpack_exports__, {
-        Z: () => __WEBPACK_DEFAULT_EXPORT__,
+        A: () => __WEBPACK_DEFAULT_EXPORT__,
       });
       var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
           "./node_modules/react/index.js",
@@ -404,7 +404,7 @@
             if (canvasRef.current)
               return (
                 (confetti.current =
-                  canvas_confetti__WEBPACK_IMPORTED_MODULE_1__.Z.create(
+                  canvas_confetti__WEBPACK_IMPORTED_MODULE_1__.A.create(
                     canvasRef.current,
                     _object_spread({}, DEFAULT_GLOBAL_OPTIONS, globalOptions),
                   )),

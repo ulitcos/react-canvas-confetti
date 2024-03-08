@@ -1469,9 +1469,7 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                     assertNoMembers() {
                       if (this.members.length)
                         throw new Error(
-                          `Illegal state: symbol without members expected, but got ${JSON.stringify(
-                            this,
-                          )}.`,
+                          `Illegal state: symbol without members expected, but got ${JSON.stringify(this)}.`,
                         );
                     }
                   };
@@ -2258,16 +2256,12 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                     contextualMessage() {
                       let a = this.span.start.getContext(100, 3);
                       return a
-                        ? `${this.msg} ("${a.before}[${i[this.level]} ->]${
-                            a.after
-                          }")`
+                        ? `${this.msg} ("${a.before}[${i[this.level]} ->]${a.after}")`
                         : this.msg;
                     }
                     toString() {
                       let a = this.span.details ? `, ${this.span.details}` : "";
-                      return `${this.contextualMessage()}: ${
-                        this.span.start
-                      }${a}`;
+                      return `${this.contextualMessage()}: ${this.span.start}${a}`;
                     }
                   };
                   e.ParseError = f;
@@ -2415,46 +2409,32 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                     c("NONNUMERICIDENTIFIER", "\\d*[a-zA-Z-][a-zA-Z0-9-]*"),
                     c(
                       "MAINVERSION",
-                      `(${s[i.NUMERICIDENTIFIER]})\\.(${
-                        s[i.NUMERICIDENTIFIER]
-                      })\\.(${s[i.NUMERICIDENTIFIER]})`,
+                      `(${s[i.NUMERICIDENTIFIER]})\\.(${s[i.NUMERICIDENTIFIER]})\\.(${s[i.NUMERICIDENTIFIER]})`,
                     ),
                     c(
                       "MAINVERSIONLOOSE",
-                      `(${s[i.NUMERICIDENTIFIERLOOSE]})\\.(${
-                        s[i.NUMERICIDENTIFIERLOOSE]
-                      })\\.(${s[i.NUMERICIDENTIFIERLOOSE]})`,
+                      `(${s[i.NUMERICIDENTIFIERLOOSE]})\\.(${s[i.NUMERICIDENTIFIERLOOSE]})\\.(${s[i.NUMERICIDENTIFIERLOOSE]})`,
                     ),
                     c(
                       "PRERELEASEIDENTIFIER",
-                      `(?:${s[i.NUMERICIDENTIFIER]}|${
-                        s[i.NONNUMERICIDENTIFIER]
-                      })`,
+                      `(?:${s[i.NUMERICIDENTIFIER]}|${s[i.NONNUMERICIDENTIFIER]})`,
                     ),
                     c(
                       "PRERELEASEIDENTIFIERLOOSE",
-                      `(?:${s[i.NUMERICIDENTIFIERLOOSE]}|${
-                        s[i.NONNUMERICIDENTIFIER]
-                      })`,
+                      `(?:${s[i.NUMERICIDENTIFIERLOOSE]}|${s[i.NONNUMERICIDENTIFIER]})`,
                     ),
                     c(
                       "PRERELEASE",
-                      `(?:-(${s[i.PRERELEASEIDENTIFIER]}(?:\\.${
-                        s[i.PRERELEASEIDENTIFIER]
-                      })*))`,
+                      `(?:-(${s[i.PRERELEASEIDENTIFIER]}(?:\\.${s[i.PRERELEASEIDENTIFIER]})*))`,
                     ),
                     c(
                       "PRERELEASELOOSE",
-                      `(?:-?(${s[i.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${
-                        s[i.PRERELEASEIDENTIFIERLOOSE]
-                      })*))`,
+                      `(?:-?(${s[i.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${s[i.PRERELEASEIDENTIFIERLOOSE]})*))`,
                     ),
                     c("BUILDIDENTIFIER", "[0-9A-Za-z-]+"),
                     c(
                       "BUILD",
-                      `(?:\\+(${s[i.BUILDIDENTIFIER]}(?:\\.${
-                        s[i.BUILDIDENTIFIER]
-                      })*))`,
+                      `(?:\\+(${s[i.BUILDIDENTIFIER]}(?:\\.${s[i.BUILDIDENTIFIER]})*))`,
                     ),
                     c(
                       "FULLPLAIN",
@@ -2463,9 +2443,7 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                     c("FULL", `^${s[i.FULLPLAIN]}$`),
                     c(
                       "LOOSEPLAIN",
-                      `[v=\\s]*${s[i.MAINVERSIONLOOSE]}${
-                        s[i.PRERELEASELOOSE]
-                      }?${s[i.BUILD]}?`,
+                      `[v=\\s]*${s[i.MAINVERSIONLOOSE]}${s[i.PRERELEASELOOSE]}?${s[i.BUILD]}?`,
                     ),
                     c("LOOSE", `^${s[i.LOOSEPLAIN]}$`),
                     c("GTLT", "((?:<|>)?=?)"),
@@ -2476,19 +2454,11 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                     c("XRANGEIDENTIFIER", `${s[i.NUMERICIDENTIFIER]}|x|X|\\*`),
                     c(
                       "XRANGEPLAIN",
-                      `[v=\\s]*(${s[i.XRANGEIDENTIFIER]})(?:\\.(${
-                        s[i.XRANGEIDENTIFIER]
-                      })(?:\\.(${s[i.XRANGEIDENTIFIER]})(?:${
-                        s[i.PRERELEASE]
-                      })?${s[i.BUILD]}?)?)?`,
+                      `[v=\\s]*(${s[i.XRANGEIDENTIFIER]})(?:\\.(${s[i.XRANGEIDENTIFIER]})(?:\\.(${s[i.XRANGEIDENTIFIER]})(?:${s[i.PRERELEASE]})?${s[i.BUILD]}?)?)?`,
                     ),
                     c(
                       "XRANGEPLAINLOOSE",
-                      `[v=\\s]*(${s[i.XRANGEIDENTIFIERLOOSE]})(?:\\.(${
-                        s[i.XRANGEIDENTIFIERLOOSE]
-                      })(?:\\.(${s[i.XRANGEIDENTIFIERLOOSE]})(?:${
-                        s[i.PRERELEASELOOSE]
-                      })?${s[i.BUILD]}?)?)?`,
+                      `[v=\\s]*(${s[i.XRANGEIDENTIFIERLOOSE]})(?:\\.(${s[i.XRANGEIDENTIFIERLOOSE]})(?:\\.(${s[i.XRANGEIDENTIFIERLOOSE]})(?:${s[i.PRERELEASELOOSE]})?${s[i.BUILD]}?)?)?`,
                     ),
                     c("XRANGE", `^${s[i.GTLT]}\\s*${s[i.XRANGEPLAIN]}$`),
                     c(
@@ -2523,23 +2493,17 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                     c("COMPARATOR", `^${s[i.GTLT]}\\s*(${s[i.FULLPLAIN]})$|^$`),
                     c(
                       "COMPARATORTRIM",
-                      `(\\s*)${s[i.GTLT]}\\s*(${s[i.LOOSEPLAIN]}|${
-                        s[i.XRANGEPLAIN]
-                      })`,
+                      `(\\s*)${s[i.GTLT]}\\s*(${s[i.LOOSEPLAIN]}|${s[i.XRANGEPLAIN]})`,
                       !0,
                     ),
                     (e.comparatorTrimReplace = "$1$2$3"),
                     c(
                       "HYPHENRANGE",
-                      `^\\s*(${s[i.XRANGEPLAIN]})\\s+-\\s+(${
-                        s[i.XRANGEPLAIN]
-                      })\\s*$`,
+                      `^\\s*(${s[i.XRANGEPLAIN]})\\s+-\\s+(${s[i.XRANGEPLAIN]})\\s*$`,
                     ),
                     c(
                       "HYPHENRANGELOOSE",
-                      `^\\s*(${s[i.XRANGEPLAINLOOSE]})\\s+-\\s+(${
-                        s[i.XRANGEPLAINLOOSE]
-                      })\\s*$`,
+                      `^\\s*(${s[i.XRANGEPLAINLOOSE]})\\s+-\\s+(${s[i.XRANGEPLAINLOOSE]})\\s*$`,
                     ),
                     c("STAR", "(<|>)?=?\\s*\\*"),
                     c("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"),
@@ -7453,9 +7417,7 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                   e.tokenize = F;
                   var a = /\r\n?/g;
                   function l(t) {
-                    return `Unexpected character "${
-                      t === r.$EOF ? "EOF" : String.fromCharCode(t)
-                    }"`;
+                    return `Unexpected character "${t === r.$EOF ? "EOF" : String.fromCharCode(t)}"`;
                   }
                   function h(t) {
                     return `Unknown entity "${t}" - use the "&#<decimal>;" or  "&#x<hex>;" syntax`;
@@ -11977,9 +11939,7 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                           h.id && f.push(`id: ${y(h.id)}`);
                         let F = f.length > 0 ? `, { ${f.join(", ")} }` : "";
                         return h.expandedStates
-                          ? `conditionalGroup([${h.expandedStates
-                              .map((_) => p(_))
-                              .join(",")}]${F})`
+                          ? `conditionalGroup([${h.expandedStates.map((_) => p(_)).join(",")}]${F})`
                           : `group(${p(h.contents)}${F})`;
                       }
                       if (h.type === "fill")
@@ -11989,9 +11949,7 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                       if (h.type === "line-suffix-boundary")
                         return "lineSuffixBoundary";
                       if (h.type === "label")
-                        return `label(${JSON.stringify(h.label)}, ${p(
-                          h.contents,
-                        )})`;
+                        return `label(${JSON.stringify(h.label)}, ${p(h.contents)})`;
                       throw new Error("Unknown doc type " + h.type);
                     }
                     function y(h) {
@@ -12095,46 +12053,32 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                     l("NONNUMERICIDENTIFIER", "\\d*[a-zA-Z-][a-zA-Z0-9-]*"),
                     l(
                       "MAINVERSION",
-                      `(${n[u.NUMERICIDENTIFIER]})\\.(${
-                        n[u.NUMERICIDENTIFIER]
-                      })\\.(${n[u.NUMERICIDENTIFIER]})`,
+                      `(${n[u.NUMERICIDENTIFIER]})\\.(${n[u.NUMERICIDENTIFIER]})\\.(${n[u.NUMERICIDENTIFIER]})`,
                     ),
                     l(
                       "MAINVERSIONLOOSE",
-                      `(${n[u.NUMERICIDENTIFIERLOOSE]})\\.(${
-                        n[u.NUMERICIDENTIFIERLOOSE]
-                      })\\.(${n[u.NUMERICIDENTIFIERLOOSE]})`,
+                      `(${n[u.NUMERICIDENTIFIERLOOSE]})\\.(${n[u.NUMERICIDENTIFIERLOOSE]})\\.(${n[u.NUMERICIDENTIFIERLOOSE]})`,
                     ),
                     l(
                       "PRERELEASEIDENTIFIER",
-                      `(?:${n[u.NUMERICIDENTIFIER]}|${
-                        n[u.NONNUMERICIDENTIFIER]
-                      })`,
+                      `(?:${n[u.NUMERICIDENTIFIER]}|${n[u.NONNUMERICIDENTIFIER]})`,
                     ),
                     l(
                       "PRERELEASEIDENTIFIERLOOSE",
-                      `(?:${n[u.NUMERICIDENTIFIERLOOSE]}|${
-                        n[u.NONNUMERICIDENTIFIER]
-                      })`,
+                      `(?:${n[u.NUMERICIDENTIFIERLOOSE]}|${n[u.NONNUMERICIDENTIFIER]})`,
                     ),
                     l(
                       "PRERELEASE",
-                      `(?:-(${n[u.PRERELEASEIDENTIFIER]}(?:\\.${
-                        n[u.PRERELEASEIDENTIFIER]
-                      })*))`,
+                      `(?:-(${n[u.PRERELEASEIDENTIFIER]}(?:\\.${n[u.PRERELEASEIDENTIFIER]})*))`,
                     ),
                     l(
                       "PRERELEASELOOSE",
-                      `(?:-?(${n[u.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${
-                        n[u.PRERELEASEIDENTIFIERLOOSE]
-                      })*))`,
+                      `(?:-?(${n[u.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${n[u.PRERELEASEIDENTIFIERLOOSE]})*))`,
                     ),
                     l("BUILDIDENTIFIER", "[0-9A-Za-z-]+"),
                     l(
                       "BUILD",
-                      `(?:\\+(${n[u.BUILDIDENTIFIER]}(?:\\.${
-                        n[u.BUILDIDENTIFIER]
-                      })*))`,
+                      `(?:\\+(${n[u.BUILDIDENTIFIER]}(?:\\.${n[u.BUILDIDENTIFIER]})*))`,
                     ),
                     l(
                       "FULLPLAIN",
@@ -12143,9 +12087,7 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                     l("FULL", `^${n[u.FULLPLAIN]}$`),
                     l(
                       "LOOSEPLAIN",
-                      `[v=\\s]*${n[u.MAINVERSIONLOOSE]}${
-                        n[u.PRERELEASELOOSE]
-                      }?${n[u.BUILD]}?`,
+                      `[v=\\s]*${n[u.MAINVERSIONLOOSE]}${n[u.PRERELEASELOOSE]}?${n[u.BUILD]}?`,
                     ),
                     l("LOOSE", `^${n[u.LOOSEPLAIN]}$`),
                     l("GTLT", "((?:<|>)?=?)"),
@@ -12156,19 +12098,11 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                     l("XRANGEIDENTIFIER", `${n[u.NUMERICIDENTIFIER]}|x|X|\\*`),
                     l(
                       "XRANGEPLAIN",
-                      `[v=\\s]*(${n[u.XRANGEIDENTIFIER]})(?:\\.(${
-                        n[u.XRANGEIDENTIFIER]
-                      })(?:\\.(${n[u.XRANGEIDENTIFIER]})(?:${
-                        n[u.PRERELEASE]
-                      })?${n[u.BUILD]}?)?)?`,
+                      `[v=\\s]*(${n[u.XRANGEIDENTIFIER]})(?:\\.(${n[u.XRANGEIDENTIFIER]})(?:\\.(${n[u.XRANGEIDENTIFIER]})(?:${n[u.PRERELEASE]})?${n[u.BUILD]}?)?)?`,
                     ),
                     l(
                       "XRANGEPLAINLOOSE",
-                      `[v=\\s]*(${n[u.XRANGEIDENTIFIERLOOSE]})(?:\\.(${
-                        n[u.XRANGEIDENTIFIERLOOSE]
-                      })(?:\\.(${n[u.XRANGEIDENTIFIERLOOSE]})(?:${
-                        n[u.PRERELEASELOOSE]
-                      })?${n[u.BUILD]}?)?)?`,
+                      `[v=\\s]*(${n[u.XRANGEIDENTIFIERLOOSE]})(?:\\.(${n[u.XRANGEIDENTIFIERLOOSE]})(?:\\.(${n[u.XRANGEIDENTIFIERLOOSE]})(?:${n[u.PRERELEASELOOSE]})?${n[u.BUILD]}?)?)?`,
                     ),
                     l("XRANGE", `^${n[u.GTLT]}\\s*${n[u.XRANGEPLAIN]}$`),
                     l(
@@ -12203,23 +12137,17 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                     l("COMPARATOR", `^${n[u.GTLT]}\\s*(${n[u.FULLPLAIN]})$|^$`),
                     l(
                       "COMPARATORTRIM",
-                      `(\\s*)${n[u.GTLT]}\\s*(${n[u.LOOSEPLAIN]}|${
-                        n[u.XRANGEPLAIN]
-                      })`,
+                      `(\\s*)${n[u.GTLT]}\\s*(${n[u.LOOSEPLAIN]}|${n[u.XRANGEPLAIN]})`,
                       !0,
                     ),
                     (e.comparatorTrimReplace = "$1$2$3"),
                     l(
                       "HYPHENRANGE",
-                      `^\\s*(${n[u.XRANGEPLAIN]})\\s+-\\s+(${
-                        n[u.XRANGEPLAIN]
-                      })\\s*$`,
+                      `^\\s*(${n[u.XRANGEPLAIN]})\\s+-\\s+(${n[u.XRANGEPLAIN]})\\s*$`,
                     ),
                     l(
                       "HYPHENRANGELOOSE",
-                      `^\\s*(${n[u.XRANGEPLAINLOOSE]})\\s+-\\s+(${
-                        n[u.XRANGEPLAINLOOSE]
-                      })\\s*$`,
+                      `^\\s*(${n[u.XRANGEPLAINLOOSE]})\\s+-\\s+(${n[u.XRANGEPLAINLOOSE]})\\s*$`,
                     ),
                     l("STAR", "(<|>)?=?\\s*\\*"),
                     l("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"),
@@ -14125,20 +14053,11 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                         if (r === null || typeof r != "object")
                           return JSON.stringify(r);
                         if (Array.isArray(r))
-                          return `[${r
-                            .map((s) => e.apiDescriptor.value(s))
-                            .join(", ")}]`;
+                          return `[${r.map((s) => e.apiDescriptor.value(s)).join(", ")}]`;
                         let t = Object.keys(r);
                         return t.length === 0
                           ? "{}"
-                          : `{ ${t
-                              .map(
-                                (s) =>
-                                  `${e.apiDescriptor.key(
-                                    s,
-                                  )}: ${e.apiDescriptor.value(r[s])}`,
-                              )
-                              .join(", ")} }`;
+                          : `{ ${t.map((s) => `${e.apiDescriptor.key(s)}: ${e.apiDescriptor.value(r[s])}`).join(", ")} }`;
                       },
                       pair: (r) => {
                         let { key: t, value: s } = r;
@@ -14174,16 +14093,12 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                   e.commonDeprecatedHandler = (t, s, a) => {
                     let { descriptor: n } = a,
                       u = [
-                        `${r.default.yellow(
-                          typeof t == "string" ? n.key(t) : n.pair(t),
-                        )} is deprecated`,
+                        `${r.default.yellow(typeof t == "string" ? n.key(t) : n.pair(t))} is deprecated`,
                       ];
                     return (
                       s &&
                         u.push(
-                          `we now treat it as ${r.default.blue(
-                            typeof s == "string" ? n.key(s) : n.pair(s),
-                          )}`,
+                          `we now treat it as ${r.default.blue(typeof s == "string" ? n.key(s) : n.pair(s))}`,
                         ),
                       u.join("; ") + "."
                     );
@@ -14263,9 +14178,7 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                   e.levenUnknownHandler = (s, a, n) => {
                     let { descriptor: u, logger: i, schemas: l } = n,
                       p = [
-                        `Ignored unknown option ${r.default.yellow(
-                          u.pair({ key: s, value: a }),
-                        )}.`,
+                        `Ignored unknown option ${r.default.yellow(u.pair({ key: s, value: a }))}.`,
                       ],
                       y = Object.keys(l)
                         .sort()
@@ -14929,12 +14842,8 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                               return (
                                 w.logger.warn(
                                   [
-                                    `Unknown flag ${c.yellow(
-                                      w.descriptor.value(_),
-                                    )},`,
-                                    `did you mean ${c.blue(
-                                      w.descriptor.value(E),
-                                    )}?`,
+                                    `Unknown flag ${c.yellow(w.descriptor.value(_))},`,
+                                    `did you mean ${c.blue(w.descriptor.value(E))}?`,
                                   ].join(" "),
                                 ),
                                 E
@@ -15301,9 +15210,7 @@ var import_memoizerific = __toESM(require_memoizerific(), 1),
                               v,
                             ].join("");
                           } else
-                            return ` ${f(c.gutter, C)}${
-                              $.length > 0 ? ` ${$}` : ""
-                            }`;
+                            return ` ${f(c.gutter, C)}${$.length > 0 ? ` ${$}` : ""}`;
                         }).join(`
 `);
                     return (
@@ -20726,9 +20633,7 @@ ${P}`),
                           return [f("key"), " as ", f("alias")];
                         default:
                           throw new Error(
-                            `Unknown Angular node type: ${JSON.stringify(
-                              F.type,
-                            )}.`,
+                            `Unknown Angular node type: ${JSON.stringify(F.type)}.`,
                           );
                       }
                   }
@@ -21186,9 +21091,7 @@ ${P}`),
                           );
                         default:
                           throw new Error(
-                            `Unknown JSX node type: ${JSON.stringify(
-                              fe.type,
-                            )}.`,
+                            `Unknown JSX node type: ${JSON.stringify(fe.type)}.`,
                           );
                       }
                   }
@@ -22020,9 +21923,7 @@ ${P}`),
                       T ? "import" : I("callee"),
                       m,
                       o
-                        ? `/*:: ${P.callee.trailingComments[0].value
-                            .slice(2)
-                            .trim()} */`
+                        ? `/*:: ${P.callee.trailingComments[0].value.slice(2).trim()} */`
                         : "",
                       _(N, x, I),
                       f(N, x, I),
@@ -25010,9 +24911,7 @@ ${P}`),
                         return [W("expression"), W("typeParameters")];
                       default:
                         throw new Error(
-                          `Unknown TypeScript node type: ${JSON.stringify(
-                            K.type,
-                          )}.`,
+                          `Unknown TypeScript node type: ${JSON.stringify(K.type)}.`,
                         );
                     }
                   }
@@ -31532,9 +31431,7 @@ ${u.content}`;
                     assertNoMembers() {
                       if (this.members.length)
                         throw new Error(
-                          `Illegal state: symbol without members expected, but got ${JSON.stringify(
-                            this,
-                          )}.`,
+                          `Illegal state: symbol without members expected, but got ${JSON.stringify(this)}.`,
                         );
                     }
                   };
@@ -32321,16 +32218,12 @@ ${u.content}`;
                     contextualMessage() {
                       let y = this.span.start.getContext(100, 3);
                       return y
-                        ? `${this.msg} ("${y.before}[${u[this.level]} ->]${
-                            y.after
-                          }")`
+                        ? `${this.msg} ("${y.before}[${u[this.level]} ->]${y.after}")`
                         : this.msg;
                     }
                     toString() {
                       let y = this.span.details ? `, ${this.span.details}` : "";
-                      return `${this.contextualMessage()}: ${
-                        this.span.start
-                      }${y}`;
+                      return `${this.contextualMessage()}: ${this.span.start}${y}`;
                     }
                   };
                   e.ParseError = i;
@@ -33740,14 +33633,7 @@ ${u.content}`;
                                       o.isWhitespaceSensitive &&
                                       o.isIndentationSensitive)) &&
                                   new RegExp(
-                                    `\\n[\\t ]{${
-                                      m.tabWidth *
-                                      F(
-                                        T,
-                                        (R) =>
-                                          R.parent && R.parent.type !== "root",
-                                      )
-                                    }}$`,
+                                    `\\n[\\t ]{${m.tabWidth * F(T, (R) => R.parent && R.parent.type !== "root")}}$`,
                                   ).test(o.lastChild.value)
                                 ? ""
                                 : p;

@@ -1,7 +1,7 @@
 "use strict";
 (self.webpackChunkreact_canvas_confetti =
   self.webpackChunkreact_canvas_confetti || []).push([
-  [341],
+  [648],
   {
     "./node_modules/@mdx-js/react/index.js": (
       __unused_webpack_module,

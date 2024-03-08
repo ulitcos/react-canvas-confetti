@@ -386,38 +386,54 @@ var require_implementation2 = __commonJS({
   "../../node_modules/function-bind/implementation.js"(exports, module) {
     "use strict";
     var ERROR_MESSAGE = "Function.prototype.bind called on incompatible ",
-      slice = Array.prototype.slice,
       toStr = Object.prototype.toString,
-      funcType = "[object Function]";
+      max = Math.max,
+      funcType = "[object Function]",
+      concatty = function (a, b2) {
+        for (var arr = [], i = 0; i < a.length; i += 1) arr[i] = a[i];
+        for (var j = 0; j < b2.length; j += 1) arr[j + a.length] = b2[j];
+        return arr;
+      },
+      slicy = function (arrLike, offset) {
+        for (
+          var arr = [], i = offset || 0, j = 0;
+          i < arrLike.length;
+          i += 1, j += 1
+        )
+          arr[j] = arrLike[i];
+        return arr;
+      },
+      joiny = function (arr, joiner) {
+        for (var str = "", i = 0; i < arr.length; i += 1)
+          (str += arr[i]), i + 1 < arr.length && (str += joiner);
+        return str;
+      };
     module.exports = function (that) {
       var target = this;
-      if (typeof target != "function" || toStr.call(target) !== funcType)
+      if (typeof target != "function" || toStr.apply(target) !== funcType)
         throw new TypeError(ERROR_MESSAGE + target);
       for (
-        var args2 = slice.call(arguments, 1),
+        var args2 = slicy(arguments, 1),
           bound,
           binder = function () {
             if (this instanceof bound) {
-              var result2 = target.apply(
-                this,
-                args2.concat(slice.call(arguments)),
-              );
+              var result2 = target.apply(this, concatty(args2, arguments));
               return Object(result2) === result2 ? result2 : this;
-            } else
-              return target.apply(that, args2.concat(slice.call(arguments)));
+            }
+            return target.apply(that, concatty(args2, arguments));
           },
-          boundLength = Math.max(0, target.length - args2.length),
+          boundLength = max(0, target.length - args2.length),
           boundArgs = [],
           i = 0;
         i < boundLength;
         i++
       )
-        boundArgs.push("$" + i);
+        boundArgs[i] = "$" + i;
       if (
         ((bound = Function(
           "binder",
           "return function (" +
-            boundArgs.join(",") +
+            joiny(boundArgs, ",") +
             "){ return binder.apply(this,arguments); }",
         )(binder)),
         target.prototype)
@@ -797,16 +813,165 @@ var require_get_intrinsic2 = __commonJS({
     };
   },
 });
+var require_has_property_descriptors = __commonJS({
+  "../../node_modules/has-property-descriptors/index.js"(exports, module) {
+    "use strict";
+    var GetIntrinsic = require_get_intrinsic2(),
+      $defineProperty = GetIntrinsic("%Object.defineProperty%", !0),
+      hasPropertyDescriptors = function () {
+        if ($defineProperty)
+          try {
+            return $defineProperty({}, "a", { value: 1 }), !0;
+          } catch {
+            return !1;
+          }
+        return !1;
+      };
+    hasPropertyDescriptors.hasArrayLengthDefineBug = function () {
+      if (!hasPropertyDescriptors()) return null;
+      try {
+        return $defineProperty([], "length", { value: 1 }).length !== 1;
+      } catch {
+        return !0;
+      }
+    };
+    module.exports = hasPropertyDescriptors;
+  },
+});
+var require_gopd = __commonJS({
+  "../../node_modules/gopd/index.js"(exports, module) {
+    "use strict";
+    var GetIntrinsic = require_get_intrinsic2(),
+      $gOPD = GetIntrinsic("%Object.getOwnPropertyDescriptor%", !0);
+    if ($gOPD)
+      try {
+        $gOPD([], "length");
+      } catch {
+        $gOPD = null;
+      }
+    module.exports = $gOPD;
+  },
+});
+var require_define_data_property = __commonJS({
+  "../../node_modules/define-data-property/index.js"(exports, module) {
+    "use strict";
+    var hasPropertyDescriptors = require_has_property_descriptors()(),
+      GetIntrinsic = require_get_intrinsic2(),
+      $defineProperty =
+        hasPropertyDescriptors && GetIntrinsic("%Object.defineProperty%", !0);
+    if ($defineProperty)
+      try {
+        $defineProperty({}, "a", { value: 1 });
+      } catch {
+        $defineProperty = !1;
+      }
+    var $SyntaxError = GetIntrinsic("%SyntaxError%"),
+      $TypeError = GetIntrinsic("%TypeError%"),
+      gopd = require_gopd();
+    module.exports = function (obj, property, value2) {
+      if (!obj || (typeof obj != "object" && typeof obj != "function"))
+        throw new $TypeError("`obj` must be an object or a function`");
+      if (typeof property != "string" && typeof property != "symbol")
+        throw new $TypeError("`property` must be a string or a symbol`");
+      if (
+        arguments.length > 3 &&
+        typeof arguments[3] != "boolean" &&
+        arguments[3] !== null
+      )
+        throw new $TypeError(
+          "`nonEnumerable`, if provided, must be a boolean or null",
+        );
+      if (
+        arguments.length > 4 &&
+        typeof arguments[4] != "boolean" &&
+        arguments[4] !== null
+      )
+        throw new $TypeError(
+          "`nonWritable`, if provided, must be a boolean or null",
+        );
+      if (
+        arguments.length > 5 &&
+        typeof arguments[5] != "boolean" &&
+        arguments[5] !== null
+      )
+        throw new $TypeError(
+          "`nonConfigurable`, if provided, must be a boolean or null",
+        );
+      if (arguments.length > 6 && typeof arguments[6] != "boolean")
+        throw new $TypeError("`loose`, if provided, must be a boolean");
+      var nonEnumerable = arguments.length > 3 ? arguments[3] : null,
+        nonWritable = arguments.length > 4 ? arguments[4] : null,
+        nonConfigurable = arguments.length > 5 ? arguments[5] : null,
+        loose = arguments.length > 6 ? arguments[6] : !1,
+        desc = !!gopd && gopd(obj, property);
+      if ($defineProperty)
+        $defineProperty(obj, property, {
+          configurable:
+            nonConfigurable === null && desc
+              ? desc.configurable
+              : !nonConfigurable,
+          enumerable:
+            nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+          value: value2,
+          writable: nonWritable === null && desc ? desc.writable : !nonWritable,
+        });
+      else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable))
+        obj[property] = value2;
+      else
+        throw new $SyntaxError(
+          "This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.",
+        );
+    };
+  },
+});
+var require_set_function_length = __commonJS({
+  "../../node_modules/set-function-length/index.js"(exports, module) {
+    "use strict";
+    var GetIntrinsic = require_get_intrinsic2(),
+      define2 = require_define_data_property(),
+      hasDescriptors = require_has_property_descriptors()(),
+      gOPD = require_gopd(),
+      $TypeError = GetIntrinsic("%TypeError%"),
+      $floor = GetIntrinsic("%Math.floor%");
+    module.exports = function (fn, length) {
+      if (typeof fn != "function")
+        throw new $TypeError("`fn` is not a function");
+      if (
+        typeof length != "number" ||
+        length < 0 ||
+        length > 4294967295 ||
+        $floor(length) !== length
+      )
+        throw new $TypeError("`length` must be a positive 32-bit integer");
+      var loose = arguments.length > 2 && !!arguments[2],
+        functionLengthIsConfigurable = !0,
+        functionLengthIsWritable = !0;
+      if ("length" in fn && gOPD) {
+        var desc = gOPD(fn, "length");
+        desc && !desc.configurable && (functionLengthIsConfigurable = !1),
+          desc && !desc.writable && (functionLengthIsWritable = !1);
+      }
+      return (
+        (functionLengthIsConfigurable || functionLengthIsWritable || !loose) &&
+          (hasDescriptors
+            ? define2(fn, "length", length, !0, !0)
+            : define2(fn, "length", length)),
+        fn
+      );
+    };
+  },
+});
 var require_call_bind2 = __commonJS({
   "../../node_modules/call-bind/index.js"(exports, module) {
     "use strict";
     var bind = require_function_bind2(),
       GetIntrinsic = require_get_intrinsic2(),
+      setFunctionLength = require_set_function_length(),
+      $TypeError = GetIntrinsic("%TypeError%"),
       $apply = GetIntrinsic("%Function.prototype.apply%"),
       $call = GetIntrinsic("%Function.prototype.call%"),
       $reflectApply =
         GetIntrinsic("%Reflect.apply%", !0) || bind.call($call, $apply),
-      $gOPD = GetIntrinsic("%Object.getOwnPropertyDescriptor%", !0),
       $defineProperty = GetIntrinsic("%Object.defineProperty%", !0),
       $max = GetIntrinsic("%Math.max%");
     if ($defineProperty)
@@ -816,16 +981,14 @@ var require_call_bind2 = __commonJS({
         $defineProperty = null;
       }
     module.exports = function (originalFunction) {
+      if (typeof originalFunction != "function")
+        throw new $TypeError("a function is required");
       var func = $reflectApply(bind, $call, arguments);
-      if ($gOPD && $defineProperty) {
-        var desc = $gOPD(func, "length");
-        desc.configurable &&
-          $defineProperty(func, "length", {
-            value:
-              1 + $max(0, originalFunction.length - (arguments.length - 1)),
-          });
-      }
-      return func;
+      return setFunctionLength(
+        func,
+        1 + $max(0, originalFunction.length - (arguments.length - 1)),
+        !0,
+      );
     };
     var applyBind = function () {
       return $reflectApply(bind, $apply, arguments);
@@ -1129,6 +1292,8 @@ var require_object_inspect = __commonJS({
       if (isBigInt(obj)) return markBoxed(inspect(bigIntValueOf.call(obj)));
       if (isBoolean(obj)) return markBoxed(booleanValueOf.call(obj));
       if (isString(obj)) return markBoxed(inspect(String(obj)));
+      if (typeof window < "u" && obj === window) return "{ [object Window] }";
+      if (obj === global) return "{ [object globalThis] }";
       if (!isDate(obj) && !isRegExp(obj)) {
         var ys = arrObjKeys(obj, inspect),
           isPlainObject3 = gPO
@@ -7163,9 +7328,7 @@ var replacer = function (options2) {
             /(\[native code\]|WEBPACK_IMPORTED_MODULE|__webpack_exports__|__webpack_require__)/,
           )
             ? `_function_${name2}|${(() => {}).toString()}`
-            : `_function_${name2}|${cleanCode(
-                convertShorthandMethods(key2, stringified),
-              )}`;
+            : `_function_${name2}|${cleanCode(convertShorthandMethods(key2, stringified))}`;
         }
         if ((0, import_is_symbol.default)(value2)) {
           if (!options2.allowSymbol) return;
@@ -7952,11 +8115,7 @@ function useHook(name2, callback, deps) {
     return (
       hook.name !== name2 &&
         logger.warn(
-          `Storybook has detected a change in the order of Hooks${
-            hooks.currentDecoratorName
-              ? ` called by ${hooks.currentDecoratorName}`
-              : ""
-          }. This will lead to bugs and errors if not fixed.`,
+          `Storybook has detected a change in the order of Hooks${hooks.currentDecoratorName ? ` called by ${hooks.currentDecoratorName}` : ""}. This will lead to bugs and errors if not fixed.`,
         ),
       deps != null &&
         hook.deps == null &&
@@ -8421,11 +8580,7 @@ var c = v(x()),
     let { exists: n, eq: t, neq: a, truthy: i } = r;
     if (S([n, t, a, i]) > 1)
       throw new Error(
-        `Invalid conditional test ${JSON.stringify({
-          exists: n,
-          eq: t,
-          neq: a,
-        })}`,
+        `Invalid conditional test ${JSON.stringify({ exists: n, eq: t, neq: a })}`,
       );
     if (typeof t < "u") return (0, c.isEqual)(e, t);
     if (typeof a < "u") return !(0, c.isEqual)(e, a);
@@ -8515,7 +8670,7 @@ var getImportPathMap = (0, import_memoizerific2.default)(1)((entries) =>
       case "number":
         return Number(arg);
       case "boolean":
-        return arg === "true";
+        return String(arg) === "true";
       case "array":
         return !type.value || !Array.isArray(arg)
           ? INCOMPATIBLE
@@ -10038,9 +10193,7 @@ var import_synchronous_promise2 = __toESM(require_synchronous_promise(), 1),
         }));
       if (((title = userOrAutoTitle(fileName, specifiers, title)), !title)) {
         logger.info(
-          `Unexpected default export without title in '${fileName}': ${JSON.stringify(
-            fileExports.default,
-          )}`,
+          `Unexpected default export without title in '${fileName}': ${JSON.stringify(fileExports.default)}`,
         );
         return;
       }
@@ -10391,7 +10544,10 @@ var import_synchronous_promise3 = __toESM(require_synchronous_promise(), 1);
 var import_qs3 = __toESM(require_lib(), 1),
   import_isPlainObject2 = __toESM(require_isPlainObject(), 1),
   require_entities = __commonJS3({
-    "../../node_modules/entities/lib/maps/entities.json"(exports, module) {
+    "../../node_modules/ansi-to-html/node_modules/entities/lib/maps/entities.json"(
+      exports,
+      module,
+    ) {
       module.exports = {
         Aacute: "\xC1",
         aacute: "\xE1",
@@ -12523,7 +12679,10 @@ var import_qs3 = __toESM(require_lib(), 1),
     },
   }),
   require_legacy = __commonJS3({
-    "../../node_modules/entities/lib/maps/legacy.json"(exports, module) {
+    "../../node_modules/ansi-to-html/node_modules/entities/lib/maps/legacy.json"(
+      exports,
+      module,
+    ) {
       module.exports = {
         Aacute: "\xC1",
         aacute: "\xE1",
@@ -12635,12 +12794,18 @@ var import_qs3 = __toESM(require_lib(), 1),
     },
   }),
   require_xml = __commonJS3({
-    "../../node_modules/entities/lib/maps/xml.json"(exports, module) {
+    "../../node_modules/ansi-to-html/node_modules/entities/lib/maps/xml.json"(
+      exports,
+      module,
+    ) {
       module.exports = { amp: "&", apos: "'", gt: ">", lt: "<", quot: '"' };
     },
   }),
   require_decode = __commonJS3({
-    "../../node_modules/entities/lib/maps/decode.json"(exports, module) {
+    "../../node_modules/ansi-to-html/node_modules/entities/lib/maps/decode.json"(
+      exports,
+      module,
+    ) {
       module.exports = {
         0: 65533,
         128: 8364,
@@ -12674,7 +12839,9 @@ var import_qs3 = __toESM(require_lib(), 1),
     },
   }),
   require_decode_codepoint = __commonJS3({
-    "../../node_modules/entities/lib/decode_codepoint.js"(exports) {
+    "../../node_modules/ansi-to-html/node_modules/entities/lib/decode_codepoint.js"(
+      exports,
+    ) {
       var __importDefault =
         (exports && exports.__importDefault) ||
         function (mod) {
@@ -12708,7 +12875,9 @@ var import_qs3 = __toESM(require_lib(), 1),
     },
   }),
   require_decode2 = __commonJS3({
-    "../../node_modules/entities/lib/decode.js"(exports) {
+    "../../node_modules/ansi-to-html/node_modules/entities/lib/decode.js"(
+      exports,
+    ) {
       var __importDefault =
         (exports && exports.__importDefault) ||
         function (mod) {
@@ -12771,7 +12940,9 @@ var import_qs3 = __toESM(require_lib(), 1),
     },
   }),
   require_encode = __commonJS3({
-    "../../node_modules/entities/lib/encode.js"(exports) {
+    "../../node_modules/ansi-to-html/node_modules/entities/lib/encode.js"(
+      exports,
+    ) {
       var __importDefault =
         (exports && exports.__importDefault) ||
         function (mod) {
@@ -12882,7 +13053,9 @@ var import_qs3 = __toESM(require_lib(), 1),
     },
   }),
   require_lib2 = __commonJS3({
-    "../../node_modules/entities/lib/index.js"(exports) {
+    "../../node_modules/ansi-to-html/node_modules/entities/lib/index.js"(
+      exports,
+    ) {
       Object.defineProperty(exports, "__esModule", { value: !0 }),
         (exports.decodeXMLStrict =
           exports.decodeHTML5Strict =
@@ -14066,9 +14239,7 @@ var StoryRender = class {
           resolved.type === "component"
             ? "component or unknown"
             : resolved.type;
-        throw new Error(esm_default`Invalid value passed to the 'of' prop. The value was resolved to a '${prettyType}' type but the only types for this block are: ${validTypes.join(
-          ", ",
-        )}.
+        throw new Error(esm_default`Invalid value passed to the 'of' prop. The value was resolved to a '${prettyType}' type but the only types for this block are: ${validTypes.join(", ")}.
         - Did you pass a component to the 'of' prop when the block only supports a story or a meta?
         - ... or vice versa?
         - Did you pass a story, CSF file or meta to the 'of' prop that is not indexed, ie. is not targeted by the 'stories' globs in the main configuration?`);
@@ -14721,7 +14892,7 @@ var getQueryString = ({ selection, extraParams }) => {
     }
   },
   getSelectionSpecifierFromPath = () => {
-    let query = import_qs3.default.parse(document3.location.search, {
+    let query = import_qs3.default.parse(document3?.location?.search, {
         ignoreQueryPrefix: !0,
       }),
       args2 =
@@ -14784,7 +14955,7 @@ var getQueryString = ({ selection, extraParams }) => {
     constructor() {
       this.testing = !1;
       let { __SPECIAL_TEST_PARAMETER__ } = import_qs3.default.parse(
-        document22.location.search,
+        document22?.location?.search,
         { ignoreQueryPrefix: !0 },
       );
       switch (__SPECIAL_TEST_PARAMETER__) {
@@ -14838,9 +15009,7 @@ var getQueryString = ({ selection, extraParams }) => {
     checkIfLayoutExists(layout) {
       layoutClassMap[layout] ||
         logger.warn(dedent`The desired layout: ${layout} is not a valid option.
-         The possible options are: ${Object.keys(layoutClassMap).join(
-           ", ",
-         )}, none.`);
+         The possible options are: ${Object.keys(layoutClassMap).join(", ")}, none.`);
     }
     showMode(mode) {
       clearTimeout(this.preparingTimeout),
@@ -15022,9 +15191,7 @@ function executeLoadable(loadable) {
         ))
       : exported &&
         logger.warn(
-          `Loader function passed to 'configure' should return void or an array of module exports that all contain a 'default' export. Received: ${JSON.stringify(
-            exported,
-          )}`,
+          `Loader function passed to 'configure' should return void or an array of module exports that all contain a 'default' export. Received: ${JSON.stringify(exported)}`,
         );
   }
   return exportsMap;

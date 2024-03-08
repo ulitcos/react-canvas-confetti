@@ -112,6 +112,34 @@
         "docsOnly": false,
         "fileName": "./storybook/presets.stories.tsx"
       }
+    },
+    "presets--vortex": {
+      "id": "presets--vortex",
+      "name": "Vortex",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"],
+      "kind": "Presets",
+      "story": "Vortex",
+      "parameters": {
+        "__id": "presets--vortex",
+        "docsOnly": false,
+        "fileName": "./storybook/presets.stories.tsx"
+      }
+    },
+    "presets--photons": {
+      "id": "presets--photons",
+      "name": "Photons",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"],
+      "kind": "Presets",
+      "story": "Photons",
+      "parameters": {
+        "__id": "presets--photons",
+        "docsOnly": false,
+        "fileName": "./storybook/presets.stories.tsx"
+      }
     }
   }
 }

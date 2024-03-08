@@ -1,7 +1,7 @@
 "use strict";
 (self.webpackChunkreact_canvas_confetti =
   self.webpackChunkreact_canvas_confetti || []).push([
-  [426],
+  [71],
   {
     "./node_modules/@storybook/components/dist/formatter-SWP5E3XI.mjs": (
       __unused_webpack_module,
@@ -22,7 +22,7 @@
         memoizerific__WEBPACK_IMPORTED_MODULE_0___default =
           __webpack_require__.n(memoizerific__WEBPACK_IMPORTED_MODULE_0__),
         require_parser_html = (0,
-        _chunk_JRLSWQMA_mjs__WEBPACK_IMPORTED_MODULE_1__.E)({
+        _chunk_JRLSWQMA_mjs__WEBPACK_IMPORTED_MODULE_1__.P)({
           "node_modules/prettier/parser-html.js"(exports, module) {
             !(function (e) {
               if ("object" == typeof exports && "object" == typeof module)
@@ -1512,9 +1512,7 @@
                         assertNoMembers() {
                           if (this.members.length)
                             throw Error(
-                              `Illegal state: symbol without members expected, but got ${JSON.stringify(
-                                this,
-                              )}.`,
+                              `Illegal state: symbol without members expected, but got ${JSON.stringify(this)}.`,
                             );
                         }
                       };
@@ -2310,18 +2308,14 @@
                         contextualMessage() {
                           let a = this.span.start.getContext(100, 3);
                           return a
-                            ? `${this.msg} ("${a.before}[${i[this.level]} ->]${
-                                a.after
-                              }")`
+                            ? `${this.msg} ("${a.before}[${i[this.level]} ->]${a.after}")`
                             : this.msg;
                         }
                         toString() {
                           let a = this.span.details
                             ? `, ${this.span.details}`
                             : "";
-                          return `${this.contextualMessage()}: ${
-                            this.span.start
-                          }${a}`;
+                          return `${this.contextualMessage()}: ${this.span.start}${a}`;
                         }
                       };
                       function c(a, l) {
@@ -2470,59 +2464,41 @@
                         c("NONNUMERICIDENTIFIER", "\\d*[a-zA-Z-][a-zA-Z0-9-]*"),
                         c(
                           "MAINVERSION",
-                          `(${s[i.NUMERICIDENTIFIER]})\\.(${
-                            s[i.NUMERICIDENTIFIER]
-                          })\\.(${s[i.NUMERICIDENTIFIER]})`,
+                          `(${s[i.NUMERICIDENTIFIER]})\\.(${s[i.NUMERICIDENTIFIER]})\\.(${s[i.NUMERICIDENTIFIER]})`,
                         ),
                         c(
                           "MAINVERSIONLOOSE",
-                          `(${s[i.NUMERICIDENTIFIERLOOSE]})\\.(${
-                            s[i.NUMERICIDENTIFIERLOOSE]
-                          })\\.(${s[i.NUMERICIDENTIFIERLOOSE]})`,
+                          `(${s[i.NUMERICIDENTIFIERLOOSE]})\\.(${s[i.NUMERICIDENTIFIERLOOSE]})\\.(${s[i.NUMERICIDENTIFIERLOOSE]})`,
                         ),
                         c(
                           "PRERELEASEIDENTIFIER",
-                          `(?:${s[i.NUMERICIDENTIFIER]}|${
-                            s[i.NONNUMERICIDENTIFIER]
-                          })`,
+                          `(?:${s[i.NUMERICIDENTIFIER]}|${s[i.NONNUMERICIDENTIFIER]})`,
                         ),
                         c(
                           "PRERELEASEIDENTIFIERLOOSE",
-                          `(?:${s[i.NUMERICIDENTIFIERLOOSE]}|${
-                            s[i.NONNUMERICIDENTIFIER]
-                          })`,
+                          `(?:${s[i.NUMERICIDENTIFIERLOOSE]}|${s[i.NONNUMERICIDENTIFIER]})`,
                         ),
                         c(
                           "PRERELEASE",
-                          `(?:-(${s[i.PRERELEASEIDENTIFIER]}(?:\\.${
-                            s[i.PRERELEASEIDENTIFIER]
-                          })*))`,
+                          `(?:-(${s[i.PRERELEASEIDENTIFIER]}(?:\\.${s[i.PRERELEASEIDENTIFIER]})*))`,
                         ),
                         c(
                           "PRERELEASELOOSE",
-                          `(?:-?(${s[i.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${
-                            s[i.PRERELEASEIDENTIFIERLOOSE]
-                          })*))`,
+                          `(?:-?(${s[i.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${s[i.PRERELEASEIDENTIFIERLOOSE]})*))`,
                         ),
                         c("BUILDIDENTIFIER", "[0-9A-Za-z-]+"),
                         c(
                           "BUILD",
-                          `(?:\\+(${s[i.BUILDIDENTIFIER]}(?:\\.${
-                            s[i.BUILDIDENTIFIER]
-                          })*))`,
+                          `(?:\\+(${s[i.BUILDIDENTIFIER]}(?:\\.${s[i.BUILDIDENTIFIER]})*))`,
                         ),
                         c(
                           "FULLPLAIN",
-                          `v?${s[i.MAINVERSION]}${s[i.PRERELEASE]}?${
-                            s[i.BUILD]
-                          }?`,
+                          `v?${s[i.MAINVERSION]}${s[i.PRERELEASE]}?${s[i.BUILD]}?`,
                         ),
                         c("FULL", `^${s[i.FULLPLAIN]}$`),
                         c(
                           "LOOSEPLAIN",
-                          `[v=\\s]*${s[i.MAINVERSIONLOOSE]}${
-                            s[i.PRERELEASELOOSE]
-                          }?${s[i.BUILD]}?`,
+                          `[v=\\s]*${s[i.MAINVERSIONLOOSE]}${s[i.PRERELEASELOOSE]}?${s[i.BUILD]}?`,
                         ),
                         c("LOOSE", `^${s[i.LOOSEPLAIN]}$`),
                         c("GTLT", "((?:<|>)?=?)"),
@@ -2536,19 +2512,11 @@
                         ),
                         c(
                           "XRANGEPLAIN",
-                          `[v=\\s]*(${s[i.XRANGEIDENTIFIER]})(?:\\.(${
-                            s[i.XRANGEIDENTIFIER]
-                          })(?:\\.(${s[i.XRANGEIDENTIFIER]})(?:${
-                            s[i.PRERELEASE]
-                          })?${s[i.BUILD]}?)?)?`,
+                          `[v=\\s]*(${s[i.XRANGEIDENTIFIER]})(?:\\.(${s[i.XRANGEIDENTIFIER]})(?:\\.(${s[i.XRANGEIDENTIFIER]})(?:${s[i.PRERELEASE]})?${s[i.BUILD]}?)?)?`,
                         ),
                         c(
                           "XRANGEPLAINLOOSE",
-                          `[v=\\s]*(${s[i.XRANGEIDENTIFIERLOOSE]})(?:\\.(${
-                            s[i.XRANGEIDENTIFIERLOOSE]
-                          })(?:\\.(${s[i.XRANGEIDENTIFIERLOOSE]})(?:${
-                            s[i.PRERELEASELOOSE]
-                          })?${s[i.BUILD]}?)?)?`,
+                          `[v=\\s]*(${s[i.XRANGEIDENTIFIERLOOSE]})(?:\\.(${s[i.XRANGEIDENTIFIERLOOSE]})(?:\\.(${s[i.XRANGEIDENTIFIERLOOSE]})(?:${s[i.PRERELEASELOOSE]})?${s[i.BUILD]}?)?)?`,
                         ),
                         c("XRANGE", `^${s[i.GTLT]}\\s*${s[i.XRANGEPLAIN]}$`),
                         c(
@@ -2586,23 +2554,17 @@
                         ),
                         c(
                           "COMPARATORTRIM",
-                          `(\\s*)${s[i.GTLT]}\\s*(${s[i.LOOSEPLAIN]}|${
-                            s[i.XRANGEPLAIN]
-                          })`,
+                          `(\\s*)${s[i.GTLT]}\\s*(${s[i.LOOSEPLAIN]}|${s[i.XRANGEPLAIN]})`,
                           !0,
                         ),
                         (e.comparatorTrimReplace = "$1$2$3"),
                         c(
                           "HYPHENRANGE",
-                          `^\\s*(${s[i.XRANGEPLAIN]})\\s+-\\s+(${
-                            s[i.XRANGEPLAIN]
-                          })\\s*$`,
+                          `^\\s*(${s[i.XRANGEPLAIN]})\\s+-\\s+(${s[i.XRANGEPLAIN]})\\s*$`,
                         ),
                         c(
                           "HYPHENRANGELOOSE",
-                          `^\\s*(${s[i.XRANGEPLAINLOOSE]})\\s+-\\s+(${
-                            s[i.XRANGEPLAINLOOSE]
-                          })\\s*$`,
+                          `^\\s*(${s[i.XRANGEPLAINLOOSE]})\\s+-\\s+(${s[i.XRANGEPLAINLOOSE]})\\s*$`,
                         ),
                         c("STAR", "(<|>)?=?\\s*\\*"),
                         c("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"),
@@ -2708,9 +2670,7 @@
                             return (
                               (this.version = `${this.major}.${this.minor}.${this.patch}`),
                               this.prerelease.length &&
-                                (this.version += `-${this.prerelease.join(
-                                  ".",
-                                )}`),
+                                (this.version += `-${this.prerelease.join(".")}`),
                               this.version
                             );
                           }
@@ -7576,9 +7536,7 @@
                       (e.TokenizeResult = c), (e.tokenize = F);
                       var a = /\r\n?/g;
                       function l(t) {
-                        return `Unexpected character "${
-                          t === r.$EOF ? "EOF" : String.fromCharCode(t)
-                        }"`;
+                        return `Unexpected character "${t === r.$EOF ? "EOF" : String.fromCharCode(t)}"`;
                       }
                       function h(t) {
                         return `Unknown entity "${t}" - use the "&#<decimal>;" or  "&#x<hex>;" syntax`;
@@ -9418,7 +9376,7 @@
           },
         }),
         require_standalone = (0,
-        _chunk_JRLSWQMA_mjs__WEBPACK_IMPORTED_MODULE_1__.E)({
+        _chunk_JRLSWQMA_mjs__WEBPACK_IMPORTED_MODULE_1__.P)({
           "node_modules/prettier/standalone.js"(exports, module) {
             !(function (e) {
               "object" == typeof exports && "object" == typeof module
@@ -12244,23 +12202,17 @@
                               h.id && f.push(`id: ${y(h.id)}`);
                             let F = f.length > 0 ? `, { ${f.join(", ")} }` : "";
                             return h.expandedStates
-                              ? `conditionalGroup([${h.expandedStates
-                                  .map((_) => p(_))
-                                  .join(",")}]${F})`
+                              ? `conditionalGroup([${h.expandedStates.map((_) => p(_)).join(",")}]${F})`
                               : `group(${p(h.contents)}${F})`;
                           }
                           if ("fill" === h.type)
-                            return `fill([${h.parts
-                              .map((f) => p(f))
-                              .join(", ")}])`;
+                            return `fill([${h.parts.map((f) => p(f)).join(", ")}])`;
                           if ("line-suffix" === h.type)
                             return "lineSuffix(" + p(h.contents) + ")";
                           if ("line-suffix-boundary" === h.type)
                             return "lineSuffixBoundary";
                           if ("label" === h.type)
-                            return `label(${JSON.stringify(h.label)}, ${p(
-                              h.contents,
-                            )})`;
+                            return `label(${JSON.stringify(h.label)}, ${p(h.contents)})`;
                           throw Error("Unknown doc type " + h.type);
                         }
                         function y(h) {
@@ -12360,59 +12312,41 @@
                         l("NONNUMERICIDENTIFIER", "\\d*[a-zA-Z-][a-zA-Z0-9-]*"),
                         l(
                           "MAINVERSION",
-                          `(${n[u.NUMERICIDENTIFIER]})\\.(${
-                            n[u.NUMERICIDENTIFIER]
-                          })\\.(${n[u.NUMERICIDENTIFIER]})`,
+                          `(${n[u.NUMERICIDENTIFIER]})\\.(${n[u.NUMERICIDENTIFIER]})\\.(${n[u.NUMERICIDENTIFIER]})`,
                         ),
                         l(
                           "MAINVERSIONLOOSE",
-                          `(${n[u.NUMERICIDENTIFIERLOOSE]})\\.(${
-                            n[u.NUMERICIDENTIFIERLOOSE]
-                          })\\.(${n[u.NUMERICIDENTIFIERLOOSE]})`,
+                          `(${n[u.NUMERICIDENTIFIERLOOSE]})\\.(${n[u.NUMERICIDENTIFIERLOOSE]})\\.(${n[u.NUMERICIDENTIFIERLOOSE]})`,
                         ),
                         l(
                           "PRERELEASEIDENTIFIER",
-                          `(?:${n[u.NUMERICIDENTIFIER]}|${
-                            n[u.NONNUMERICIDENTIFIER]
-                          })`,
+                          `(?:${n[u.NUMERICIDENTIFIER]}|${n[u.NONNUMERICIDENTIFIER]})`,
                         ),
                         l(
                           "PRERELEASEIDENTIFIERLOOSE",
-                          `(?:${n[u.NUMERICIDENTIFIERLOOSE]}|${
-                            n[u.NONNUMERICIDENTIFIER]
-                          })`,
+                          `(?:${n[u.NUMERICIDENTIFIERLOOSE]}|${n[u.NONNUMERICIDENTIFIER]})`,
                         ),
                         l(
                           "PRERELEASE",
-                          `(?:-(${n[u.PRERELEASEIDENTIFIER]}(?:\\.${
-                            n[u.PRERELEASEIDENTIFIER]
-                          })*))`,
+                          `(?:-(${n[u.PRERELEASEIDENTIFIER]}(?:\\.${n[u.PRERELEASEIDENTIFIER]})*))`,
                         ),
                         l(
                           "PRERELEASELOOSE",
-                          `(?:-?(${n[u.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${
-                            n[u.PRERELEASEIDENTIFIERLOOSE]
-                          })*))`,
+                          `(?:-?(${n[u.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${n[u.PRERELEASEIDENTIFIERLOOSE]})*))`,
                         ),
                         l("BUILDIDENTIFIER", "[0-9A-Za-z-]+"),
                         l(
                           "BUILD",
-                          `(?:\\+(${n[u.BUILDIDENTIFIER]}(?:\\.${
-                            n[u.BUILDIDENTIFIER]
-                          })*))`,
+                          `(?:\\+(${n[u.BUILDIDENTIFIER]}(?:\\.${n[u.BUILDIDENTIFIER]})*))`,
                         ),
                         l(
                           "FULLPLAIN",
-                          `v?${n[u.MAINVERSION]}${n[u.PRERELEASE]}?${
-                            n[u.BUILD]
-                          }?`,
+                          `v?${n[u.MAINVERSION]}${n[u.PRERELEASE]}?${n[u.BUILD]}?`,
                         ),
                         l("FULL", `^${n[u.FULLPLAIN]}$`),
                         l(
                           "LOOSEPLAIN",
-                          `[v=\\s]*${n[u.MAINVERSIONLOOSE]}${
-                            n[u.PRERELEASELOOSE]
-                          }?${n[u.BUILD]}?`,
+                          `[v=\\s]*${n[u.MAINVERSIONLOOSE]}${n[u.PRERELEASELOOSE]}?${n[u.BUILD]}?`,
                         ),
                         l("LOOSE", `^${n[u.LOOSEPLAIN]}$`),
                         l("GTLT", "((?:<|>)?=?)"),
@@ -12426,19 +12360,11 @@
                         ),
                         l(
                           "XRANGEPLAIN",
-                          `[v=\\s]*(${n[u.XRANGEIDENTIFIER]})(?:\\.(${
-                            n[u.XRANGEIDENTIFIER]
-                          })(?:\\.(${n[u.XRANGEIDENTIFIER]})(?:${
-                            n[u.PRERELEASE]
-                          })?${n[u.BUILD]}?)?)?`,
+                          `[v=\\s]*(${n[u.XRANGEIDENTIFIER]})(?:\\.(${n[u.XRANGEIDENTIFIER]})(?:\\.(${n[u.XRANGEIDENTIFIER]})(?:${n[u.PRERELEASE]})?${n[u.BUILD]}?)?)?`,
                         ),
                         l(
                           "XRANGEPLAINLOOSE",
-                          `[v=\\s]*(${n[u.XRANGEIDENTIFIERLOOSE]})(?:\\.(${
-                            n[u.XRANGEIDENTIFIERLOOSE]
-                          })(?:\\.(${n[u.XRANGEIDENTIFIERLOOSE]})(?:${
-                            n[u.PRERELEASELOOSE]
-                          })?${n[u.BUILD]}?)?)?`,
+                          `[v=\\s]*(${n[u.XRANGEIDENTIFIERLOOSE]})(?:\\.(${n[u.XRANGEIDENTIFIERLOOSE]})(?:\\.(${n[u.XRANGEIDENTIFIERLOOSE]})(?:${n[u.PRERELEASELOOSE]})?${n[u.BUILD]}?)?)?`,
                         ),
                         l("XRANGE", `^${n[u.GTLT]}\\s*${n[u.XRANGEPLAIN]}$`),
                         l(
@@ -12476,23 +12402,17 @@
                         ),
                         l(
                           "COMPARATORTRIM",
-                          `(\\s*)${n[u.GTLT]}\\s*(${n[u.LOOSEPLAIN]}|${
-                            n[u.XRANGEPLAIN]
-                          })`,
+                          `(\\s*)${n[u.GTLT]}\\s*(${n[u.LOOSEPLAIN]}|${n[u.XRANGEPLAIN]})`,
                           !0,
                         ),
                         (e.comparatorTrimReplace = "$1$2$3"),
                         l(
                           "HYPHENRANGE",
-                          `^\\s*(${n[u.XRANGEPLAIN]})\\s+-\\s+(${
-                            n[u.XRANGEPLAIN]
-                          })\\s*$`,
+                          `^\\s*(${n[u.XRANGEPLAIN]})\\s+-\\s+(${n[u.XRANGEPLAIN]})\\s*$`,
                         ),
                         l(
                           "HYPHENRANGELOOSE",
-                          `^\\s*(${n[u.XRANGEPLAINLOOSE]})\\s+-\\s+(${
-                            n[u.XRANGEPLAINLOOSE]
-                          })\\s*$`,
+                          `^\\s*(${n[u.XRANGEPLAINLOOSE]})\\s+-\\s+(${n[u.XRANGEPLAINLOOSE]})\\s*$`,
                         ),
                         l("STAR", "(<|>)?=?\\s*\\*"),
                         l("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"),
@@ -12598,9 +12518,7 @@
                             return (
                               (this.version = `${this.major}.${this.minor}.${this.patch}`),
                               this.prerelease.length &&
-                                (this.version += `-${this.prerelease.join(
-                                  ".",
-                                )}`),
+                                (this.version += `-${this.prerelease.join(".")}`),
                               this.version
                             );
                           }
@@ -14412,20 +14330,11 @@
                             if (null === r || "object" != typeof r)
                               return JSON.stringify(r);
                             if (Array.isArray(r))
-                              return `[${r
-                                .map((s) => e.apiDescriptor.value(s))
-                                .join(", ")}]`;
+                              return `[${r.map((s) => e.apiDescriptor.value(s)).join(", ")}]`;
                             let t = Object.keys(r);
                             return 0 === t.length
                               ? "{}"
-                              : `{ ${t
-                                  .map(
-                                    (s) =>
-                                      `${e.apiDescriptor.key(
-                                        s,
-                                      )}: ${e.apiDescriptor.value(r[s])}`,
-                                  )
-                                  .join(", ")} }`;
+                              : `{ ${t.map((s) => `${e.apiDescriptor.key(s)}: ${e.apiDescriptor.value(r[s])}`).join(", ")} }`;
                           },
                           pair: (r) => {
                             let { key: t, value: s } = r;
@@ -14462,16 +14371,12 @@
                       e.commonDeprecatedHandler = (t, s, a) => {
                         let { descriptor: n } = a,
                           u = [
-                            `${r.default.yellow(
-                              "string" == typeof t ? n.key(t) : n.pair(t),
-                            )} is deprecated`,
+                            `${r.default.yellow("string" == typeof t ? n.key(t) : n.pair(t))} is deprecated`,
                           ];
                         return (
                           s &&
                             u.push(
-                              `we now treat it as ${r.default.blue(
-                                "string" == typeof s ? n.key(s) : n.pair(s),
-                              )}`,
+                              `we now treat it as ${r.default.blue("string" == typeof s ? n.key(s) : n.pair(s))}`,
                             ),
                           u.join("; ") + "."
                         );
@@ -14491,13 +14396,7 @@
                         Object.defineProperty(e, "__esModule", { value: !0 });
                       var r = kr();
                       e.commonInvalidHandler = (t, s, a) =>
-                        `Invalid ${r.default.red(
-                          a.descriptor.key(t),
-                        )} value. Expected ${r.default.blue(
-                          a.schemas[t].expected(a),
-                        )}, but received ${r.default.red(
-                          a.descriptor.value(s),
-                        )}.`;
+                        `Invalid ${r.default.red(a.descriptor.key(t))} value. Expected ${r.default.blue(a.schemas[t].expected(a))}, but received ${r.default.red(a.descriptor.value(s))}.`;
                     },
                   }),
                   to = te({
@@ -14565,9 +14464,7 @@
                       e.levenUnknownHandler = (s, a, n) => {
                         let { descriptor: u, logger: i, schemas: l } = n,
                           p = [
-                            `Ignored unknown option ${r.default.yellow(
-                              u.pair({ key: s, value: a }),
-                            )}.`,
+                            `Ignored unknown option ${r.default.yellow(u.pair({ key: s, value: a }))}.`,
                           ],
                           y = Object.keys(l)
                             .sort()
@@ -14724,9 +14621,7 @@
                               (this._valueSchema = u);
                           }
                           expected(n) {
-                            return `an array of ${this._valueSchema.expected(
-                              n,
-                            )}`;
+                            return `an array of ${this._valueSchema.expected(n)}`;
                           }
                           validate(n, u) {
                             if (!Array.isArray(n)) return !1;
@@ -15268,11 +15163,7 @@
                                 if (E)
                                   return (
                                     w.logger.warn(
-                                      `Unknown flag ${c.yellow(
-                                        w.descriptor.value(_),
-                                      )}, did you mean ${c.blue(
-                                        w.descriptor.value(E),
-                                      )}?`,
+                                      `Unknown flag ${c.yellow(w.descriptor.value(_))}, did you mean ${c.blue(w.descriptor.value(E))}?`,
                                     ),
                                     E
                                   );
@@ -15619,9 +15510,7 @@
                                 o = E[T],
                                 d = !E[T + 1];
                               if (!o)
-                                return ` ${f(c.gutter, C)}${
-                                  $.length > 0 ? ` ${$}` : ""
-                                }`;
+                                return ` ${f(c.gutter, C)}${$.length > 0 ? ` ${$}` : ""}`;
                               {
                                 let v = "";
                                 if (Array.isArray(o)) {
@@ -21203,9 +21092,7 @@ ${P}`),
                               return [f("key"), " as ", f("alias")];
                             default:
                               throw Error(
-                                `Unknown Angular node type: ${JSON.stringify(
-                                  F.type,
-                                )}.`,
+                                `Unknown Angular node type: ${JSON.stringify(F.type)}.`,
                               );
                           }
                       }
@@ -21679,9 +21566,7 @@ ${P}`),
                               );
                             default:
                               throw Error(
-                                `Unknown JSX node type: ${JSON.stringify(
-                                  fe.type,
-                                )}.`,
+                                `Unknown JSX node type: ${JSON.stringify(fe.type)}.`,
                               );
                           }
                       }
@@ -22550,9 +22435,7 @@ ${P}`),
                           T ? "import" : I("callee"),
                           m,
                           o
-                            ? `/*:: ${P.callee.trailingComments[0].value
-                                .slice(2)
-                                .trim()} */`
+                            ? `/*:: ${P.callee.trailingComments[0].value.slice(2).trim()} */`
                             : "",
                           _(N, x, I),
                           f(N, x, I),
@@ -24948,8 +24831,8 @@ ${P}`),
                         return C !== T && m[I.get(m.type)] === C;
                       }
                       function $(D, T, m) {
-                        var z, ue;
-                        let C = D.getValue(),
+                        let ue,
+                          C = D.getValue(),
                           o = "ConditionalExpression" === C.type,
                           d = o ? "consequent" : "trueType",
                           v = o ? "alternate" : "falseType",
@@ -24972,6 +24855,7 @@ ${P}`),
                         );
                         let j = L || R;
                         if (o && (s(C[S[0]]) || s(b) || s(B) || N(Q))) {
+                          let z;
                           (M = !0), (J = !0);
                           let ue = (z) => [_("("), f([g, z]), g, _(")")];
                           k.push(
@@ -25664,9 +25548,7 @@ ${P}`),
                             return Y(ee, W, "!");
                           default:
                             throw Error(
-                              `Unknown TypeScript node type: ${JSON.stringify(
-                                K.type,
-                              )}.`,
+                              `Unknown TypeScript node type: ${JSON.stringify(K.type)}.`,
                             );
                         }
                       }
@@ -29051,8 +28933,7 @@ ${P}`),
                   Kd = te({
                     "src/language-handlebars/utils.js"(e, r) {
                       ne();
-                      var t = lt(),
-                        s = Xd();
+                      var t = lt();
                       function a(x) {
                         let I = x.getValue(),
                           P = x.getParentNode(0);
@@ -29072,7 +28953,7 @@ ${P}`),
                           (n(x.tag[0]) || x.tag.includes("."))
                         );
                       }
-                      var i = new Set(s);
+                      var i = new Set(Xd());
                       function l(x) {
                         return i.has(x.toLowerCase()) && !n(x[0]);
                       }
@@ -31309,11 +31190,7 @@ ${u.content}`;
                             .map((Be, ve) => {
                               let ze = X.align[ve],
                                 Se = ye ? "-" : "-".repeat(Be - 2);
-                              return `${
-                                "center" === ze || "left" === ze ? ":" : "-"
-                              }${Se}${
-                                "center" === ze || "right" === ze ? ":" : "-"
-                              }`;
+                              return `${"center" === ze || "left" === ze ? ":" : "-"}${Se}${"center" === ze || "right" === ze ? ":" : "-"}`;
                             })
                             .join(" | ")} |`;
                         }
@@ -32391,9 +32268,7 @@ ${u.content}`;
                         assertNoMembers() {
                           if (this.members.length)
                             throw Error(
-                              `Illegal state: symbol without members expected, but got ${JSON.stringify(
-                                this,
-                              )}.`,
+                              `Illegal state: symbol without members expected, but got ${JSON.stringify(this)}.`,
                             );
                         }
                       };
@@ -33189,18 +33064,14 @@ ${u.content}`;
                         contextualMessage() {
                           let y = this.span.start.getContext(100, 3);
                           return y
-                            ? `${this.msg} ("${y.before}[${u[this.level]} ->]${
-                                y.after
-                              }")`
+                            ? `${this.msg} ("${y.before}[${u[this.level]} ->]${y.after}")`
                             : this.msg;
                         }
                         toString() {
                           let y = this.span.details
                             ? `, ${this.span.details}`
                             : "";
-                          return `${this.contextualMessage()}: ${
-                            this.span.start
-                          }${y}`;
+                          return `${this.contextualMessage()}: ${this.span.start}${y}`;
                         }
                       };
                       function l(y, h) {
@@ -34588,8 +34459,9 @@ ${u.content}`;
                         } = ur(),
                         { printChildren: $ } = Oo();
                       function D(T, m, C) {
-                        var M, M1;
-                        let o = T.getValue();
+                        let M,
+                          M1,
+                          o = T.getValue();
                         if (g(o, m))
                           return [
                             w(o, m),
@@ -34607,7 +34479,7 @@ ${u.content}`;
                             !o.lastChild.hasTrailingSpaces,
                           v = Symbol("element-attr-group-id");
                         return (
-                          (M1 =
+                          (M =
                             0 === o.children.length
                               ? o.hasDanglingSpaces &&
                                 o.isDanglingSpaceSensitive
@@ -34615,7 +34487,7 @@ ${u.content}`;
                                 : ""
                               : [
                                   _(o) ? t : "",
-                                  ((M = [
+                                  ((M1 = [
                                     d
                                       ? n(p, "", { groupId: v })
                                       : o.firstChild.hasLeadingSpaces &&
@@ -34629,13 +34501,13 @@ ${u.content}`;
                                     $(T, m, C),
                                   ]),
                                   d
-                                    ? u(M, { groupId: v })
+                                    ? u(M1, { groupId: v })
                                     : (c(o) || f(o, m)) &&
                                         "root" === o.parent.type &&
                                         "vue" === m.parser &&
                                         !m.vueIndentScriptAndStyle
-                                      ? M
-                                      : i(M)),
+                                      ? M1
+                                      : i(M1)),
                                   (o.next ? I(o.next) : P(o.parent))
                                     ? o.lastChild.hasTrailingSpaces &&
                                       o.lastChild.isTrailingSpaceSensitive
@@ -34651,20 +34523,12 @@ ${u.content}`;
                                                 o.isWhitespaceSensitive &&
                                                 o.isIndentationSensitive)) &&
                                             RegExp(
-                                              `\\n[\\t ]{${
-                                                m.tabWidth *
-                                                F(
-                                                  T,
-                                                  (R) =>
-                                                    R.parent &&
-                                                    "root" !== R.parent.type,
-                                                )
-                                              }}$`,
+                                              `\\n[\\t ]{${m.tabWidth * F(T, (R) => R.parent && "root" !== R.parent.type)}}$`,
                                             ).test(o.lastChild.value)
                                           ? ""
                                           : p,
                                 ]),
-                          a([a(E(T, m, C), { id: v }), M1, x(o, m)])
+                          a([a(E(T, m, C), { id: v }), M, x(o, m)])
                         );
                       }
                       r.exports = { printElement: D };
@@ -36062,11 +35926,11 @@ ${n}`;
           },
         }),
         import_parser_html = (0,
-        _chunk_JRLSWQMA_mjs__WEBPACK_IMPORTED_MODULE_1__.v)(
+        _chunk_JRLSWQMA_mjs__WEBPACK_IMPORTED_MODULE_1__.f)(
           require_parser_html(),
         ),
         import_standalone = (0,
-        _chunk_JRLSWQMA_mjs__WEBPACK_IMPORTED_MODULE_1__.v)(
+        _chunk_JRLSWQMA_mjs__WEBPACK_IMPORTED_MODULE_1__.f)(
           require_standalone(),
         );
       function dedent(templ) {
@@ -36151,4 +36015,4 @@ ${n}`;
     },
   },
 ]);
-//# sourceMappingURL=426.3911f384.iframe.bundle.js.map
+//# sourceMappingURL=71.6b675467.iframe.bundle.js.map

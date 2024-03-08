@@ -1,7 +1,7 @@
 "use strict";
 (self.webpackChunkreact_canvas_confetti =
   self.webpackChunkreact_canvas_confetti || []).push([
-  [607],
+  [647],
   {
     "./node_modules/@storybook/components/dist/WithTooltip-V3YHNWJZ.mjs": (
       __unused_webpack_module,
@@ -11,11 +11,11 @@
       __webpack_require__.r(__webpack_exports__),
         __webpack_require__.d(__webpack_exports__, {
           WithToolTipState: () =>
-            _chunk_NE5YGCQB_mjs__WEBPACK_IMPORTED_MODULE_0__.WA,
+            _chunk_NE5YGCQB_mjs__WEBPACK_IMPORTED_MODULE_0__.vb,
           WithTooltip: () =>
-            _chunk_NE5YGCQB_mjs__WEBPACK_IMPORTED_MODULE_0__.WA,
+            _chunk_NE5YGCQB_mjs__WEBPACK_IMPORTED_MODULE_0__.vb,
           WithTooltipPure: () =>
-            _chunk_NE5YGCQB_mjs__WEBPACK_IMPORTED_MODULE_0__.DG,
+            _chunk_NE5YGCQB_mjs__WEBPACK_IMPORTED_MODULE_0__.o4,
         });
       var _chunk_NE5YGCQB_mjs__WEBPACK_IMPORTED_MODULE_0__ =
         __webpack_require__(

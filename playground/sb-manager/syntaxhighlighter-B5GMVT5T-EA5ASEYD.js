@@ -2,8 +2,8 @@ import {
   SyntaxHighlighter2,
   createCopyToClipboardFunction,
   syntaxhighlighter_default,
-} from "./chunk-2IXBUOFS.js";
-import "./chunk-INSKDKQB.js";
+} from "./chunk-LVLAH4SI.js";
+import "./chunk-4IYAVH3S.js";
 import "./chunk-ZEU7PDD3.js";
 export {
   SyntaxHighlighter2 as SyntaxHighlighter,

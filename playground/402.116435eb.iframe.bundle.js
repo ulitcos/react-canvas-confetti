@@ -1,7 +1,7 @@
 "use strict";
 (self.webpackChunkreact_canvas_confetti =
   self.webpackChunkreact_canvas_confetti || []).push([
-  [439],
+  [402],
   {
     "./node_modules/canvas-confetti/dist/confetti.module.mjs": (
       __unused_webpack_module,
@@ -9,7 +9,7 @@
       __webpack_require__,
     ) => {
       __webpack_require__.d(__webpack_exports__, {
-        Z: () => __WEBPACK_DEFAULT_EXPORT__,
+        A: () => __WEBPACK_DEFAULT_EXPORT__,
       });
       var module = {};
       !(function main(global, module, isWorker, workerSize) {

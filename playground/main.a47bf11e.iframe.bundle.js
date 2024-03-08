@@ -1,6 +1,6 @@
 (self.webpackChunkreact_canvas_confetti =
   self.webpackChunkreact_canvas_confetti || []).push([
-  [179],
+  [792],
   {
     "./node_modules/@storybook/addon-interactions/dist sync recursive": (
       module,
@@ -108,7 +108,7 @@
       (module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
-          Z: () => __WEBPACK_DEFAULT_EXPORT__,
+          A: () => __WEBPACK_DEFAULT_EXPORT__,
         });
         var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ =
             __webpack_require__(
@@ -255,12 +255,12 @@
         (options.domAPI = styleDomAPI_default()),
         (options.insertStyleElement = insertStyleElement_default()),
         injectStylesIntoStyleTag_default()(
-          cjs_ruleSet_1_rules_8_use_1_storybook.Z,
+          cjs_ruleSet_1_rules_8_use_1_storybook.A,
           options,
         ),
-        cjs_ruleSet_1_rules_8_use_1_storybook.Z &&
-          cjs_ruleSet_1_rules_8_use_1_storybook.Z.locals &&
-          cjs_ruleSet_1_rules_8_use_1_storybook.Z.locals;
+        cjs_ruleSet_1_rules_8_use_1_storybook.A &&
+          cjs_ruleSet_1_rules_8_use_1_storybook.A.locals &&
+          cjs_ruleSet_1_rules_8_use_1_storybook.A.locals;
       let _storybook_preview = {
         parameters: {
           actions: { argTypesRegex: "^on[A-Z].*" },
@@ -275,19 +275,19 @@
         var map = {
           "./component.stories": [
             "./storybook/component.stories.tsx",
-            439,
-            152,
+            402,
+            216,
           ],
           "./component.stories.tsx": [
             "./storybook/component.stories.tsx",
-            439,
-            152,
+            402,
+            216,
           ],
-          "./presets.stories": ["./storybook/presets.stories.tsx", 439, 968],
+          "./presets.stories": ["./storybook/presets.stories.tsx", 402, 305],
           "./presets.stories.tsx": [
             "./storybook/presets.stories.tsx",
-            439,
-            968,
+            402,
+            305,
           ],
         };
         function webpackAsyncContext(req) {
@@ -331,10 +331,10 @@
   (__webpack_require__) => {
     var __webpack_exec__ = (moduleId) =>
       __webpack_require__((__webpack_require__.s = moduleId));
-    __webpack_require__.O(0, [804], () =>
+    __webpack_require__.O(0, [123], () =>
       __webpack_exec__("./storybook-config-entry.js"),
     ),
       __webpack_require__.O();
   },
 ]);
-//# sourceMappingURL=main.28161bad.iframe.bundle.js.map
+//# sourceMappingURL=main.a47bf11e.iframe.bundle.js.map

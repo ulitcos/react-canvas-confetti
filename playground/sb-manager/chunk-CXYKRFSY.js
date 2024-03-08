@@ -4,7 +4,7 @@ import {
   require_react,
   require_react_dom,
   scope,
-} from "./chunk-INSKDKQB.js";
+} from "./chunk-4IYAVH3S.js";
 import {
   __commonJS2 as __commonJS,
   __toESM,
@@ -2364,16 +2364,10 @@ Tooltip.defaultProps = {
 var { document: document2 } = scope,
   TargetContainer = newStyled.div`
   display: inline-block;
-  cursor: ${(props) =>
-    props.trigger === "hover" || props.trigger.includes("hover")
-      ? "default"
-      : "pointer"};
+  cursor: ${(props) => (props.trigger === "hover" || props.trigger.includes("hover") ? "default" : "pointer")};
 `,
   TargetSvgContainer = newStyled.g`
-  cursor: ${(props) =>
-    props.trigger === "hover" || props.trigger.includes("hover")
-      ? "default"
-      : "pointer"};
+  cursor: ${(props) => (props.trigger === "hover" || props.trigger.includes("hover") ? "default" : "pointer")};
 `,
   WithTooltipPure = ({
     svg,

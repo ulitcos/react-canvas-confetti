@@ -1,6 +1,6 @@
 (self.webpackChunkreact_canvas_confetti =
   self.webpackChunkreact_canvas_confetti || []).push([
-  [729],
+  [857],
   {
     "./node_modules/@storybook/blocks/dist/Color-6VNJS4EI.mjs": (
       __unused_webpack_module,
@@ -8,13 +8,13 @@
       __webpack_require__,
     ) => {
       "use strict";
+      let ColorSpace2;
       __webpack_require__.r(__webpack_exports__),
         __webpack_require__.d(__webpack_exports__, {
           ColorControl: () => ColorControl,
           default: () => Color_default,
         });
-      var ColorSpace2,
-        chunk_GWAJ4KRU = __webpack_require__(
+      var chunk_GWAJ4KRU = __webpack_require__(
           "./node_modules/@storybook/blocks/dist/chunk-GWAJ4KRU.mjs",
         ),
         react = __webpack_require__("./node_modules/react/index.js");
@@ -585,14 +585,14 @@
         components_dist = __webpack_require__(
           "./node_modules/@storybook/components/dist/index.mjs",
         ),
-        Wrapper = dist.zo.div({ position: "relative", maxWidth: 250 }),
-        PickerTooltip = (0, dist.zo)(components_dist.Rl)({
+        Wrapper = dist.I4.div({ position: "relative", maxWidth: 250 }),
+        PickerTooltip = (0, dist.I4)(components_dist.kR)({
           position: "absolute",
           zIndex: 1,
           top: 4,
           left: 4,
         }),
-        TooltipContent = dist.zo.div({
+        TooltipContent = dist.I4.div({
           width: 200,
           margin: 5,
           ".react-colorful__saturation": { borderRadius: "4px 4px 0 0" },
@@ -601,10 +601,10 @@
           },
           ".react-colorful__last-control": { borderRadius: "0 0 4px 4px" },
         }),
-        Note = (0, dist.zo)(components_dist.gu)(({ theme }) => ({
+        Note = (0, dist.I4)(components_dist._)(({ theme }) => ({
           fontFamily: theme.typography.fonts.base,
         })),
-        Swatches = dist.zo.div({
+        Swatches = dist.I4.div({
           display: "grid",
           gridTemplateColumns: "repeat(9, 16px)",
           gap: 6,
@@ -612,7 +612,7 @@
           marginTop: 5,
           width: 200,
         }),
-        SwatchColor = dist.zo.div(({ theme, active }) => ({
+        SwatchColor = dist.I4.div(({ theme, active }) => ({
           width: 16,
           height: 16,
           boxShadow: active
@@ -629,14 +629,14 @@
             style: { ...style, backgroundImage },
           });
         },
-        Input = (0, dist.zo)(components_dist.l0.Input)(({ theme }) => ({
+        Input = (0, dist.I4)(components_dist.lV.Input)(({ theme }) => ({
           width: "100%",
           paddingLeft: 30,
           paddingRight: 30,
           boxSizing: "border-box",
           fontFamily: theme.typography.fonts.base,
         })),
-        ToggleIcon = (0, dist.zo)(components_dist.PJ)(({ theme }) => ({
+        ToggleIcon = (0, dist.I4)(components_dist.FI)(({ theme }) => ({
           position: "absolute",
           zIndex: 1,
           top: 6,
@@ -699,9 +699,7 @@
               colorSpace: "rgb",
               rgb: value,
               hsl: `hsla(${h}, ${s}%, ${l}%, ${a})`,
-              hex: `#${color_convert_default()
-                .rgb.hex([r, g, b])
-                .toLowerCase()}`,
+              hex: `#${color_convert_default().rgb.hex([r, g, b]).toLowerCase()}`,
             };
           }
           if (HSL_REGEXP.test(value)) {
@@ -716,9 +714,7 @@
               colorSpace: "hsl",
               rgb: `rgba(${r}, ${g}, ${b}, ${a})`,
               hsl: value,
-              hex: `#${color_convert_default()
-                .hsl.hex([h, s, l])
-                .toLowerCase()}`,
+              hex: `#${color_convert_default().hsl.hex([h, s, l]).toLowerCase()}`,
             };
           }
           let plain = value.replace("#", ""),
@@ -900,7 +896,7 @@
                       null,
                       presets.map((preset, index) =>
                         react.createElement(
-                          components_dist.Rl,
+                          components_dist.kR,
                           {
                             key: `${preset.value}-${index}`,
                             hasChrome: !1,
@@ -926,7 +922,7 @@
               }),
             ),
             react.createElement(Input, {
-              id: (0, chunk_GWAJ4KRU.d)(name),
+              id: (0, chunk_GWAJ4KRU.Z)(name),
               value,
               onChange: (e) => updateValue(e.target.value),
               onFocus: (e) => e.target.select(),
@@ -1391,26 +1387,30 @@
           return [(integer >> 16) & 255, (integer >> 8) & 255, 255 & integer];
         }),
         (convert.rgb.hcg = function (rgb) {
+          let grayscale;
           let r = rgb[0] / 255,
             g = rgb[1] / 255,
             b = rgb[2] / 255,
             max = Math.max(Math.max(r, g), b),
             min = Math.min(Math.min(r, g), b),
             chroma = max - min;
-          return [
-            (((chroma <= 0
-              ? 0
-              : max === r
-                ? ((g - b) / chroma) % 6
-                : max === g
-                  ? 2 + (b - r) / chroma
-                  : 4 + (r - g) / chroma) /
-              6) %
-              1) *
-              360,
-            100 * chroma,
-            100 * (chroma < 1 ? min / (1 - chroma) : 0),
-          ];
+          return (
+            (grayscale = chroma < 1 ? min / (1 - chroma) : 0),
+            [
+              (((chroma <= 0
+                ? 0
+                : max === r
+                  ? ((g - b) / chroma) % 6
+                  : max === g
+                    ? 2 + (b - r) / chroma
+                    : 4 + (r - g) / chroma) /
+                6) %
+                1) *
+                360,
+              100 * chroma,
+              100 * grayscale,
+            ]
+          );
         }),
         (convert.hsl.hcg = function (hsl) {
           let s = hsl[1] / 100,

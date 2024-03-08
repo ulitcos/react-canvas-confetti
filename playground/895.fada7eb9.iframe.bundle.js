@@ -1,21 +1,21 @@
 "use strict";
 (self.webpackChunkreact_canvas_confetti =
   self.webpackChunkreact_canvas_confetti || []).push([
-  [797],
+  [895],
   {
-    "./node_modules/@storybook/components/dist/syntaxhighlighter-V7JZZA35.mjs":
+    "./node_modules/@storybook/components/dist/syntaxhighlighter-B5GMVT5T.mjs":
       (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         __webpack_require__.r(__webpack_exports__),
           __webpack_require__.d(__webpack_exports__, {
             SyntaxHighlighter: () =>
-              _chunk_ELLS3HSY_mjs__WEBPACK_IMPORTED_MODULE_0__.d3,
+              _chunk_LWG3MFN2_mjs__WEBPACK_IMPORTED_MODULE_0__.bF,
             createCopyToClipboardFunction: () =>
-              _chunk_ELLS3HSY_mjs__WEBPACK_IMPORTED_MODULE_0__.xV,
-            default: () => _chunk_ELLS3HSY_mjs__WEBPACK_IMPORTED_MODULE_0__.qG,
+              _chunk_LWG3MFN2_mjs__WEBPACK_IMPORTED_MODULE_0__.zH,
+            default: () => _chunk_LWG3MFN2_mjs__WEBPACK_IMPORTED_MODULE_0__.L0,
           });
-        var _chunk_ELLS3HSY_mjs__WEBPACK_IMPORTED_MODULE_0__ =
+        var _chunk_LWG3MFN2_mjs__WEBPACK_IMPORTED_MODULE_0__ =
           __webpack_require__(
-            "./node_modules/@storybook/components/dist/chunk-ELLS3HSY.mjs",
+            "./node_modules/@storybook/components/dist/chunk-LWG3MFN2.mjs",
           );
       },
   },

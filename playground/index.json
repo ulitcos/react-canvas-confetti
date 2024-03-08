@@ -64,6 +64,22 @@
       "title": "Presets",
       "importPath": "./storybook/presets.stories.tsx",
       "tags": ["story"]
+    },
+    "presets--vortex": {
+      "type": "story",
+      "id": "presets--vortex",
+      "name": "Vortex",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"]
+    },
+    "presets--photons": {
+      "type": "story",
+      "id": "presets--photons",
+      "name": "Photons",
+      "title": "Presets",
+      "importPath": "./storybook/presets.stories.tsx",
+      "tags": ["story"]
     }
   }
 }

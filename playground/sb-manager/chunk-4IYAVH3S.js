@@ -22650,7 +22650,11 @@ function _getPrototypeOf(o) {
   );
 }
 function _isNativeFunction(fn) {
-  return Function.toString.call(fn).indexOf("[native code]") !== -1;
+  try {
+    return Function.toString.call(fn).indexOf("[native code]") !== -1;
+  } catch {
+    return typeof fn == "function";
+  }
 }
 function _isNativeReflectConstruct() {
   if (typeof Reflect > "u" || !Reflect.construct || Reflect.construct.sham)

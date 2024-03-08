@@ -4,7 +4,7 @@ import {
   require_react,
   require_react_dom,
   scope,
-} from "./chunk-INSKDKQB.js";
+} from "./chunk-4IYAVH3S.js";
 import {
   __commonJS2 as __commonJS,
   __toESM,
@@ -6028,23 +6028,23 @@ function _typeof(o) {
     _typeof(o)
   );
 }
-function _toPrimitive(input, hint) {
-  if (_typeof(input) !== "object" || input === null) return input;
-  var prim = input[Symbol.toPrimitive];
-  if (prim !== void 0) {
-    var res = prim.call(input, hint || "default");
-    if (_typeof(res) !== "object") return res;
+function toPrimitive(t, r) {
+  if (_typeof(t) != "object" || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (e !== void 0) {
+    var i = e.call(t, r || "default");
+    if (_typeof(i) != "object") return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
-  return (hint === "string" ? String : Number)(input);
+  return (r === "string" ? String : Number)(t);
 }
-function _toPropertyKey(arg) {
-  var key = _toPrimitive(arg, "string");
-  return _typeof(key) === "symbol" ? key : String(key);
+function toPropertyKey(t) {
+  var i = toPrimitive(t, "string");
+  return _typeof(i) == "symbol" ? i : String(i);
 }
 function _defineProperty(obj, key, value) {
   return (
-    (key = _toPropertyKey(key)),
+    (key = toPropertyKey(key)),
     key in obj
       ? Object.defineProperty(obj, key, {
           value,
@@ -6683,12 +6683,14 @@ function processLines(
               ),
             };
           if (i === 0) {
-            var _children = tree.slice(lastLineBreakIndex + 1, index).concat(
-                createLineElement({
-                  children: [newChild],
-                  className: node.properties.className,
-                }),
-              ),
+            var _children = tree
+                .slice(lastLineBreakIndex + 1, index)
+                .concat(
+                  createLineElement({
+                    children: [newChild],
+                    className: node.properties.className,
+                  }),
+                ),
               _line = createLine(_children, lineNumber2);
             newTree.push(_line);
           } else if (i === splitValue.length - 1) {

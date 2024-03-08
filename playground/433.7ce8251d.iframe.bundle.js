@@ -1,6 +1,6 @@
 (self.webpackChunkreact_canvas_confetti =
   self.webpackChunkreact_canvas_confetti || []).push([
-  [312],
+  [433],
   {
     "./node_modules/memoizerific sync recursive": (module) => {
       function webpackEmptyContext(req) {

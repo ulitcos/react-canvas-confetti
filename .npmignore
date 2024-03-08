@@ -1,3 +1,10 @@
+*
+*.stories.*
+*.test.*
+!dist/**/*
+!src/**/*
+dist/types/*.js
+**/.DS_Store
 dist
 node_modules
 .eslintrc.js

@@ -43,8 +43,13 @@ export type TPresetInstanceProps = Omit<TReactCanvasConfettiProps, "onInit"> & {
   onInit?: TOnInitPresetFn;
 };
 
+export type TConductorOptions = {
+  confetti: TCanvasConfettiInstance;
+  decorateOptions: TDecorateOptionsFn;
+};
+
 export type TPresetProps = TPresetInstanceProps & {
-  getTickAnimation: TGetTickAnimationFn;
+  Conductor: new (params: TConductorOptions) => TConductorInstance;
 };
 
 export type TConductorInstance = {

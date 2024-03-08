@@ -1,38 +1,25 @@
 import {
   TCanvasConfettiInstance,
   TConductorInstance,
+  TConductorOptions,
   TDecorateOptionsFn,
-  TGetTickAnimationFn,
   TRunAnimationParams,
 } from "../types";
 
-type TConductorOptions = {
-  confetti: TCanvasConfettiInstance;
-  getTickAnimation: TGetTickAnimationFn;
-  decorateOptions: TDecorateOptionsFn;
-};
-
-class Conductor implements TConductorInstance {
+abstract class Conductor implements TConductorInstance {
   private interval: NodeJS.Timeout | null = null;
 
-  private readonly confetti: TCanvasConfettiInstance;
+  protected readonly confetti: TCanvasConfettiInstance;
 
-  private readonly getTickAnimation: TGetTickAnimationFn;
+  protected readonly decorateOptions: TDecorateOptionsFn;
 
-  private readonly decorateOptions: TDecorateOptionsFn;
-
-  constructor({
-    confetti,
-    getTickAnimation,
-    decorateOptions,
-  }: TConductorOptions) {
+  constructor({ confetti, decorateOptions }: TConductorOptions) {
     this.confetti = confetti;
-    this.getTickAnimation = getTickAnimation;
     this.decorateOptions = decorateOptions;
   }
 
   public shoot = () => {
-    return this.getTickAnimation(this.confetti, this.decorateOptions);
+    return this.tickAnimation();
   };
 
   public run = ({ speed, delay = 0, duration }: TRunAnimationParams) => {
@@ -59,6 +46,8 @@ class Conductor implements TConductorInstance {
     this.pause();
     this.confetti.reset();
   };
+
+  abstract tickAnimation: () => void;
 }
 
 export default Conductor;

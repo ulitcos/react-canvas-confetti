@@ -115,6 +115,10 @@ Advanced settings only work for presets!
 
 [Pride Preset](https://codepen.io/ulitcos/pen/qBvvVGm)
 
+[Vortex Preset](https://codepen.io/ulitcos/pen/XWQXZyP)
+
+[Photons Preset](https://codepen.io/ulitcos/pen/xxeZJjG)
+
 [Manual Control](https://codepen.io/ulitcos/pen/eYXXewp)
 
 [Decorating Options](https://codepen.io/ulitcos/pen/gOEEoYd)

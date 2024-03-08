@@ -1,9 +1,9 @@
 import React from "react";
 import { TPresetInstanceProps } from "../../types";
 import Preset from "../index";
-import SnowConductor from "../../conductor/snow";
+import VortexConductor from "../../conductor/vortex";
 
 function Snow(props: TPresetInstanceProps) {
-  return <Preset Conductor={SnowConductor} {...props} />;
+  return <Preset Conductor={VortexConductor} {...props} />;
 }
 export default Snow;

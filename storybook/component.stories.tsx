@@ -94,7 +94,7 @@ const meta = {
     angle: 90,
     spread: 360,
     startVelocity: 45,
-    decay: 0.8,
+    decay: 0.9,
     gravity: 1,
     drift: 0,
     ticks: 600,

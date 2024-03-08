@@ -3,23 +3,22 @@ import { render, screen } from "@testing-library/react";
 import * as canvasConfetti from "canvas-confetti";
 import ReactCanvasConfetti from "../src";
 import Preset from "../src/presets";
-import Conductor from "../src/helpers/Conductor";
+import Conductor from "../src/conductor";
+import FireworksConductor from "../src/conductor/fireworks";
 
 const getCanvasElement = () =>
   screen.getByText((_, element) => element?.tagName.toLowerCase() === "canvas");
 
-const getTickAnimation = jest.fn();
 const decorateOptions = jest.fn();
 const conductorInstance = { run: jest.fn() };
 
 jest.mock("canvas-confetti");
-jest.mock("../src/helpers/Conductor", () =>
+jest.mock("../src/conductor", () =>
   jest.fn().mockImplementation(() => conductorInstance),
 );
 
 beforeEach(() => {
   (canvasConfetti.create as jest.Mock).mockClear();
-  getTickAnimation.mockClear();
   decorateOptions.mockClear();
   conductorInstance.run.mockClear();
 });
@@ -111,12 +110,12 @@ describe("Component", () => {
 describe("Preset", () => {
   describe("Init", () => {
     it("should render canvas", () => {
-      render(<Preset getTickAnimation={getTickAnimation} />);
+      render(<Preset Conductor={FireworksConductor} />);
       const canvas = getCanvasElement();
       expect(canvas).toBeInstanceOf(HTMLCanvasElement);
     });
     it("should init correctly with default options", () => {
-      render(<Preset getTickAnimation={getTickAnimation} />);
+      render(<Preset Conductor={FireworksConductor} />);
       const canvas = getCanvasElement();
       const { mock: confetti } = canvasConfetti.create as jest.Mock;
 
@@ -132,7 +131,7 @@ describe("Preset", () => {
     it("should init correctly with global options", () => {
       render(
         <Preset
-          getTickAnimation={getTickAnimation}
+          Conductor={FireworksConductor}
           globalOptions={{
             resize: false,
             useWorker: true,
@@ -160,7 +159,7 @@ describe("Preset", () => {
       (canvasConfetti.create as jest.Mock).mockReturnValueOnce(confetti);
       render(
         <Preset
-          getTickAnimation={getTickAnimation}
+          Conductor={FireworksConductor}
           decorateOptions={decorateOptions}
           onInit={({ confetti }) => {
             confetti({ colors: ["#ffffff"] });
@@ -170,7 +169,6 @@ describe("Preset", () => {
 
       expect(Conductor).toBeCalledTimes(1);
       expect((Conductor as jest.Mock).mock.calls[0][0]).toEqual({
-        getTickAnimation,
         confetti,
         decorateOptions,
       });
@@ -190,9 +188,7 @@ describe("Preset", () => {
         confettiInstance,
       );
 
-      render(
-        <Preset getTickAnimation={getTickAnimation} autorun={{ speed: 1 }} />,
-      );
+      render(<Preset Conductor={FireworksConductor} autorun={{ speed: 1 }} />);
 
       expect(conductorInstance.run).toBeCalledTimes(1);
     });
@@ -202,7 +198,7 @@ describe("Preset", () => {
     it("should apply props correctly", () => {
       render(
         <Preset
-          getTickAnimation={getTickAnimation}
+          Conductor={FireworksConductor}
           style={{ opacity: 0.5 }}
           className={"class"}
           width={200}

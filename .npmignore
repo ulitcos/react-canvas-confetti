@@ -4,3 +4,4 @@
 !dist/**/*
 !src/**/*
 dist/types/*.js
+**/.DS_Store

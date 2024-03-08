@@ -4,14 +4,13 @@ import {
   TDecorateOptionsFn,
   TPresetProps,
 } from "../types";
-import Conductor from "../conductor";
 import ReactCanvasConfetti from "../index";
 
 const DEFAULT_DECORATE_OPTIONS: TDecorateOptionsFn = (o) => o;
 
 function Preset({
   decorateOptions = DEFAULT_DECORATE_OPTIONS,
-  getTickAnimation,
+  Conductor,
   autorun,
   onInit,
   ...rest
@@ -31,7 +30,6 @@ function Preset({
 
     const conductor = new Conductor({
       confetti,
-      getTickAnimation,
       decorateOptions,
     });
 

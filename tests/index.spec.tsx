@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import * as canvasConfetti from "canvas-confetti";
 import ReactCanvasConfetti from "../src";
 import Preset from "../src/presets";
-import Conductor from "../src/helpers/Conductor";
+import Conductor from "../src/conductor";
 
 const getCanvasElement = () =>
   screen.getByText((_, element) => element?.tagName.toLowerCase() === "canvas");
@@ -13,7 +13,7 @@ const decorateOptions = jest.fn();
 const conductorInstance = { run: jest.fn() };
 
 jest.mock("canvas-confetti");
-jest.mock("../src/helpers/Conductor", () =>
+jest.mock("../src/conductor", () =>
   jest.fn().mockImplementation(() => conductorInstance),
 );
 

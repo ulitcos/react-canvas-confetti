@@ -4,7 +4,7 @@ import {
   TDecorateOptionsFn,
   TPresetProps,
 } from "../types";
-import Conductor from "../helpers/Conductor";
+import Conductor from "../conductor";
 import ReactCanvasConfetti from "../index";
 
 const DEFAULT_DECORATE_OPTIONS: TDecorateOptionsFn = (o) => o;
